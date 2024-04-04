@@ -19,17 +19,20 @@ body {
     /* background-size: 1600px 900px; */
     background-size: cover;
 }
+/* 제목 */
 .header {
     font-family:'DNFBitBitv2';
     font-size: 100px;
     color: #fff;
     text-align: center;
 }
+/* 페이지 위치 */
 .login_grid {
     display: grid;
     grid-template-rows: 13fr 1fr;
     align-items: center;
 }
+/* 배경이미지 */
 .login{
     background: url("../image/login.png") no-repeat center;
     background-size: 280px;
@@ -45,6 +48,7 @@ body {
 .login:hover {
     color: #BDAA8A;
 }
+/* 조이름/조원 */
 .login_title{
     display: flex;
     font-family:'DNFBitBitv2';
