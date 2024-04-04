@@ -1,0 +1,139 @@
+<!-- 
+    v. 1.0.1
+    작성일자 : 2024-04-04 오전 11시
+    작성(수정)자 : 이나라
+    작성(수정)내용 : div클래스명 규칙
+
+    클래스명
+    1. 'TODO LIST' : header
+    2. 창 부분 : main
+    3. 창 상단 최소화,전체화면,뒤로가기(이미지수정)부분 : main_top
+    3-1. 날짜 들어갈곳 : top_date
+    3-2. 최소화(-) : minus
+    3-3. 네모(ㅁ) : square
+    3-4. 뒤로가기(x) : back 
+    4. 창 화면 부분 : main_mid
+    5. 게이지,달력 부분 : main_left
+    6. 이름,프사 부분 : main_right
+    7. 게이지 이름 : gauge_name
+    8. 게이지 부분 : gauge_bar
+    9. 달력 이름 : cal_name
+    10. 달력 : cal
+    11. 닉네임 부분 : nick_name
+    12. 프사부분 : personal_img
+ -->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="common.css">
+    <title>main</title>
+</head>
+<body>
+    <div class="header">TODO LIST</div>
+    <div class="main">
+        <div class="main_top"> <!--이미지로 대체-->
+            <div class="top_date"></div>
+            <div class="minus">-</div>
+            <div class="square">ㅁ</div>
+            <div class="back">X</div>
+        </div>
+        <div class="main_mid">
+            <div class="main_left">
+                <div class="gauge_item">
+                    <div class="gauge_name">Day</div>
+                    <div class="gauge_bar">
+                        <div class="gauge_bar_ing">ing</div>
+                        <div class="gauge_bar_yet">yet</div>
+                    </div>
+                </div>
+                <div class="gauge_item">
+                    <div class="gauge_name">Week</div>
+                    <div class="gauge_bar">
+                        <div class="gauge_bar_ing">ing</div>
+                        <div class="gauge_bar_yet">yet</div>
+                    </div>
+                </div>
+                <div class="gauge_item">
+                    <div class="gauge_name">Month</div>
+                    <div class="gauge_bar">
+                        <div class="gauge_bar_ing">ing</div>
+                        <div class="gauge_bar_yet">yet</div>
+                    </div>
+                </div>
+                <div class="cal_item">
+                    <!-- <div class="cal_name">April</div>
+                    <div class="cal">달력</div> -->
+                    <table>
+                        <caption>September</caption>
+                              <thead>
+                                  <tr>
+                                      <th class="sun">S</th>
+                                      <th>M</th>
+                                      <th>T</th>
+                                      <th>W</th>
+                                      <th>T</th>
+                                      <th>F</th>
+                                      <th class="sat">S</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr>
+                                      <td class="otherMonth"></td>
+                                      <td class="otherMonth"></td>
+                                      <td class="otherMonth"></td>
+                                      <td class="otherMonth"></td>
+                                      <td>1</td>
+                                      <td>2</td>
+                                      <td class="sat">3</td>
+                                  </tr>
+                                  <tr>
+                                      <td class="sun">4</td>
+                                      <td>5</td>
+                                      <td>6</td>
+                                      <td>7</td>
+                                      <td>8</td>
+                                      <td class="sun">9</td>
+                                      <td class="sun">10</td>
+                                  </tr>
+                                  <tr>
+                                      <td class="sun">11</td>
+                                      <td class="sun">12</td>
+                                      <td>13</td>
+                                      <td>14</td>
+                                      <td>15</td>
+                                      <td>16</td>
+                                      <td class="sat">17</td>
+                                  </tr>
+                                  <tr>
+                                      <td class="sun">18</td>
+                                      <td>19</td>
+                                      <td>20</td>
+                                      <td>21</td>
+                                      <td>22</td>
+                                      <td>23</td>
+                                      <td class="sat">24</td>
+                                  </tr>
+                                  <tr>
+                                      <td class="sun">25</td>
+                                      <td>26</td>
+                                      <td>27</td>
+                                      <td>28</td>
+                                      <td>29</td>
+                                      <td>30</td>
+                                      <td class="otherMonth"></td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                </div>
+            </div>
+            <div class="main_right">
+                <div class="nick_name_item">NAME : 닉네임</div>
+                <div class="personal_img">d</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
