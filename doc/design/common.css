@@ -5,6 +5,10 @@
     font-style: normal;
 }
 
+@font-face{
+    font-family:'DNFBitBitv2';
+    font-style:normal;font-weight:400;src:url('//cdn.df.nexon.com/img/common/font/DNFBitBitv2.otf')format('opentype')}
+
 * {
     margin: 0;
     padding: 0;
@@ -17,7 +21,7 @@ body {
     background-size: cover;
 }
 .header {
-    font-family: "DNF Bit Bit v2";
+    font-family:'DNFBitBitv2';
     font-size: 100px;
     color: #fff;
     text-align: center;
