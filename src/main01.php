@@ -113,44 +113,44 @@
                         <tbody>
                             <tr>
                                 <td class="otherMonth"></td>
-                                <td><a href="./detail.html">1</a></td>
-                                <td><a href="./detail.html">2</a></td>
-                                <td><a href="./detail.html">3</a></td>
-                                <td><a href="./detail.html">4</a></td>
-                                <td><a href="./detail.html">5</a></td>
-                                <td class="sat"><a href="./detail.html">6</a></td>
+                                <td><a href="./list.html">1</a></td>
+                                <td><a href="./list.html">2</a></td>
+                                <td><a href="./list.html">3</a></td>
+                                <td><a href="./list.html">4</a></td>
+                                <td><a href="./list.html">5</a></td>
+                                <td class="sat"><a href="./list.html">6</a></td>
                             </tr>
                             <tr>
-                                <td class="sun"><a href="./detail.html">7</a></td>
-                                <td><a href="./detail.html">8</a></td>
-                                <td><a href="./detail.html">9</a></td>
-                                <td><a href="./detail.html">10</a></td>
-                                <td><a href="./detail.html">11</a></td>
-                                <td><a href="./detail.html">12</a></td>
-                                <td class="sat"><a href="./detail.html">13</a></td>
+                                <td class="sun"><a href="./list.html">7</a></td>
+                                <td><a href="./list.html">8</a></td>
+                                <td><a href="./list.html">9</a></td>
+                                <td><a href="./list.html">10</a></td>
+                                <td><a href="./list.html">11</a></td>
+                                <td><a href="./list.html">12</a></td>
+                                <td class="sat"><a href="./list.html">13</a></td>
                             </tr>
                             <tr>
-                                <td class="sun"><a href="./detail.html">14</a></td>
-                                <td><a href="./detail.html">15</a></td>
-                                <td><a href="./detail.html">16</a></td>
-                                <td><a href="./detail.html">17</a></td>
-                                <td><a href="./detail.html">18</a></td>
-                                <td><a href="./detail.html">19</a></td>
-                                <td class="sat"><a href="./detail.html">20</a></td>
+                                <td class="sun"><a href="./list.html">14</a></td>
+                                <td><a href="./list.html">15</a></td>
+                                <td><a href="./list.html">16</a></td>
+                                <td><a href="./list.html">17</a></td>
+                                <td><a href="./list.html">18</a></td>
+                                <td><a href="./list.html">19</a></td>
+                                <td class="sat"><a href="./list.html">20</a></td>
                             </tr>
                             <tr>
-                                <td class="sun"><a href="./detail.html">21</a></td>
-                                <td><a href="./detail.html">22</a></td>
-                                <td><a href="./detail.html">23</a></td>
-                                <td><a href="./detail.html">24</a></td>
-                                <td><a href="./detail.html">25</a></td>
-                                <td><a href="./detail.html">26</a></td>
-                                <td class="sat"><a href="./detail.html">27</a></td>
+                                <td class="sun"><a href="./list.html">21</a></td>
+                                <td><a href="./list.html">22</a></td>
+                                <td><a href="./list.html">23</a></td>
+                                <td><a href="./list.html">24</a></td>
+                                <td><a href="./list.html">25</a></td>
+                                <td><a href="./list.html">26</a></td>
+                                <td class="sat"><a href="./list.html">27</a></td>
                             </tr>
                             <tr>
-                                <td class="sun"><a href="./detail.html">28</a></td>
-                                <td><a href="./detail.html">29</a></td>
-                                <td><a href="./detail.html">30</a></td>
+                                <td class="sun"><a href="./list.html">28</a></td>
+                                <td><a href="./list.html">29</a></td>
+                                <td><a href="./list.html">30</a></td>
                                 <td class="otherMonth"></td>
                                 <td class="otherMonth"></td>
                                 <td class="otherMonth"></td>
