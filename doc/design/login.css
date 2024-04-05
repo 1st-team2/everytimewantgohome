@@ -6,7 +6,8 @@
 }
 @font-face{
     font-family:'DNFBitBitv2';
-    font-style:normal;font-weight:400;src:url('//cdn.df.nexon.com/img/common/font/DNFBitBitv2.otf')format('opentype')
+    font-style:normal;font-weight:400;
+    src:url('//cdn.df.nexon.com/img/common/font/DNFBitBitv2.otf')format('opentype');
 }
 * {
     margin: 0;
@@ -31,6 +32,7 @@ body {
     display: grid;
     grid-template-rows: 13fr 1fr;
     align-items: center;
+    
 }
 /* 배경이미지 */
 .login{
@@ -44,6 +46,7 @@ body {
     margin-top: 260px;
     width: 260px;
     margin: 0 auto;
+    text-decoration: none;
 }
 .login:hover {
     color: #BDAA8A;
