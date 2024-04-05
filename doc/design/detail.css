@@ -104,11 +104,16 @@ body {
 }
 .main_left {
     margin-right: 40px;
+    font-size: 0;
 }
 .main_left_button {
     display: flex;
+    margin-bottom: 19px;
 }
-.main_left_button > a {
+
+.main_left_button01 > a
+,.main_left_button02 > a
+,.main_left_button03 > a {
     background-color: #F2EDE7;
     text-align: center;
     padding: 20px 30px 20px 30px;
@@ -120,9 +125,17 @@ body {
 
 /* todo:메인아이템이 고정 버튼부분이 위로 이동 */
 
-.main_left_button > a:hover {
+.main_left_button01 > a:hover {
     background-color: #CDBFA7;
-    padding: 30px 30px 30px 30px;
+    padding: 30px 30px 20px 30px;
+}
+.main_left_button02 > a:hover {
+    background-color: #CDBFA7;
+    padding: 30px 30px 20px 30px;
+}
+.main_left_button03 > a:hover {
+    background-color: #CDBFA7;
+    padding: 30px 30px 20px 30px;
 }
 .main_left_item {
     display: flex;
