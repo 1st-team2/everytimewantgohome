@@ -38,7 +38,7 @@ body {
 .login{
     background: url("../image/login.png") no-repeat center;
     background-size: 280px;
-    font-family: "DNF Bit Bit v2";
+    font-family:'DNFBitBitv2';
     font-size: 40px;
     color: #F2EDE7;
     text-align: center;
