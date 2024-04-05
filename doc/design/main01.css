@@ -19,18 +19,6 @@
     font-style: normal;
 }
 
-@font-face {
-    font-family: 'LABDigital';
-    font-weight: normal;
-    font-style: normal;
-    src: url('https://cdn.jsdelivr.net/gh/webfontworld/fontlab/LABDigital.eot');
-    src: url('https://cdn.jsdelivr.net/gh/webfontworld/fontlab/LABDigital.eot?#iefix') format('embedded-opentype'),
-         url('https://cdn.jsdelivr.net/gh/webfontworld/fontlab/LABDigital.woff2') format('woff2'),
-         url('https://cdn.jsdelivr.net/gh/webfontworld/fontlab/LABDigital.woff') format('woff'),
-         url('https://cdn.jsdelivr.net/gh/webfontworld/fontlab/LABDigital.ttf') format("truetype");
-    font-display: swap;
-}
-
 * {
     margin: 0;
     padding: 0;
@@ -71,12 +59,17 @@ body {
     /* padding-top: 1.2rem; */ 
 }
 
-.main_top :nth-child(n + 2) {
+.main_top>:nth-child(n + 2) {
     border-right: 1px solid #000;
 }
 
 .main_top :last-child {
     border-right: none;
+}
+
+.back{
+    position: relative;
+    top: 3px;
 }
 
 .Gear {
@@ -87,11 +80,11 @@ body {
 
 .dropdown {
     position: absolute;
-    left: 1200px;
+    left: 110px;
     top: 0px;
     width: 320px;
     height: 420px;
-    border: 0.5px solid #000;
+    /* border: 0.5px solid #000; */
     border-radius: 20px;
     background-color: #f2ede7;
     z-index: 1;
@@ -102,7 +95,7 @@ body {
 
 .drop_titles {
     font-family: 'GmarketSansMedium';
-    font-size: 20px;
+    font-size: 17px;
     margin-top: 10px;
 }
 
@@ -148,11 +141,12 @@ label > img {
 }
 
 [type="radio"]:checked+label>img {
-    border: 1px solid #000;
+    border: 1px solid #435792;
 }
 
 #toggle {
     display: none;
+    cursor: pointer;
 }
 
 #toggle:checked+.dropdown{
@@ -168,6 +162,12 @@ label > img {
     display: inline-block;
     opacity: 1;
 } */
+
+.dropdown>form>button[type="submit"]{
+    padding: 9px 25px;
+    margin: 3px 88px;
+    cursor: pointer;
+}
 
 .main_mid {
     display: grid;
@@ -317,7 +317,7 @@ a:hover {
     padding: 10px 15px;
     border-radius: 10px;
     box-shadow: inset 0 0 16px -7px #000;
-     
+    cursor: pointer;
 }
 
 
