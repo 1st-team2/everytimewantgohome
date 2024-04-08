@@ -1,0 +1,199 @@
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face{
+    font-family:'DNFBitBitv2';
+    font-style:normal;font-weight:400;
+    src:url('//cdn.df.nexon.com/img/common/font/DNFBitBitv2.otf')format('opentype');
+}
+@font-face {
+    font-family: 'NotoSerifKR';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NotoSerifKR.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'LABDigital';
+    font-weight: normal;
+    font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/fontlab/LABDigital.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/fontlab/LABDigital.eot?#iefix') format('embedded-opentype'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/fontlab/LABDigital.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/fontlab/LABDigital.woff') format('woff'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/fontlab/LABDigital.ttf') format("truetype");
+    font-display: swap;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'GmarketSansMedium';
+    text-decoration: none;
+}
+body {
+    background: url(../image/background04.jpg) no-repeat center fixed ;
+    /* background-repeat: no-repeat; */
+    /* background-size: 1600px 900px; */
+    background-size: cover;
+}
+a {
+    text-decoration: none;
+}
+.header {
+    font-family:'DNFBitBitv2';
+    font-size: 100px;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+} 
+.main {
+    background-color: #fff;
+    width: 1200px;
+    height: 770px;
+    margin: 0 auto;
+    border-radius: 20px;
+    border: 1px solid #000;
+    display: grid;
+    grid-template-rows: 40px 730px;
+}
+.main_top {
+    background-color: #D3D3D3;
+    border-radius: 20px 20px 0 0;           
+    border-bottom: 1px solid #000;
+    display: grid;
+    grid-template-columns: 9fr 1fr 1fr 1fr;
+    align-items: center;
+    text-align: center;
+    /* padding-top: 1.2rem; */ 
+}
+
+.main_top :nth-child(n + 2) {
+    border-right: 1px solid #000;
+}
+
+.main_top :last-child {
+    border-right: none;
+}
+
+.top_date {
+    display: flex;
+    padding-left: 30px;
+    font-family: 'LABDigital';
+}
+
+.main_mid {
+    display: grid;
+    grid-template-columns: 4.5fr 2.5fr;
+    /* margin-top: 10px; */
+    padding: 29px;
+    padding-top: 20px;
+    align-content: space-evenly;
+    justify-items: center;
+    align-items: end;
+}
+.back {
+    padding-top: 9.5px;
+    padding-bottom: 9.5px;
+    background-color: #435792;
+    border-top-right-radius: 18px;
+}
+.back > a {
+    text-decoration: none;
+    color: #F2EDE7;
+    text-align: center;
+    padding: 40px;
+}
+.main_left {
+    margin-right: 40px;
+    font-size: 0;
+}
+.main_left_button {
+    display: flex;
+    margin-bottom: 19px;
+    align-items: flex-end;
+}
+.main_left_button > button {
+    background-color: #F2EDE7;
+    text-align: center;
+    padding: 19px 35px 19px 35px;
+    border-radius: 20px 20px 0 0;
+    color: black;
+    font-size: 12PX;
+    border: none;
+    margin-bottom: -19px;
+}
+.main_left_button01 > a {
+    background-color: #F2EDE7;
+    text-align: center;
+    padding: 20px 30px 20px 30px;
+    border-radius: 20px 20px 0 0;
+    text-decoration: none;
+    color: black;
+    font-size: 12PX;
+}
+.main_left_button > button:hover {
+    background-color: #CDBFA7;
+    padding: 29px 35px 19px 35px;
+}
+.main_left_button01 > a:hover {
+    background-color: #CDBFA7;
+    padding: 30px 30px 20px 30px;
+}
+.main_left_item {
+    display: flex;
+    width: 740px;
+    height: 600px;
+    background-color: #BDAA8A;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0 20px 20px 20px;
+}
+textarea, #title {
+    font-family: 'GmarketSansMedium';
+    background-color: #F2EDE7;
+    border-style: none;
+    border-radius: 10px;
+    resize: none;
+    margin: 1rem;
+    padding: 1rem;
+    cursor: Default;
+    font-size: 1.5rem;
+    color: #393E51;
+    
+}
+textarea, #title:focus {
+    outline: none;
+}
+#title {
+    width: 660px;
+    text-align: center;
+}
+.main_right {
+    width: 350px;
+}
+.main_right > img {
+    /* border: 1px solid #000; */
+    border-radius: 20px;
+    margin-top: 30px;
+    width: 100%;
+    height: 555px;
+    box-shadow: 0 0 16px -7px #000;
+}
+
+.nick_date_item {
+    margin-top: 25px;
+    text-align: center;
+    background-color: #f2ede7;
+    border-radius: 10px;
+    font-family: 'LABDigital';
+    font-size: 1.3rem;
+    height: 60px;
+    line-height: 60px;
+}
+
+

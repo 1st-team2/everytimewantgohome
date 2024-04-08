@@ -28,7 +28,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="detail.css">
+    <link rel="stylesheet" href="./detail.css">
     <title>main</title>
 </head>
 <body>
@@ -39,14 +39,14 @@
             <div class="top_date">2024-03-26</div>
             <div class="minus">-</div>
             <div class="square">ㅁ</div>
-            <div class="back"><a href="./list.html">x</a></div>
+            <div class="back"><a href="./list.php">x</a></div>
         </div>
         <div class="main_mid">
             <div class="main_left">
                 <div class="main_left_button">
-                    <div class="main_left_button01"><a href="./list.html">Done</a></div>
-                    <div class="main_left_button02"><a href="./list.html">Cancel</a></div>
-                    <div class="main_left_button03"><a href="./delete.html">Delete</a></div>
+                    <div class="main_left_button01"><a href="./list.php">Done</a></div>
+                    <div class="main_left_button02"><a href="./list.php">Cancel</a></div>
+                    <div class="main_left_button03"><a href="./delete.php">Delete</a></div>
                 </div>
                 <form action="" method="post" class="main_left_item">
                     <input type="text" name="title" id="title" spellcheck="false">
