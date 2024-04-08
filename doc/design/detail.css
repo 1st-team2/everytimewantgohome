@@ -40,6 +40,9 @@ body {
     /* background-size: 1600px 900px; */
     background-size: cover;
 }
+a {
+    text-decoration: none;
+}
 .header {
     font-family:'DNFBitBitv2';
     font-size: 100px;

@@ -3,6 +3,10 @@
     작성일자 : 2024-04-04 오전 11시
     작성(수정)자 : 이나라
     작성(수정)내용 : div클래스명 규칙
+    v. 1.0.2
+    작성일자 : 2024-04-05 오후 2시
+    작성(수정)자 : 노경호
+    작성(수정)내용 : list페이지 명명규칙
 
     클래스명
     1. 'TODO LIST' : header
@@ -23,13 +27,13 @@
     12. 프사부분 : personal_img
  -->
 
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./list.css">
-    <title>main</title>
+    <link rel="stylesheet" href="../css/list.css">
+    <title>TODO LIST</title>
 </head>
 <body>
     <div class="header">TODO LIST</div>
@@ -38,18 +42,19 @@
             <div class="top_date">2024-04-04</div>
             <div class="minus">-</div>
             <div class="square">ㅁ</div>
-            <div class="back"><a href="./main01.html">x</a></div>
+            <div class="back"><a href="./main01.php">x</a></div>
         </div>
         <div class="main_mid">
             <div class="main_left">
                 <div class="main_list_button">
                     <div class="add_button_box">
-                        <a class= "add_button" href="insert.html">Add</a>
+                        <a class= "add_button" href="insert.php">Add</a>
                     </div>
                 </div>
                 <div class="list_container" >
                     <div class="list_box">
                         <div class="list_items" >
+                            <!-- 콘텐츠 아이템 리스트 -->
                             <div class="daily_list">
                                 <!-- <div class="list_chkbox"><input type="checkbox" name="" id="checkbox"></div> -->
                                 <label class="checkbox chk-label-checked">✔</label>
