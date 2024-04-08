@@ -28,7 +28,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./delete.css">
+    <link rel="stylesheet" href="./css/delete.css">
     <title>main</title>
 </head>
 <body>

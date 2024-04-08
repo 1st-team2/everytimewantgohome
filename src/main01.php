@@ -28,7 +28,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="main01.css">
+    <link rel="stylesheet" href="./css/main01.css">
     <title>main</title>
 </head>
 <body>
@@ -42,7 +42,7 @@
                 <label for="toggle"><img src="../image/Gear.png" alt="" class="Gear"></label>
                 <input type="checkbox" id="toggle"></input>
                 <div class="dropdown">
-                    <form action="main01.html" method="post">
+                    <form action="main01.php" method="post">
                         <div>
                             <label for="music" class="drop_titles">MUSIC</label>
                         </div>
@@ -113,44 +113,44 @@
                         <tbody>
                             <tr>
                                 <td class="otherMonth"></td>
-                                <td><a href="./list.html">1</a></td>
-                                <td><a href="./list.html">2</a></td>
-                                <td><a href="./list.html">3</a></td>
-                                <td><a href="./list.html">4</a></td>
-                                <td><a href="./list.html">5</a></td>
-                                <td class="sat"><a href="./list.html">6</a></td>
+                                <td><a href="./list.php">1</a></td>
+                                <td><a href="./list.php">2</a></td>
+                                <td><a href="./list.php">3</a></td>
+                                <td><a href="./list.php">4</a></td>
+                                <td><a href="./list.php">5</a></td>
+                                <td class="sat"><a href="./list.php">6</a></td>
                             </tr>
                             <tr>
-                                <td class="sun"><a href="./list.html">7</a></td>
-                                <td><a href="./list.html">8</a></td>
-                                <td><a href="./list.html">9</a></td>
-                                <td><a href="./list.html">10</a></td>
-                                <td><a href="./list.html">11</a></td>
-                                <td><a href="./list.html">12</a></td>
-                                <td class="sat"><a href="./list.html">13</a></td>
+                                <td class="sun"><a href="./list.php">7</a></td>
+                                <td><a href="./list.php">8</a></td>
+                                <td><a href="./list.php">9</a></td>
+                                <td><a href="./list.php">10</a></td>
+                                <td><a href="./list.php">11</a></td>
+                                <td><a href="./list.php">12</a></td>
+                                <td class="sat"><a href="./list.php">13</a></td>
                             </tr>
                             <tr>
-                                <td class="sun"><a href="./list.html">14</a></td>
-                                <td><a href="./list.html">15</a></td>
-                                <td><a href="./list.html">16</a></td>
-                                <td><a href="./list.html">17</a></td>
-                                <td><a href="./list.html">18</a></td>
-                                <td><a href="./list.html">19</a></td>
-                                <td class="sat"><a href="./list.html">20</a></td>
+                                <td class="sun"><a href="./list.php">14</a></td>
+                                <td><a href="./list.php">15</a></td>
+                                <td><a href="./list.php">16</a></td>
+                                <td><a href="./list.php">17</a></td>
+                                <td><a href="./list.php">18</a></td>
+                                <td><a href="./list.php">19</a></td>
+                                <td class="sat"><a href="./list.php">20</a></td>
                             </tr>
                             <tr>
-                                <td class="sun"><a href="./list.html">21</a></td>
-                                <td><a href="./list.html">22</a></td>
-                                <td><a href="./list.html">23</a></td>
-                                <td><a href="./list.html">24</a></td>
-                                <td><a href="./list.html">25</a></td>
-                                <td><a href="./list.html">26</a></td>
-                                <td class="sat"><a href="./list.html">27</a></td>
+                                <td class="sun"><a href="./list.php">21</a></td>
+                                <td><a href="./list.php">22</a></td>
+                                <td><a href="./list.php">23</a></td>
+                                <td><a href="./list.php">24</a></td>
+                                <td><a href="./list.php">25</a></td>
+                                <td><a href="./list.php">26</a></td>
+                                <td class="sat"><a href="./list.php">27</a></td>
                             </tr>
                             <tr>
-                                <td class="sun"><a href="./list.html">28</a></td>
-                                <td><a href="./list.html">29</a></td>
-                                <td><a href="./list.html">30</a></td>
+                                <td class="sun"><a href="./list.php">28</a></td>
+                                <td><a href="./list.php">29</a></td>
+                                <td><a href="./list.php">30</a></td>
                                 <td class="otherMonth"></td>
                                 <td class="otherMonth"></td>
                                 <td class="otherMonth"></td>
@@ -161,14 +161,14 @@
                 </div>
             </div>
             <div class="main_right">
-                <form action="main01.html" method="post">
+                <form action="main01.php" method="post">
                     <div class="nick_name_item">
                         <label for="nick" class="name">NAME</label>
                         <input type="text" name="nick" id="nick">
                         <button type="submit" class="name_button">YES</button>
                     </div>
                 </form>
-                <form action="main01.html" method="post" enctype="multipart/form-data" class="img_add" >
+                <form action="main01.php" method="post" enctype="multipart/form-data" class="img_add" >
                     <div class="personal_img">
                         <input type="file" name="personal_img" id="personal_img">
                     </div>

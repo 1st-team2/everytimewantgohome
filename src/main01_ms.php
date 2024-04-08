@@ -40,7 +40,7 @@ require_once(FILE_LIB_DB); // DB관련 라이브러리
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="main01.css">
+    <link rel="stylesheet" href="./css/main01.css">
     <title>main</title>
 </head>
 <body>
