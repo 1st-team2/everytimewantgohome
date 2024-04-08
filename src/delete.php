@@ -32,7 +32,7 @@
     <title>main</title>
 </head>
 <body>
-    <a href="./main01.html"><div class="header">TODO LIST</div></a>
+    <a href="./main01.php"><div class="header">TODO LIST</div></a>
     <div class="main">
         <div class="main_top">
             <!-- 오늘 날짜 -->

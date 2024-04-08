@@ -36,7 +36,7 @@
     <title>TODO LIST</title>
 </head>
 <body>
-    <div class="header">TODO LIST</div>
+    <a href="./main01.php"><div class="header">TODO LIST</div></a>
     <div class="main">
         <div class="main_top"> <!--이미지로 대체-->
             <div class="top_date">2024-04-04</div>
