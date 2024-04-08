@@ -67,9 +67,9 @@ body {
 }
 .top_date {
     text-align: start;
-    margin-left: 20px;
+    margin-left: 30px;
     font-size: 16px;
-    font-weight: 600;
+    font-family: 'LABDigital';
 }
 
 .main_top :nth-child(n + 2) {
@@ -123,6 +123,7 @@ body {
     align-items: center; */
     display: flex;
     margin-bottom: 19px;
+    font-size: 0;
 }
 .add_button {
 /*     
@@ -133,7 +134,7 @@ body {
     padding: 20px 30px 20px 30px; */
     background-color: #F2EDE7;
     text-align: center;
-    padding: 20px 30px 20px 30px;
+    padding: 20px 35px 20px 35px;
     border-radius: 20px 20px 0 0;
     text-decoration: none;
     color: black;
@@ -141,7 +142,7 @@ body {
 }
 .add_button_box > a:hover {
     background-color: #cdbfa7;
-    padding: 30px 30px 20px 30px;
+    padding: 30px 35px 20px 35px;
 }
 .list_container {
     width: 740px;
