@@ -49,8 +49,8 @@
                     <div class="main_left_button03"><a href="./delete.php">Delete</a></div>
                 </div>
                 <form action="" method="post" class="main_left_item">
-                    <input type="text" name="title" id="title" spellcheck="false">
-                    <textarea name="content" id="content" cols="40" rows="13" spellcheck="false"></textarea>
+                    <input type="text" name="title" id="title" spellcheck="false" readonly>
+                    <textarea name="content" id="content" cols="40" rows="13" spellcheck="false" readonly></textarea>
                 </form>
             </div>
             <div class="main_right">

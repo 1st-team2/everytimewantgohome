@@ -223,7 +223,10 @@ body {
     justify-content: center;
     margin-left: 15px;
 }
-
+.color {
+    color: #949AB2;
+    text-decoration: line-through;
+}
 
 .gauge_item {
     width: 750px;
