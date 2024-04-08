@@ -1,2 +1,6 @@
-진짜 집에 가고싶다. 집 가면 공부할거 알면서도 그냥 집에 가고싶음
-이나라
+BGM 출처
+Music by Bensound.com/royalty-free-music
+License code: MRYI9J1WQEKCCBNO
+
+xcopy 원본경로 카피경로 /E /Y
+예) xcopy D:\workspace\everytimewantgohome\everytimewantgohome\src C:\Apache24\htdocs /E /Y
