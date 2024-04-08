@@ -214,8 +214,33 @@ function generateCalendar() {
                                 <td class="otherMonth"></td>
                                 <td class="otherMonth"></td>
                             </tr> -->
+                            <!-- PHP로 동적으로 날짜 채우기 -->
+        <?php
+        // 현재 년월 계산
+        $currentYear = date('Y');
+        $currentMonth = date('n');
+        $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $currentMonth, $currentYear);
+        $firstDayOfMonth = mktime(0, 0, 0, $currentMonth, 1, $currentYear);
+        $dayOfWeek = date('w', $firstDayOfMonth);
+
+        $currentDate = 1;
+
+        // 달력 표시
+        for ($i = 0; $i < 6; $i++) { // 최대 6주 (최대 행 수)
+            echo '<tr>';
+            for ($j = 0; $j < 7; $j++) { // 일주일은 7일
+                if (($i == 0 && $j < $dayOfWeek) || $currentDate > $daysInMonth) {
+                    echo '<td></td>'; // 빈 셀
+                } else {
+                    // 날짜 셀에 날짜 출력
+                    echo '<td><a href="todo_list.php?date=' . $currentYear . '-' . $currentMonth . '-' . $currentDate . '">' . $currentDate . '</a></td>';
+                    $currentDate++;
+                }
+            }
+            echo '</tr>';
+        }
+        ?>
                             
-                            <?php generateCalendar(); ?>
                         </tbody>
                     </table>
                 </div>
