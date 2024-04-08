@@ -23,29 +23,35 @@ function generateCalendar() {
     $endDayOfWeek = date("N", strtotime($lastDayOfMonth));
     $totalDays = date("t", strtotime($firstDayOfMonth));
     
-    echo "  <div class='calendar-date'>Sun</div>";
-    echo "  <div class='calendar-date'>Mon</div>";
-    echo "  <div class='calendar-date'>Tue</div>";
-    echo "  <div class='calendar-date'>Wed</div>";
-    echo "  <div class='calendar-date'>Thu</div>";
-    echo "  <div class='calendar-date'>Fri</div>";
-    echo "  <div class='calendar-date'>Sat</div>";
+    // echo " <div class='calendar-date'>Sun</div>";
+    // echo " <div class='calendar-date'>Mon</div>";
+    // echo " <div class='calendar-date'>Tue</div>";
+    // echo " <div class='calendar-date'>Wed</div>";
+    // echo " <div class='calendar-date'>Thu</div>";
+    // echo " <div class='calendar-date'>Fri</div>";
+    // echo " <div class='calendar-date'>Sat</div>";
 
     for ($i = 1; $i < $startDayOfWeek; $i++) {
-        echo "<div class='calendar-date'></div>";
+        echo "<th class='calendar-date'></th>";
     }
     
     for ($day = 1; $day <= $totalDays; $day++) {
         if ($day == date("j", strtotime($today))) {
-            echo "<div class='calendar-date today'><a href='list.php?date=" . date("Y-m-d", strtotime($firstDayOfMonth . "+" . ($day - 1) . " days")) . "'>$day</a></div>";
+            echo "<th class='calendar-date today'><a href='list.php?date=" . date("Y-m-d", strtotime($firstDayOfMonth . "+" . ($day - 1) . " days")) . "'>$day</a></th>";
         } else {
-            echo "<div class='calendar-date'><a href='list.php?date=" . date("Y-m-d", strtotime($firstDayOfMonth . "+" . ($day - 1) . " days")) . "'>$day</a></div>";
+            echo "<th class='calendar-date'><a href='list.php?date=" . date("Y-m-d", strtotime($firstDayOfMonth . "+" . ($day - 1) . " days")) . "'>$day</a></th>";
+        }
+        
+        if($day == $endDayOfWeek){
+            echo "\n";
         }
     }
     
     for ($i = $endDayOfWeek; $i < 7; $i++) {
-        echo "<div class='calendar-date'></div>";
+        echo "<th class='calendar-date'></th>";
     }
+
+    
 }
 
 // <!-- 
@@ -208,6 +214,7 @@ function generateCalendar() {
                                 <td class="otherMonth"></td>
                                 <td class="otherMonth"></td>
                             </tr> -->
+                            
                             <?php generateCalendar(); ?>
                         </tbody>
                     </table>
