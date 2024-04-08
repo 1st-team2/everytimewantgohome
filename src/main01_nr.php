@@ -3,16 +3,28 @@
 require_once( $_SERVER["DOCUMENT_ROOT"]."/config.php"); // 설정 파일 호출
 //require_once(FILE_LIB_DB); // DB관련 라이브러리
 
-// GET으로 넘겨 받은 year값이 있다면 넘겨 받은걸 year변수에 적용하고 없다면 현재 년도
-$year = isset($_GET['year']) ? $_GET['year'] : date('Y');
-// GET으로 넘겨 받은 month값이 있다면 넘겨 받은걸 month변수에 적용하고 없다면 현재 월
-$month = isset($_GET['month']) ? $_GET['month'] : date('m');
 
-$date = "$year-$month-01"; // 해당 달의 1일
-$time = strtotime($date); // 현재 날짜의 타임스탬프
-$start_week = date('w', $time); // 1. 시작 요일
-$total_day = date('t', $time); // 2. 현재 달의 총 날짜
-$total_week = ceil(($total_day + $start_week) / 7);  // 3. 현재 달의 총 주차
+try {
+    // 데이터베이스 연결
+    $db = new PDO($dsn, $username, $password);
+
+    // 이미지 경로를 받아옴
+    if (isset($_POST['image']) && !empty($_POST['image'])) {
+        $imagePath = $_POST['image'];
+
+        // 이미지 경로를 DB에 저장하는 쿼리
+        $query = "INSERT INTO images (image_path) VALUES (:imagePath)";
+        $statement = $db->prepare($query);
+        $statement->bindParam(':imagePath', $imagePath, PDO::PARAM_STR);
+        $statement->execute();
+
+        echo "이미지가 성공적으로 저장되었습니다.";
+    } else {
+        echo "이미지를 선택해주세요.";
+    }
+} catch (PDOException $e) {
+    echo "오류: " . $e->getMessage();
+}
 
 
 function generateCalendar() {
@@ -78,6 +90,9 @@ function generateCalendar() {
 //     11. 닉네임 부분 : nick_name
 //     12. 프사부분 : personal_img
 // -->
+
+
+
 ?>
 
 
@@ -108,20 +123,20 @@ function generateCalendar() {
                         <div class="drop_titles">Character</div>
                         <div class="character_main">
                             <div class="char_img_radio">
-                                <input type="radio" name="img" id="char_img1">
-                                <label for="char_img1"><img src="../image/ex.jpg" alt=""></label>
+                                <input type="radio" name="img" id="char_img1" value="/image/ex.jpg">
+                                <label for="char_img1" class="radio_label"></label>
                             </div>
                             <div class="char_img_radio">
-                                <input type="radio" name="img" id="char_img2">
-                                <label for="char_img2"><img src="../image/ex.jpg" alt=""></label>
+                                <input type="radio" name="img" id="char_img2" value="/image/personal.png">
+                                <label for="char_img2" class="radio_label"></label>
                             </div>
                             <div class="char_img_radio">
-                                <input type="radio" name="img" id="char_img3">
-                                <label for="char_img3"><img src="../image/ex.jpg" alt=""></label>
+                                <input type="radio" name="img" id="char_img3" value="/image/personal.png">
+                                <label for="char_img3" class="radio_label"></label>
                             </div>
                             <div class="char_img_radio">
-                                <input type="radio" name="img" id="char_img4">
-                                <label for="char_img4"><img src="../image/ex.jpg" alt=""></label>
+                                <input type="radio" name="img" id="char_img4" value="/image/personal.png">
+                                <label for="char_img4" class="radio_label"></label>
                             </div>
                         </div>
                         <button type="submit" class="name_button">YES</button>
