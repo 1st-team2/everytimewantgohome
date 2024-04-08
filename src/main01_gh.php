@@ -221,17 +221,17 @@ $nextYear = date('Y', strtotime('+1 month', $time));
                              for ($i = 0; $i < $total_week; $i++) { // 주(행) 반복
                                  echo '<tr>'; // 새로운 행 시작
                                  for ($j = 0; $j < 7; $j++) { // 요일(열) 반복
-                                     if (($i == 0 && $j < $start_week) || ($day > $total_day)) {
+                                    if (($i == 0 && $j < $start_week) || ($day > $total_day)) {
                                          // 첫 주에서 시작 요일 이전의 빈 칸이거나 현재 달의 날짜를 넘어갔을 때 빈 칸 표시
-                                         echo '<td></td>';
-                                     } else {
+                                        echo '<td></td>';
+                                    } else {
                                          // 유효한 날짜인 경우 해당 날짜로 링크된 셀 표시
-                                         echo '<td><a href="list.php?date=' . date("Y-m-d", strtotime($date . " + " . ($day - 1) . " days")) . '">' . $day . '</a></td>';
+                                        echo '<td><a href="list.php?date=' . date("Y-m-d", strtotime($date . " + " . ($day - 1) . " days")) . '">' . $day . '</a></td>';
                                          $day++; // 다음 날짜로 이동
-                                     }
-                                 }
+                                    }
+                                }
                                  echo '</tr>'; // 행 마무리
-                             }
+                            }
                             ?>
                         </tbody>
                     </table>
