@@ -1,40 +1,52 @@
-<!-- 
-    v. 1.0.1
-    작성일자 : 2024-04-04 오전 11시
-    작성(수정)자 : 이나라
-    작성(수정)내용 : div클래스명 규칙
+<?php
+// <!-- 
+//     v. 1.0.1
+//     작성일자 : 2024-04-04 오전 11시
+//     작성(수정)자 : 이나라
+//     작성(수정)내용 : div클래스명 규칙
+//     php
+//     작성일자 : 2024-04-08 오전 11시40분
+//     작성(수정)자 : 권민서
 
-    클래스명
-    1. 'TODO LIST' : header
-    2. 창 부분 : main
-    3. 창 상단 최소화,전체화면,뒤로가기(이미지수정)부분 : main_top
-    3-1. 날짜 들어갈곳 : top_date
-    3-2. 최소화(-) : minus
-    3-3. 네모(ㅁ) : square
-    3-4. 뒤로가기(x) : back 
-    4. 창 화면 부분 : main_mid
-    5. 게이지,달력 부분 : main_left
-    6. 이름,프사 부분 : main_right
-    7. 게이지 이름 : gauge_name
-    8. 게이지 부분 : gauge_bar
-    9. 달력 이름 : cal_name
-    10. 달력 : cal
-    11. 닉네임 부분 : nick_name
-    12. 프사부분 : personal_img
--->
+//     클래스명
+//     1. 'TODO LIST' : header
+//     2. 창 부분 : main
+//     3. 창 상단 최소화,전체화면,뒤로가기(이미지수정)부분 : main_top
+//     3-1. 날짜 들어갈곳 : top_date
+//     3-2. 최소화(-) : minus
+//     3-3. 네모(ㅁ) : square
+//     3-4. 뒤로가기(x) : back 
+//     4. 창 화면 부분 : main_mid
+//     5. 게이지,달력 부분 : main_left
+//     6. 이름,프사 부분 : main_right
+//     7. 게이지 이름 : gauge_name
+//     8. 게이지 부분 : gauge_bar
+//     9. 달력 이름 : cal_name
+//     10. 달력 : cal
+//     11. 닉네임 부분 : nick_name
+//     12. 프사부분 : personal_img
+// -->
+require_once( $_SERVER["DOCUMENT_ROOT"]."/config.php"); // 설정 파일 호출
+require_once(FILE_LIB_DB); // DB관련 라이브러리
+
+
+
+
+
+?>
 
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="main01.css">
+    <link rel="stylesheet" href="./css/main01.css">
     <title>main</title>
 </head>
 <body>
     <div class="header">TODO LIST</div>
     <div class="main">
-        <div class="main_top"> <!--이미지로 대체-->
+        <div class="main_top">
             <div class="top_date"></div>
             <div class="minus">-</div>
             <div class="square">ㅁ</div>

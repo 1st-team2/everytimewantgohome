@@ -28,7 +28,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/detail.css">
+    <link rel="stylesheet" href="./css/insert.css">
     <title>main</title>
 </head>
 <body>
@@ -43,14 +43,15 @@
         </div>
         <div class="main_mid">
             <div class="main_left">
+                <form action="" method="post">
                 <div class="main_left_button">
-                    <div class="main_left_button01"><a href="./list.php">Done</a></div>
-                    <div class="main_left_button02"><a href="./list.php">Cancel</a></div>
-                    <div class="main_left_button03"><a href="./delete.php">Delete</a></div>
+                    <button type="submit">Done</button>
+                    <div class="main_left_button01"><a href="./list.php">Cancel</a></div>
                 </div>
-                <form action="" method="post" class="main_left_item">
+                <div class="main_left_item">
                     <input type="text" name="title" id="title" spellcheck="false">
                     <textarea name="content" id="content" cols="40" rows="13" spellcheck="false"></textarea>
+                </div>
                 </form>
             </div>
             <div class="main_right">

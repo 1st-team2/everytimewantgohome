@@ -31,7 +31,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'GmarketSansMedium';
 }
 body {
     background: url(../image/background04.jpg) no-repeat center fixed ;
@@ -67,9 +66,9 @@ body {
 }
 .top_date {
     text-align: start;
-    margin-left: 30px;
+    margin-left: 20px;
     font-size: 16px;
-    font-family: 'LABDigital';
+    font-weight: 600;
 }
 
 .main_top :nth-child(n + 2) {
@@ -103,50 +102,34 @@ body {
     /* margin-top: 10px; */
     padding: 29px;
     padding-top: 20px;
-    align-content: space-evenly;
-    justify-items: center;
-    align-items: end;
 }
 
 .main_left {
     margin-right: 40px;
-    /* margin-top: 30px; */
+    margin-top: 30px;
 }
 .main_list_button {
-    /* width: 80px;
+    width: 80px;
     height: 40px;
     background-color: #F2EDE7;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     display: flex;
     justify-content: center;
-    align-items: center; */
-    display: flex;
-    margin-bottom: 19px;
-    font-size: 0;
+    align-items: center;
 }
 .add_button {
-/*     
+    
     text-decoration: none;
     align-items: center;
     color:#000;
     display: block;
-    padding: 20px 30px 20px 30px; */
-    background-color: #F2EDE7;
-    text-align: center;
-    padding: 20px 35px 20px 35px;
-    border-radius: 20px 20px 0 0;
-    text-decoration: none;
-    color: black;
-    font-size: 12PX;
+    padding: 20px 30px 20px 30px;
 }
-.add_button_box > a:hover {
-    background-color: #cdbfa7;
-    padding: 30px 35px 20px 35px;
-}
+
 .list_container {
     width: 740px;
-    height: 590px;
+    height: 600px;
     background-color: #BDAA8A;
     flex-direction: column;
     justify-content: center;
@@ -157,7 +140,7 @@ body {
     border-bottom-right-radius: 20px;
 }
 .list_box {
-    padding-top: 25px;
+    padding-top: 20px;
 }
 .list_items {
     margin-left: 20px;
@@ -165,7 +148,7 @@ body {
     align-items: center;
     overflow-y: scroll;
     width: 700px;
-    height: 540px;
+    height: 560px;
 }
 .list_items::-webkit-scrollbar {
     background-color: #F2EDE7;

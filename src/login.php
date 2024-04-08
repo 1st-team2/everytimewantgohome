@@ -16,12 +16,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./login.css">
+    <link rel="stylesheet" href="./css/login.css">
 </head>
 <body>
     <div class="header">TODO LIST</div>
     <div class="login_grid">
-        <a href="./main01.php" class="login">로그인</a>
+        <a href="./image/main01.php" class="login">로그인</a>
         <div class="login_title">
             <p>
                 바라는게 너무많조
