@@ -10,18 +10,15 @@ try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 
     // 이미지 경로를 받아옴
-    if (isset($_POST['image']) && !empty($_POST['image'])) {
-        $imagePath = $_POST['image'];
+    if (isset($_POST['img']) && !empty($_POST['img'])) {
+        $imagePath = $_POST['img'];
 
         // 이미지 경로를 DB에 저장하는 쿼리
-        $query = "INSERT INTO images (image_path) VALUES (:imagePath)";
+        $query = "INSERT INTO select_img (img) VALUES (:imagePath)";
         $statement = $db->prepare($query);
         $statement->bindParam(':imagePath', $imagePath, PDO::PARAM_STR);
         $statement->execute();
 
-        echo "이미지가 성공적으로 저장되었습니다.";
-    } else {
-        echo "이미지를 선택해주세요.";
     }
 } catch (PDOException $e) {
     echo "오류: " . $e->getMessage();
@@ -116,29 +113,33 @@ function generateCalendar() {
                 <label for="toggle"><img src="./image/Gear.png" alt="" class="Gear"></label>
                 <input type="checkbox" id="toggle"></input>
                 <div class="dropdown">
-                    <form action="main01.html" method="post">
+                    <form action="main01_nr.php" method="post">
                         <div>
                             <label for="music" class="drop_titles">MUSIC</label>
                         </div>
                         <input type="range" name="" id="music">
                         <div class="drop_titles">Character</div>
                         <div class="character_main">
-                            <label class="radio_label">
-                                <input type="radio" name="image1" value="/image/personal.png">
-                                <img src="/image/personal.png">
+                            <input type="radio" name="image" id="image1" value="/image/personal.png">
+                            <label for="image1" class="radio_label">
+                                <!-- <img src="/image/personal.png"> -->
                             </label>
-                            <label class="radio_label">
-                                <input type="radio" name="image2" value="/image/personal.png">
-                                <img src="/image/personal.png">
+
+                            <input type="radio" name="image" id="image2" value="/image/personal.png">                            
+                            <label for="image2" class="radio_label">
+                                <!-- <img src="/image/personal.png"> -->
                             </label>
-                            <label class="radio_label">
-                                <input type="radio" name="image3" value="/image/personal.png">
-                                <img src="/image/personal.png">
+
+                            <input type="radio" name="image" id="image3" value="/image/personal.png">
+                            <label for="image3" class="radio_label">
+                                <!-- <img src="/image/personal.png"> -->
                             </label>
-                            <input type="radio" name="image4" value="/image/personal.png">
-                            <label class="radio_label">
-                                <img src="/image/personal.png">
+
+                            <input type="radio" name="image" id="image4" value="/image/personal.png">
+                            <label for="image4" class="radio_label">
+                                <!-- <img src="/image/personal.png"> -->
                             </label>
+
                         </div>
                         <button type="submit" class="name_button">YES</button>
                     </form>
@@ -275,7 +276,9 @@ function generateCalendar() {
                     </div>
                     <button type="submit">OK</button>
                 </form> -->
-                <div class="img_p"></div>
+                <div class="img_p">
+                    <img src="<?php echo $imagePath; ?>" alt="Selected Image">
+                </div>
             </div>
         </div>
     </div>
