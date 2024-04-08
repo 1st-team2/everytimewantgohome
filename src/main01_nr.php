@@ -263,7 +263,7 @@ function generateCalendar() {
                 </div>
             </div>
             <div class="main_right">
-                <form action="main01.html" method="post">
+                <form action="main01_nr.php" method="post">
                     <div class="nick_name_item">
                         <label for="nick" class="name">NAME</label>
                         <input type="text" name="nick" id="nick">
