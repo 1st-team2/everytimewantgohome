@@ -227,7 +227,7 @@ function generateCalendar() {
                     echo '<td></td>'; // 빈 셀
                 } else {
                     // 날짜 셀에 날짜 출력
-                    echo '<td><a href="todo_list.php?date=' . $currentYear . '-' . $currentMonth . '-' . $currentDate . '">' . $currentDate . '</a></td>';
+                    echo '<td><a href="list.php?date=' . $currentYear . '-' . $currentMonth . '-' . $currentDate . '">' . $currentDate . '</a></td>';
                     $currentDate++;
                 }
             }

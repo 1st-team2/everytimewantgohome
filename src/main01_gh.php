@@ -61,6 +61,7 @@ try {
     <style>
         .gauge_bar_ing {
             width: <?php echo $progressPercentage; ?>%;
+            color : #BDAA8A;
         }
     </style>
 </head>
@@ -109,14 +110,14 @@ try {
                 <div class="gauge_item">
                     <div class="gauge_name">Day</div>
                     <div class="gauge_bar">
-                        <div class="gauge_bar_ing"><?php echo $progressPercentage; ?>%</div>
+                        <div class="gauge_bar_ing"><?php echo $progressPercentage; ?></div>
                         <!-- <div class="gauge_bar_yet"></div> -->
                     </div>
                 </div>
                 <div class="gauge_item">
                     <div class="gauge_name">Week</div>
                     <div class="gauge_bar">
-                        <div class="gauge_bar_ing"><?php echo $progressPercentage; ?>%</div>
+                        <div class="gauge_bar_ing"><?php echo $progressPercentage; ?></div>
                         <!-- <div class="gauge_bar_yet"></div> -->
                     </div>
                 </div>
@@ -124,7 +125,7 @@ try {
                     <div class="gauge_name">Month</div>
                     <div class="gauge_bar">
                         <div class="gauge_bar_ing">
-                            <?php echo $progressPercentage; ?>%
+                            <?php echo $progressPercentage; ?>
                         </div>
                         <!-- <div class="gauge_bar_yet"></div> -->
                     </div>
