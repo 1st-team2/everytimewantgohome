@@ -110,7 +110,6 @@
                                 <label class="checkbox chk-label-checked">✔</label>
                                 <div class="list_title"><a href="./detail.php">i want go home</a></div>
                             </div>
-                            
                         </div>
                     </div>
                 </div>
