@@ -225,21 +225,22 @@ function generateCalendar() {
 
                             $currentDate = 1;
 
-                            // 달력 표시
-                            for ($i = 0; $i < 6; $i++) { // 최대 6주 (최대 행 수)
-                                echo '<tr>';
-                                for ($j = 0; $j < 7; $j++) { // 일주일은 7일
-                                    if (($i == 0 && $j < $dayOfWeek) || $currentDate > $daysInMonth) {
-                                        echo '<td></td>'; // 빈 셀
-                                    } else {
-                                        // 날짜 셀에 날짜 출력
-                                        echo '<td><a href="todo_list.php?date=' . $currentYear . '-' . $currentMonth . '-' . $currentDate . '">' . $currentDate . '</a></td>';
-                                        $currentDate++;
-                                    }
-                                }
-                                echo '</tr>';
-                            }
-                            ?>
+        // 달력 표시
+        for ($i = 0; $i < 6; $i++) { // 최대 6주 (최대 행 수)
+            echo '<tr>';
+            for ($j = 0; $j < 7; $j++) { // 일주일은 7일
+                if (($i == 0 && $j < $dayOfWeek) || $currentDate > $daysInMonth) {
+                    echo '<td></td>'; // 빈 셀
+                } else {
+                    // 날짜 셀에 날짜 출력
+                    echo '<td><a href="list.php?date=' . $currentYear . '-' . $currentMonth . '-' . $currentDate . '">' . $currentDate . '</a></td>';
+                    $currentDate++;
+                }
+            }
+            echo '</tr>';
+        }
+        ?>
+                            
                         </tbody>
                     </table>
                 </div>
