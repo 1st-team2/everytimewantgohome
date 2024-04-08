@@ -43,14 +43,16 @@
         </div>
         <div class="main_mid">
             <div class="main_left">
-                <div class="main_left_button">
-                    <div class="main_left_button01"><a href="./list.php">Done</a></div>
-                    <div class="main_left_button02"><a href="./list.php">Cancel</a></div>
-                    <div class="main_left_button03"><a href="./delete.php">Delete</a></div>
-                </div>
-                <form action="" method="post" class="main_left_item">
-                    <input type="text" name="title" id="title" spellcheck="false" readonly>
-                    <textarea name="content" id="content" cols="40" rows="13" spellcheck="false" readonly></textarea>
+                <form action="" method="post">
+                    <div class="main_left_button">
+                        <button type="submit">Update</button>
+                        <div class="main_left_button01"><a href="./list.php">Cancel</a></div>
+                        <div class="main_left_button02"><a href="./delete.php">Delete</a></div>
+                    </div>
+                    <div class="main_left_item">
+                        <input type="text" name="title" id="title" spellcheck="false" readonly>
+                        <textarea name="content" id="content" cols="40" rows="13" spellcheck="false" readonly></textarea>
+                    </div>
                 </form>
             </div>
             <div class="main_right">
