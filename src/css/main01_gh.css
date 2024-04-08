@@ -191,8 +191,13 @@ label > img {
     justify-content: center;
     align-items: center;
 }
-.gauge_item {
+/* .gauge_item {
     width: 750px;
+} */
+.month_block {
+    width: 300px;
+    display: inline-block;
+    text-align: center;
 }
 
 .main_left :nth-child(n + 2):nth-child(-n + 3){
@@ -235,8 +240,8 @@ table {
 }
 caption {
     font-family: 'GmarketSansMedium';
-    font-weight: 900;
-    font-size: 25px;
+    font-weight: 500;
+    font-size: 20px;
     padding: 10px;
     text-align: left;
 }
@@ -277,9 +282,9 @@ a {
 }
 
 a:hover {
-    padding: 5px 15px;
-    border: 2px solid #000;
-    border-radius: 10px;
+    /* padding: 5px 15px; */
+    /* border: 2px solid #000; */
+    /* border-radius: 10px; */
 }
 
 .main_right {

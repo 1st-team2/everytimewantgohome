@@ -1,18 +1,28 @@
 <?php
 
-require_once( $_SERVER["DOCUMENT_ROOT"]."/config.php"); // 설정 파일 호출
-//require_once(FILE_LIB_DB); // DB관련 라이브러리
+$servername = "localhost";
+$username = "root";
+$password = "php505";
+$dbname = "tng_test";
 
-// GET으로 넘겨 받은 year값이 있다면 넘겨 받은걸 year변수에 적용하고 없다면 현재 년도
-$year = isset($_GET['year']) ? $_GET['year'] : date('Y');
-// GET으로 넘겨 받은 month값이 있다면 넘겨 받은걸 month변수에 적용하고 없다면 현재 월
-$month = isset($_GET['month']) ? $_GET['month'] : date('m');
+try {
+    // 데이터베이스 연결
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 
-$date = "$year-$month-01"; // 해당 달의 1일
-$time = strtotime($date); // 현재 날짜의 타임스탬프
-$start_week = date('w', $time); // 1. 시작 요일
-$total_day = date('t', $time); // 2. 현재 달의 총 날짜
-$total_week = ceil(($total_day + $start_week) / 7);  // 3. 현재 달의 총 주차
+    // 이미지 경로를 받아옴
+    if (isset($_POST['img']) && !empty($_POST['img'])) {
+        $imagePath = $_POST['img'];
+
+        // 이미지 경로를 DB에 저장하는 쿼리
+        $query = "INSERT INTO select_img (img) VALUES (:imagePath)";
+        $statement = $db->prepare($query);
+        $statement->bindParam(':imagePath', $imagePath, PDO::PARAM_STR);
+        $statement->execute();
+
+    }
+} catch (PDOException $e) {
+    echo "오류: " . $e->getMessage();
+}
 
 
 function generateCalendar() {
@@ -78,6 +88,9 @@ function generateCalendar() {
 //     11. 닉네임 부분 : nick_name
 //     12. 프사부분 : personal_img
 // -->
+
+
+
 ?>
 
 
@@ -100,29 +113,33 @@ function generateCalendar() {
                 <label for="toggle"><img src="./image/Gear.png" alt="" class="Gear"></label>
                 <input type="checkbox" id="toggle"></input>
                 <div class="dropdown">
-                    <form action="main01.html" method="post">
+                    <form action="main01_nr.php" method="post">
                         <div>
                             <label for="music" class="drop_titles">MUSIC</label>
                         </div>
                         <input type="range" name="" id="music">
                         <div class="drop_titles">Character</div>
                         <div class="character_main">
-                            <div class="char_img_radio">
-                                <input type="radio" name="img" id="char_img1">
-                                <label for="char_img1"><img src="../image/ex.jpg" alt=""></label>
-                            </div>
-                            <div class="char_img_radio">
-                                <input type="radio" name="img" id="char_img2">
-                                <label for="char_img2"><img src="../image/ex.jpg" alt=""></label>
-                            </div>
-                            <div class="char_img_radio">
-                                <input type="radio" name="img" id="char_img3">
-                                <label for="char_img3"><img src="../image/ex.jpg" alt=""></label>
-                            </div>
-                            <div class="char_img_radio">
-                                <input type="radio" name="img" id="char_img4">
-                                <label for="char_img4"><img src="../image/ex.jpg" alt=""></label>
-                            </div>
+                            <input type="radio" name="image" id="image1" value="/image/personal.png">
+                            <label for="image1" class="radio_label">
+                                <!-- <img src="/image/personal.png"> -->
+                            </label>
+
+                            <input type="radio" name="image" id="image2" value="/image/personal.png">                            
+                            <label for="image2" class="radio_label">
+                                <!-- <img src="/image/personal.png"> -->
+                            </label>
+
+                            <input type="radio" name="image" id="image3" value="/image/personal.png">
+                            <label for="image3" class="radio_label">
+                                <!-- <img src="/image/personal.png"> -->
+                            </label>
+
+                            <input type="radio" name="image" id="image4" value="/image/personal.png">
+                            <label for="image4" class="radio_label">
+                                <!-- <img src="/image/personal.png"> -->
+                            </label>
+
                         </div>
                         <button type="submit" class="name_button">YES</button>
                     </form>
@@ -259,7 +276,9 @@ function generateCalendar() {
                     </div>
                     <button type="submit">OK</button>
                 </form> -->
-                <div class="img_p"></div>
+                <div class="img_p">
+                    <img src="<?php echo $imagePath; ?>" alt="Selected Image">
+                </div>
             </div>
         </div>
     </div>

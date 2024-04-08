@@ -50,6 +50,62 @@ try {
 } catch(PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
 }
+
+// GET으로 넘겨 받은 year값이 있다면 넘겨 받은걸 year변수에 적용하고 없다면 현재 년도
+$year = isset($_GET['year']) ? $_GET['year'] : date('Y');
+// GET으로 넘겨 받은 month값이 있다면 넘겨 받은걸 month변수에 적용하고 없다면 현재 월
+$month = isset($_GET['month']) ? $_GET['month'] : date('m');
+
+$date = "$year-$month-01"; // 해당 달의 1일
+$time = strtotime($date); // 현재 날짜의 타임스탬프
+$start_week = date('w', $time); // 1. 시작 요일
+$total_day = date('t', $time); // 2. 현재 달의 총 날짜
+$total_week = ceil(($total_day + $start_week) / 7);  // 3. 현재 달의 총 주차
+
+
+function generateCalendar() {
+    $today = date("Y-m-d");
+    $firstDayOfMonth = date("Y-m-01");
+    $lastDayOfMonth = date("Y-m-t");
+    $startDayOfWeek = date("N", strtotime($firstDayOfMonth));
+    $endDayOfWeek = date("N", strtotime($lastDayOfMonth));
+    $totalDays = date("t", strtotime($firstDayOfMonth));
+    
+    // echo " <div class='calendar-date'>Sun</div>";
+    // echo " <div class='calendar-date'>Mon</div>";
+    // echo " <div class='calendar-date'>Tue</div>";
+    // echo " <div class='calendar-date'>Wed</div>";
+    // echo " <div class='calendar-date'>Thu</div>";
+    // echo " <div class='calendar-date'>Fri</div>";
+    // echo " <div class='calendar-date'>Sat</div>";
+
+    for ($i = 1; $i < $startDayOfWeek; $i++) {
+        echo "<th class='calendar-date'></th>";
+    }
+    
+    for ($day = 1; $day <= $totalDays; $day++) {
+        if ($day == date("j", strtotime($today))) {
+            echo "<th class='calendar-date today'><a href='list.php?date=" . date("Y-m-d", strtotime($firstDayOfMonth . "+" . ($day - 1) . " days")) . "'>$day</a></th>";
+        } else {
+            echo "<th class='calendar-date'><a href='list.php?date=" . date("Y-m-d", strtotime($firstDayOfMonth . "+" . ($day - 1) . " days")) . "'>$day</a></th>";
+        }
+        
+        if($day == $endDayOfWeek){
+            echo "\n";
+        }
+    }
+    
+    for ($i = $endDayOfWeek; $i < 7; $i++) {
+        echo "<th class='calendar-date'></th>";
+    }
+
+}
+// 이전 월과 다음 월 계산
+$prevMonth = date('m', strtotime('-1 month', $time));
+$prevYear = date('Y', strtotime('-1 month', $time));
+$nextMonth = date('m', strtotime('+1 month', $time));
+$nextYear = date('Y', strtotime('+1 month', $time));
+
 ?>
 <!DOCTYPE html>
 <html lang="ko">
@@ -59,8 +115,17 @@ try {
     <link rel="stylesheet" href="./css/main01_gh.css">
     <title>main</title>
     <style>
+        .gauge_bar {
+        background-color: #f2ede7;
+        /* display: flex; */
+        margin-top: 5px;
+        margin-right: 10px;
+        height: 30px;
+        overflow: hidden;
+        }
         .gauge_bar_ing {
             width: <?php echo $progressPercentage; ?>%;
+            height: 100%;
             color : #BDAA8A;
         }
     </style>
@@ -110,23 +175,21 @@ try {
                 <div class="gauge_item">
                     <div class="gauge_name">Day</div>
                     <div class="gauge_bar">
-                        <div class="gauge_bar_ing"><?php echo $progressPercentage; ?></div>
+                        <div class="gauge_bar_ing"></div>
                         <!-- <div class="gauge_bar_yet"></div> -->
                     </div>
                 </div>
                 <div class="gauge_item">
                     <div class="gauge_name">Week</div>
                     <div class="gauge_bar">
-                        <div class="gauge_bar_ing"><?php echo $progressPercentage; ?></div>
+                        <div class="gauge_bar_ing"></div>
                         <!-- <div class="gauge_bar_yet"></div> -->
                     </div>
                 </div>
                 <div class="gauge_item">
                     <div class="gauge_name">Month</div>
                     <div class="gauge_bar">
-                        <div class="gauge_bar_ing">
-                            <?php echo $progressPercentage; ?>
-                        </div>
+                        <div class="gauge_bar_ing"></div>
                         <!-- <div class="gauge_bar_yet"></div> -->
                     </div>
                 </div>
@@ -134,7 +197,13 @@ try {
                     <!-- <div class="cal_name">April</div>
                     <div class="cal">달력</div> -->
                 <table>
-                    <caption>April</caption>
+                    <caption>
+                    <?php echo '<a class="month" href="?year=' . $prevYear . '&month=' . $prevMonth . '">&lt; </a>'; ?>
+                        <div class="month_block">
+                            <?php echo date('Y F', strtotime($date)); ?>
+                        </div>
+                    <?php echo '<a class="month" href="?year=' . $nextYear . '&month=' . $nextMonth . '"> &gt;</a>'; ?>
+                    </caption>
                         <thead>
                             <tr>
                                 <th class="sun"><p class="sun">S</p></th>
@@ -147,51 +216,23 @@ try {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="otherMonth"></td>
-                                <td><a href="./list.html">1</a></td>
-                                <td><a href="./list.html">2</a></td>
-                                <td><a href="./list.html">3</a></td>
-                                <td><a href="./list.html">4</a></td>
-                                <td><a href="./list.html">5</a></td>
-                                <td class="sat"><a href="./list.html">6</a></td>
-                            </tr>
-                            <tr>
-                                <td class="sun"><a href="./list.html">7</a></td>
-                                <td><a href="./list.html">8</a></td>
-                                <td><a href="./list.html">9</a></td>
-                                <td><a href="./list.html">10</a></td>
-                                <td><a href="./list.html">11</a></td>
-                                <td><a href="./list.html">12</a></td>
-                                <td class="sat"><a href="./list.html">13</a></td>
-                            </tr>
-                            <tr>
-                                <td class="sun"><a href="./list.html">14</a></td>
-                                <td><a href="./list.html">15</a></td>
-                                <td><a href="./list.html">16</a></td>
-                                <td><a href="./list.html">17</a></td>
-                                <td><a href="./list.html">18</a></td>
-                                <td><a href="./list.html">19</a></td>
-                                <td class="sat"><a href="./list.html">20</a></td>
-                            </tr>
-                            <tr>
-                                <td class="sun"><a href="./list.html">21</a></td>
-                                <td><a href="./list.html">22</a></td>
-                                <td><a href="./list.html">23</a></td>
-                                <td><a href="./list.html">24</a></td>
-                                <td><a href="./list.html">25</a></td>
-                                <td><a href="./list.html">26</a></td>
-                                <td class="sat"><a href="./list.html">27</a></td>
-                            </tr>
-                            <tr>
-                                <td class="sun"><a href="./list.html">28</a></td>
-                                <td><a href="./list.html">29</a></td>
-                                <td><a href="./list.html">30</a></td>
-                                <td class="otherMonth"></td>
-                                <td class="otherMonth"></td>
-                                <td class="otherMonth"></td>
-                                <td class="otherMonth"></td>
-                            </tr>
+                            <?php 
+                             $day = 1; // 표시할 날짜 초기화
+                             for ($i = 0; $i < $total_week; $i++) { // 주(행) 반복
+                                 echo '<tr>'; // 새로운 행 시작
+                                 for ($j = 0; $j < 7; $j++) { // 요일(열) 반복
+                                    if (($i == 0 && $j < $start_week) || ($day > $total_day)) {
+                                         // 첫 주에서 시작 요일 이전의 빈 칸이거나 현재 달의 날짜를 넘어갔을 때 빈 칸 표시
+                                        echo '<td></td>';
+                                    } else {
+                                         // 유효한 날짜인 경우 해당 날짜로 링크된 셀 표시
+                                        echo '<td><a href="list.php?date=' . date("Y-m-d", strtotime($date . " + " . ($day - 1) . " days")) . '">' . $day . '</a></td>';
+                                         $day++; // 다음 날짜로 이동
+                                    }
+                                }
+                                 echo '</tr>'; // 행 마무리
+                            }
+                            ?>
                         </tbody>
                     </table>
                 </div>
