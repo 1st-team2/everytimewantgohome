@@ -322,11 +322,11 @@ a:hover {
 }
 
 
-.img_add {
+/* .img_add {
     display: none;
-}
+} */
 
-.main_right > img {
+.main_right > .img_p {
     /* border: 1px solid #000; */
     border-radius: 20px;
     margin-top: 30px;
@@ -335,3 +335,6 @@ a:hover {
     box-shadow: 0 0 16px -7px #000;
 }
 
+#char_img1:checked  {
+    background-image: url('../image/background.png');
+}
