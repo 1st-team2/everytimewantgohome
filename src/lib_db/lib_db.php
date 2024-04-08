@@ -81,3 +81,21 @@ function db_update_boards_no(&$conn, &$array_param) {
     
     return $stmt->rowCount();
 }
+
+
+// 체크확인
+function db_update_contents_checked_at(&$conn, &$array_param) {
+    $sql =
+        " UPDATE boards "
+        ." SET "
+        ." checked_at = CASE WHEN " 
+        ." checked_at IS NULL THEN NOW() ELSE NULL END "
+        ." WHERE " 
+        ." no = :no "
+    ;
+    // Query 실행
+    $stmt = $conn->prepare($sql);
+    $stmt->execute($array_param);
+    // 리턴
+    return $stmt->rowCount();
+}
