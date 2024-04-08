@@ -61,4 +61,5 @@ body {
     justify-items: stretch;
     margin-left: 40px;
     margin-right: 40px;
+    align-items: flex-end;
 }
