@@ -1,12 +1,13 @@
 <?php
 
-require_once( $_SERVER["DOCUMENT_ROOT"]."/config.php"); // 설정 파일 호출
-//require_once(FILE_LIB_DB); // DB관련 라이브러리
-
+$servername = "localhost";
+$username = "root";
+$password = "php505";
+$dbname = "tng_test";
 
 try {
     // 데이터베이스 연결
-    $db = new PDO($dsn, $username, $password);
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 
     // 이미지 경로를 받아옴
     if (isset($_POST['image']) && !empty($_POST['image'])) {
@@ -122,22 +123,22 @@ function generateCalendar() {
                         <input type="range" name="" id="music">
                         <div class="drop_titles">Character</div>
                         <div class="character_main">
-                            <div class="char_img_radio">
-                                <input type="radio" name="img" id="char_img1" value="/image/ex.jpg">
-                                <label for="char_img1" class="radio_label"></label>
-                            </div>
-                            <div class="char_img_radio">
-                                <input type="radio" name="img" id="char_img2" value="/image/personal.png">
-                                <label for="char_img2" class="radio_label"></label>
-                            </div>
-                            <div class="char_img_radio">
-                                <input type="radio" name="img" id="char_img3" value="/image/personal.png">
-                                <label for="char_img3" class="radio_label"></label>
-                            </div>
-                            <div class="char_img_radio">
-                                <input type="radio" name="img" id="char_img4" value="/image/personal.png">
-                                <label for="char_img4" class="radio_label"></label>
-                            </div>
+                            <label class="radio_label">
+                                <input type="radio" name="image1" value="/image/personal.png">
+                                <img src="/image/personal.png">
+                            </label>
+                            <label class="radio_label">
+                                <input type="radio" name="image2" value="/image/personal.png">
+                                <img src="/image/personal.png">
+                            </label>
+                            <label class="radio_label">
+                                <input type="radio" name="image3" value="/image/personal.png">
+                                <img src="/image/personal.png">
+                            </label>
+                            <input type="radio" name="image4" value="/image/personal.png">
+                            <label class="radio_label">
+                                <img src="/image/personal.png">
+                            </label>
                         </div>
                         <button type="submit" class="name_button">YES</button>
                     </form>
