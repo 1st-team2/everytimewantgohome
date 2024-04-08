@@ -1,12 +1,60 @@
 <?php
+
+require_once( $_SERVER["DOCUMENT_ROOT"]."/config.php"); // 설정 파일 호출
+//require_once(FILE_LIB_DB); // DB관련 라이브러리
+
+// GET으로 넘겨 받은 year값이 있다면 넘겨 받은걸 year변수에 적용하고 없다면 현재 년도
+$year = isset($_GET['year']) ? $_GET['year'] : date('Y');
+// GET으로 넘겨 받은 month값이 있다면 넘겨 받은걸 month변수에 적용하고 없다면 현재 월
+$month = isset($_GET['month']) ? $_GET['month'] : date('m');
+
+$date = "$year-$month-01"; // 해당 달의 1일
+$time = strtotime($date); // 현재 날짜의 타임스탬프
+$start_week = date('w', $time); // 1. 시작 요일
+$total_day = date('t', $time); // 2. 현재 달의 총 날짜
+$total_week = ceil(($total_day + $start_week) / 7);  // 3. 현재 달의 총 주차
+
+
+function generateCalendar() {
+    $today = date("Y-m-d");
+    $firstDayOfMonth = date("Y-m-01");
+    $lastDayOfMonth = date("Y-m-t");
+    $startDayOfWeek = date("N", strtotime($firstDayOfMonth));
+    $endDayOfWeek = date("N", strtotime($lastDayOfMonth));
+    $totalDays = date("t", strtotime($firstDayOfMonth));
+    echo "<div class='cal_gpt'>";
+    echo "  <div class='calendar-date'>Sun</div>";
+    echo "  <div class='calendar-date'>Mon</div>";
+    echo "  <div class='calendar-date'>Tue</div>";
+    echo "  <div class='calendar-date'>Wed</div>";
+    echo "  <div class='calendar-date'>Thu</div>";
+    echo "  <div class='calendar-date'>Fri</div>";
+    echo "  <div class='calendar-date'>Sat</div>";
+    echo "</div>";
+    for ($i = 1; $i < $startDayOfWeek; $i++) {
+        echo "<div class='calendar-date'></div>";
+    }
+    
+    for ($day = 1; $day <= $totalDays; $day++) {
+        if ($day == date("j", strtotime($today))) {
+            echo "<div class='calendar-date today'><a href='list.php?date=" . date("Y-m-d", strtotime($firstDayOfMonth . "+" . ($day - 1) . " days")) . "'>$day</a></div>";
+        } else {
+            echo "<div class='calendar-date'><a href='list.php?date=" . date("Y-m-d", strtotime($firstDayOfMonth . "+" . ($day - 1) . " days")) . "'>$day</a></div>";
+        }
+    }
+    
+    for ($i = $endDayOfWeek; $i < 7; $i++) {
+        echo "<div class='calendar-date'></div>";
+    }
+}
+
+generateCalendar();
+
 // <!-- 
 //     v. 1.0.1
 //     작성일자 : 2024-04-04 오전 11시
 //     작성(수정)자 : 이나라
 //     작성(수정)내용 : div클래스명 규칙
-//     php
-//     작성일자 : 2024-04-08 오전 11시40분
-//     작성(수정)자 : 권민서
 
 //     클래스명
 //     1. 'TODO LIST' : header
@@ -26,14 +74,8 @@
 //     11. 닉네임 부분 : nick_name
 //     12. 프사부분 : personal_img
 // -->
-require_once( $_SERVER["DOCUMENT_ROOT"]."/config.php"); // 설정 파일 호출
-require_once(FILE_LIB_DB); // DB관련 라이브러리
-
-
-
-
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -51,7 +93,7 @@ require_once(FILE_LIB_DB); // DB관련 라이브러리
             <div class="minus">-</div>
             <div class="square">ㅁ</div>
             <div class="back">
-                <label for="toggle"><img src="../image/Gear.png" alt="" class="Gear"></label>
+                <label for="toggle"><img src="./image/Gear.png" alt="" class="Gear"></label>
                 <input type="checkbox" id="toggle"></input>
                 <div class="dropdown">
                     <form action="main01.html" method="post">
@@ -123,7 +165,7 @@ require_once(FILE_LIB_DB); // DB관련 라이브러리
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <!-- <tr>
                                 <td class="otherMonth"></td>
                                 <td><a href="./list.html">1</a></td>
                                 <td><a href="./list.html">2</a></td>
@@ -167,7 +209,8 @@ require_once(FILE_LIB_DB); // DB관련 라이브러리
                                 <td class="otherMonth"></td>
                                 <td class="otherMonth"></td>
                                 <td class="otherMonth"></td>
-                            </tr>
+                            </tr> -->
+                            <?php generateCalendar(); ?>
                         </tbody>
                     </table>
                 </div>

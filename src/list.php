@@ -32,11 +32,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/list.css">
+    <link rel="stylesheet" href="./css/list.css">
     <title>TODO LIST</title>
 </head>
 <body>
-    <div class="header">TODO LIST</div>
+    <a href="./main01.php"><div class="header">TODO LIST</div></a>
     <div class="main">
         <div class="main_top"> <!--이미지로 대체-->
             <div class="top_date">2024-04-04</div>
@@ -48,7 +48,7 @@
             <div class="main_left">
                 <div class="main_list_button">
                     <div class="add_button_box">
-                        <a class= "add_button" href="insert.php">Add</a>
+                        <a class="add_button" href="./insert.php">Add</a>
                     </div>
                 </div>
                 <div class="list_container" >
@@ -58,59 +58,58 @@
                             <div class="daily_list">
                                 <!-- <div class="list_chkbox"><input type="checkbox" name="" id="checkbox"></div> -->
                                 <label class="checkbox chk-label-checked">✔</label>
-                                <div class="list_title"><a href="./detail.html">i want go home</a></div>
+                                <div class="list_title"><a href="./detail.php">i want go home</a></div>
                             </div>
                             <div class="daily_list">
                                 <!-- <div class="list_chkbox"><input type="checkbox" name="" id="checkbox"></div> -->
                                 <label class="checkbox chk-label-checked">✔</label>
-                                <div class="list_title"><a href="./detail.html">i want go home</a></div>
+                                <div class="list_title"><a href="./detail.php">i want go home</a></div>
                             </div>
                             <div class="daily_list">
                                 <!-- <div class="list_chkbox"><input type="checkbox" name="" id="checkbox"></div> -->
                                 <label class="checkbox chk-label-checked">✔</label>
-                                <div class="list_title"><a href="./detail.html">i want go home</a></div>
+                                <div class="list_title"><a href="./detail.php">i want go home</a></div>
                             </div>
                             <div class="daily_list">
                                 <!-- <div class="list_chkbox"><input type="checkbox" name="" id="checkbox"></div> -->
                                 <label class="checkbox chk-label-checked">✔</label>
-                                <div class="list_title"><a href="./detail.html">i want go home</a></div>
+                                <div class="list_title"><a href="./detail.php">i want go home</a></div>
                             </div>
                             <div class="daily_list">
                                 <!-- <div class="list_chkbox"><input type="checkbox" name="" id="checkbox"></div> -->
                                 <label class="checkbox chk-label-checked">✔</label>
-                                <div class="list_title"><a href="./detail.html">i want go home</a></div>
+                                <div class="list_title"><a href="./detail.php">i want go home</a></div>
                             </div>
                             <div class="daily_list">
                                 <!-- <div class="list_chkbox"><input type="checkbox" name="" id="checkbox"></div> -->
                                 <label class="checkbox chk-label-checked">✔</label>
-                                <div class="list_title"><a href="./detail.html">i want go home</a></div>
+                                <div class="list_title"><a href="./detail.php">i want go home</a></div>
                             </div>
                             <div class="daily_list">
                                 <!-- <div class="list_chkbox"><input type="checkbox" name="" id="checkbox"></div> -->
                                 <label class="checkbox chk-label-checked">✔</label>
-                                <div class="list_title"><a href="./detail.html">i want go home</a></div>
+                                <div class="list_title"><a href="./detail.php">i want go home</a></div>
                             </div>
                             <div class="daily_list">
                                 <!-- <div class="list_chkbox"><input type="checkbox" name="" id="checkbox"></div> -->
                                 <label class="checkbox chk-label-checked">✔</label>
-                                <div class="list_title"><a href="./detail.html">i want go home</a></div>
+                                <div class="list_title"><a href="./detail.php">i want go home</a></div>
                             </div>
                             <div class="daily_list">
                                 <!-- <div class="list_chkbox"><input type="checkbox" name="" id="checkbox"></div> -->
                                 <label class="checkbox chk-label-checked">✔</label>
-                                <div class="list_title"><a href="./detail.html">i want go home</a></div>
+                                <div class="list_title"><a href="./detail.php">i want go home</a></div>
                             </div>
                             <div class="daily_list">
                                 <!-- <div class="list_chkbox"><input type="checkbox" name="" id="checkbox"></div> -->
                                 <label class="checkbox chk-label-checked">✔</label>
-                                <div class="list_title"><a href="./detail.html">i want go home</a></div>
+                                <div class="list_title"><a href="./detail.php">i want go home</a></div>
                             </div>
                             <div class="daily_list">
                                 <!-- <div class="list_chkbox"><input type="checkbox" name="" id="checkbox"></div> -->
                                 <label class="checkbox chk-label-checked">✔</label>
-                                <div class="list_title"><a href="./detail.html">i want go home</a></div>
+                                <div class="list_title"><a href="./detail.php">i want go home</a></div>
                             </div>
-                            
                         </div>
                     </div>
                 </div>

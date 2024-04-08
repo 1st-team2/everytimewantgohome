@@ -28,25 +28,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="delete.css">
+    <link rel="stylesheet" href="./css/delete.css">
     <title>main</title>
 </head>
 <body>
-    <a href="./main01.html"><div class="header">TODO LIST</div></a>
+    <a href="./main01.php"><div class="header">TODO LIST</div></a>
     <div class="main">
         <div class="main_top">
             <!-- 오늘 날짜 -->
             <div class="top_date">2024-03-26</div>
             <div class="minus">-</div>
             <div class="square">ㅁ</div>
-            <div class="back"><a href="./list.html">x</a></div>
+            <div class="back"><a href="./list.php">x</a></div>
         </div>
         <div class="main_mid">
             <div class="main_left">
                 <div class="main_left_button">
-                    <div class="main_left_button01"><a href="./list.html">Done</a></div>
-                    <div class="main_left_button02"><a href="./list.html">Cancel</a></div>
-                    <div class="main_left_button03"><a href="./delete.html">Delete</a></div>
+                    <div class="main_left_button01"><a href="./list.php">Done</a></div>
+                    <div class="main_left_button02"><a href="./list.php">Cancel</a></div>
+                    <div class="main_left_button03"><a href="./delete.php">Delete</a></div>
                 </div>
                 <form action="" method="post" class="main_left_item">
                     <input type="text" name="title" id="title" spellcheck="false">
@@ -67,7 +67,7 @@
                 <div class="pop_top_date">2024-03-26</div>
                 <div class="pop_minus">-</div>
                 <div class="pop_square">ㅁ</div>
-                <div class="pop_back"><a href="./list.html">x</a></div>
+                <div class="pop_back"><a href="./list.php">x</a></div>
             </div>
             <div class="pop_up_mid">
                 <p>
@@ -77,10 +77,10 @@
                     <br>
                     다시 생각해 보시겠습니까?
                 </p>
-                <form action="./delete.html" method="post">
+                <form action="./delete.php" method="post">
                     <div class="pop_up_button">
                         <button type="submit">YES</button>
-                        <a href="./detail.html">NO</a>
+                        <a href="./detail.php">NO</a>
                     </div>
                 </form>
             </div>
