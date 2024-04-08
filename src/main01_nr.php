@@ -22,7 +22,7 @@ function generateCalendar() {
     $startDayOfWeek = date("N", strtotime($firstDayOfMonth));
     $endDayOfWeek = date("N", strtotime($lastDayOfMonth));
     $totalDays = date("t", strtotime($firstDayOfMonth));
-    echo "<div class='cal_gpt'>";
+    
     echo "  <div class='calendar-date'>Sun</div>";
     echo "  <div class='calendar-date'>Mon</div>";
     echo "  <div class='calendar-date'>Tue</div>";
@@ -30,7 +30,7 @@ function generateCalendar() {
     echo "  <div class='calendar-date'>Thu</div>";
     echo "  <div class='calendar-date'>Fri</div>";
     echo "  <div class='calendar-date'>Sat</div>";
-    echo "</div>";
+
     for ($i = 1; $i < $startDayOfWeek; $i++) {
         echo "<div class='calendar-date'></div>";
     }
@@ -47,8 +47,6 @@ function generateCalendar() {
         echo "<div class='calendar-date'></div>";
     }
 }
-
-generateCalendar();
 
 // <!-- 
 //     v. 1.0.1
