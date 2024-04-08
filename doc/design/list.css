@@ -107,7 +107,7 @@ body {
 
 .list_container {
     width: 740px;
-    height: 600px;
+    height: 590px;
     background-color: #BDAA8A;
     flex-direction: column;
     justify-content: center;
@@ -118,7 +118,7 @@ body {
     border-bottom-right-radius: 20px;
 }
 .list_box {
-    padding-top: 20px;
+    padding-top: 25px;
 }
 .list_items {
     margin-left: 20px;
@@ -126,7 +126,7 @@ body {
     align-items: center;
     overflow-y: scroll;
     width: 700px;
-    height: 560px;
+    height: 540px;
 }
 .list_items::-webkit-scrollbar {
     background-color: #F2EDE7;
