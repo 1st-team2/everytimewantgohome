@@ -1,0 +1,65 @@
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face{
+    font-family:'DNFBitBitv2';
+    font-style:normal;font-weight:400;
+    src:url('//cdn.df.nexon.com/img/common/font/DNFBitBitv2.otf')format('opentype');
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background: url("../image/background.png") no-repeat center fixed ;
+    /* background-repeat: no-repeat; */
+    /* background-size: 1600px 900px; */
+    background-size: cover;
+}
+/* 제목 */
+.header {
+    font-family:'DNFBitBitv2';
+    font-size: 100px;
+    color: #fff;
+    text-align: center;
+}
+/* 페이지 위치 */
+.login_grid {
+    display: grid;
+    grid-template-rows: 13fr 1fr;
+    align-items: center;
+    
+}
+/* 배경이미지 */
+.login{
+    background: url("../image/login.png") no-repeat center;
+    background-size: 280px;
+    font-family:'DNFBitBitv2';
+    font-size: 40px;
+    color: #F2EDE7;
+    text-align: center;
+    padding: 70px;
+    margin-top: 260px;
+    width: 260px;
+    margin: 0 auto;
+    text-decoration: none;
+}
+.login:hover {
+    color: #BDAA8A;
+}
+/* 조이름/조원 */
+.login_title{
+    display: flex;
+    font-family:'DNFBitBitv2';
+    font-size: 18px;
+    color: #F2EDE7;
+    justify-content: space-between;
+    justify-items: stretch;
+    margin-left: 40px;
+    margin-right: 40px;
+    align-items: flex-end;
+}

@@ -32,7 +32,6 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'GmarketSansMedium';
-    text-decoration: none;
 }
 body {
     background: url(../image/background04.jpg) no-repeat center fixed ;
@@ -193,3 +192,101 @@ textarea, #title:focus {
 }
 
 
+
+/* 삭제 팝업창 */
+.pop_up {
+    position: fixed;
+    top: 300px;
+    left: 600px;
+}
+.pop_up_main {
+    background-color: #fff;
+    width: 740px;
+    height: 450px;
+    margin: 0 auto;
+    border-radius: 20px;
+    border: 1px solid #000;
+}
+.pop_up_top {
+    background-color: #D3D3D3;
+    border-radius: 20px 20px 0 0;           
+    border-bottom: 1px solid #000;
+    display: grid;
+    grid-template-columns: 9fr 1fr 1fr 1fr;
+    align-items: center;
+    text-align: center;
+    /* padding-top: 1.2rem; */ 
+}
+
+.pop_up_top :nth-child(n + 2) {
+    border-right: 1px solid #000;
+}
+
+.pop_up_top :last-child {
+    border-right: none;
+}
+
+.pop_top_date {
+    display: flex;
+    padding-left: 30px;
+    font-family: 'LABDigital';
+}
+
+.pop_up_mid {
+    padding: 29px;
+    padding-top: 20px;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+}
+.pop_back {
+    padding-top: 9.5px;
+    padding-bottom: 9.5px;
+    background-color: #435792;
+    border-top-right-radius: 18px;
+}
+.pop_back > a {
+    text-decoration: none;
+    color: #F2EDE7;
+    text-align: center;
+    padding: 20px;
+}
+
+/* 삭제 팝업 내용 */
+
+.pop_up_mid > p {
+    text-align: center;
+    font-family:'DNFBitBitv2';
+    color: #393E51;
+    font-size: 40px;
+}
+.pop_up_button > button {
+    text-decoration: none;
+    font-family:'DNFBitBitv2';
+    color: #393E51;
+    font-size: 30px;
+    padding: 20px 60px;
+    background-color: #D9D9D9;
+    border: none;
+    border-radius: 15px;
+}
+.pop_up_button > a {
+    text-decoration: none;
+    font-family:'DNFBitBitv2';
+    color: #393E51;
+    font-size: 30px;
+    padding: 20px 70px;
+    background-color: #D9D9D9;
+    border-radius: 15px;
+    margin-left: 70px;
+}
+
+.pop_up_button > button:hover{
+    background-color: #435792;
+    color: #F2EDE7;
+}
+.pop_up_button > a:hover {
+    background-color: #435792;
+    color: #F2EDE7;
+}
