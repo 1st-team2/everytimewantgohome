@@ -97,7 +97,8 @@ $prevMonth = date('m', strtotime('-1 month', $time));
 $prevYear = date('Y', strtotime('-1 month', $time));
 $nextMonth = date('m', strtotime('+1 month', $time));
 $nextYear = date('Y', strtotime('+1 month', $time));
-
+//현재날짜 가져오기
+$current_date = date('Y-m-d');
 ?>
 <!DOCTYPE html>
 <html lang="ko">
@@ -126,7 +127,7 @@ $nextYear = date('Y', strtotime('+1 month', $time));
     <div class="header">TODO LIST</div>
     <div class="main">
         <div class="main_top"> <!--이미지로 대체-->
-            <div class="top_date"></div>
+            <div class="top_date">NOW DATE : <?php echo $current_date ?></div>
             <div class="minus">-</div>
             <div class="square">ㅁ</div>
             <div class="back">
