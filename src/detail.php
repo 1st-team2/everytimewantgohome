@@ -1,27 +1,69 @@
-<!-- 
-    v. 1.0.1
-    작성일자 : 2024-04-05 오전 11시
-    작성(수정)자 : 권민서
-    작성(수정)내용 : div클래스명 규칙
+<?php
+require_once( $_SERVER["DOCUMENT_ROOT"]."/config.php"); // 설정 파일 호출
+require_once(FILE_LIB_DB); // DB관련 라이브러리
+$list_cnt = 100; // 한 페이지 최대 표시 수
+$page_num = 1; // 페이지 번호 초기화
 
-    클래스명
-    1. 'TODO LIST' : header
-    2. 창 부분 : main
-    3. 창 상단 최소화,전체화면,뒤로가기(이미지수정)부분 : main_top
-    3-1. 날짜 들어갈곳 : top_date
-    3-2. 최소화(-) : minus
-    3-3. 네모(ㅁ) : square
-    3-4. 뒤로가기(x) : back 
-    4. 창 화면 부분 : main_mid
-    5. 게이지,달력 부분 : main_left
-    6. 이름,프사 부분 : main_right
-    7. 게이지 이름 : gauge_name
-    8. 게이지 부분 : gauge_bar
-    9. 달력 이름 : cal_name
-    10. 달력 : cal
-    11. 닉네임 부분 : nick_name
-    12. 프사부분 : personal_img
- -->
+//리스트 날짜 url에서 가져오기
+// $date = $_GET['date'];
+$date = isset($_GET['date']) ? $_GET['date'] : date('Y-m-d');
+
+
+//현재날짜 가져오기
+$current_date = date('Y-m-d');
+
+// 이전 날짜 계산 (하루 전)
+$previous_date = date('Y-m-d', strtotime($date . ' -1 day'));
+
+// 다음 날짜 계산 (하루 후)
+$next_date = date('Y-m-d', strtotime($date . ' +1 day'));
+
+try {
+    $conn = my_db_conn();
+
+    $no = isset($_GET["no"]) ? ($_GET["no"]) : "";
+
+
+    $arr_err_param = [];
+    if($no === "") {
+        $arr_err_param[] = "no";
+    }
+    if(count($arr_err_param) > 0 ) {
+        throw new Exception("Parameter Error : ".implode(", ", $arr_err_param));
+    }
+    $arr_param = [
+        "no" => $no
+    ];
+    $result = db_select_boards_no($conn, $arr_param);
+    if(count($result) !== 1) {
+        throw new Exception("Select Boards no count");
+    }
+
+    $item = $result[0];
+
+
+} catch (\Throwable $e) {
+    echo $e->getMessage();
+    exit;
+}finally {
+    //PDO파기
+    if(!empty($conn)) {
+        $conn = null;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+?>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -36,7 +78,7 @@
     <div class="main">
         <div class="main_top">
             <!-- 오늘 날짜 -->
-            <div class="top_date">2024-03-26</div>
+            <div class="top_date">NOW DATE :<?php echo $current_date ?></div>
             <div class="minus">-</div>
             <div class="square">ㅁ</div>
             <div class="back"><a href="./list.php">x</a></div>
@@ -46,20 +88,22 @@
                 <form action="" method="post">
                     <div class="main_left_button">
                         <!-- <button type="submit">Update</button> -->
-                        <div class="main_left_button01"><a href="./update.php">Update</a></div>
-                        <div class="main_left_button02"><a href="./list.php">Cancel</a></div>
-                        <div class="main_left_button03"><a href="./delete.php">Delete</a></div>
+                        <div class="main_left_button01"><a href="./update.php?date=<?php echo $date?>&no=<?php echo $item["no"]?>">Update</a></div>
+                        <div class="main_left_button02"><a href="./list.php?date=<?php echo $date?>">Cancel</a></div>
+                        <div class="main_left_button03"><a href="./delete.php?date=<?php echo $date?>&no=<?php echo $item["no"]?>">Delete</a></div>
                     </div>
                     <div class="main_left_item">
-                        <input type="text" name="title" id="title" spellcheck="false" readonly>
-                        <textarea name="content" id="content" cols="40" rows="13" spellcheck="false" readonly></textarea>
+                        <input type="text" name="title" id="title" spellcheck="false" readonly value="<?php echo $item["title"] ?>">
+                        <textarea name="content" id="content" cols="40" rows="13" spellcheck="false" readonly><?php echo $item["content"] ?></textarea>
                     </div>
                 </form>
             </div>
             <div class="main_right">
                 <img src="../image/personal.png" alt="" class="img_p">
                 <!-- 리스트 날짜 -->
-                <div class="nick_date_item">2024-03-26</div>
+                <div class="nick_date_item">
+                    <?php echo $date ?>
+                </div>
             </div>
         </div>
     </div>
