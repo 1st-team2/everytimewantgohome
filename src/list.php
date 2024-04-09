@@ -102,7 +102,7 @@ try {
                             <div class="daily_list">
                                 <label class="chk_label <?php echo isset($item["checked_at"]) ? "chk-label-checked" : "" ?>" for="chk_label<?php echo $item["no"];?>"><?php echo isset($item["checked_at"]) ? "✔" : "" ?></label>
                                 <button type="submit" id="chk_label<?php echo $item["no"];?>"></button>
-                                <div class="item-button-a"><a href="./detail.php?no=<?php echo $item["no"]?>" class="<?php echo isset($item["checked_at"]) ? "color" : "" ?>"><?php echo $item["title"] ?></a></div>
+                                <div class="item-button-a"><a href="./detail.php?date=<?php echo $date ?>&no=<?php echo $item["no"]?>" class="<?php echo isset($item["checked_at"]) ? "color" : "" ?>"><?php echo $item["title"] ?></a></div>
                             </div>
                         <input type="hidden" name="no" value="<?php echo $item["no"]; ?>">
                     </form>
