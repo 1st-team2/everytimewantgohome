@@ -126,8 +126,7 @@ a {
     border: none;
     margin-bottom: -19px;
 }
-.main_left_button01 > a
-,.main_left_button02 > a {
+.main_left_button01 > a {
     background-color: #F2EDE7;
     text-align: center;
     padding: 20px 30px 20px 30px;
@@ -141,10 +140,6 @@ a {
     padding: 29px 35px 19px 35px;
 }
 .main_left_button01 > a:hover {
-    background-color: #CDBFA7;
-    padding: 30px 30px 20px 30px;
-}
-.main_left_button02 > a:hover {
     background-color: #CDBFA7;
     padding: 30px 30px 20px 30px;
 }
