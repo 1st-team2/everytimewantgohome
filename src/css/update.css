@@ -116,19 +116,18 @@ a {
     margin-bottom: 19px;
     align-items: flex-end;
 }
-/* .main_left_button > button {
+.main_left_button > button {
     background-color: #F2EDE7;
     text-align: center;
-    padding: 19px 30px 19px 30px;
+    padding: 19px 35px 19px 35px;
     border-radius: 20px 20px 0 0;
     color: black;
     font-size: 12PX;
     border: none;
     margin-bottom: -19px;
-} */
+}
 .main_left_button01 > a
-,.main_left_button02 > a
-,.main_left_button03 > a {
+,.main_left_button02 > a {
     background-color: #F2EDE7;
     text-align: center;
     padding: 20px 30px 20px 30px;
@@ -137,10 +136,10 @@ a {
     color: black;
     font-size: 12PX;
 }
-/* .main_left_button > button:hover {
+.main_left_button > button:hover {
     background-color: #CDBFA7;
     padding: 29px 35px 19px 35px;
-} */
+}
 .main_left_button01 > a:hover {
     background-color: #CDBFA7;
     padding: 30px 30px 20px 30px;
@@ -149,11 +148,6 @@ a {
     background-color: #CDBFA7;
     padding: 30px 30px 20px 30px;
 }
-.main_left_button03 > a:hover {
-    background-color: #CDBFA7;
-    padding: 30px 30px 20px 30px;
-}
-
 .main_left_item {
     display: flex;
     width: 740px;

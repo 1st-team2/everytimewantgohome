@@ -204,8 +204,11 @@ body {
     height: 25px;
     line-height: 60px;
 } */
-.daily_list > button {
+/* .daily_list > button {
     display: none;
+} */
+input[type="submit"] {
+    display: none
 }
 .chk_label{
     width: 25px;

@@ -7,6 +7,7 @@ try {
 
     $no = isset($_POST["no"]) ? $_POST["no"] : "";
     $page = isset($_POST["page"]) ? $_POST["page"] : "";
+
     $arr_param = [
         "no" => $no
     ];
@@ -15,8 +16,8 @@ try {
     $conn->commit();
 
     // 상세 페이지로 이동
-    header("Location: list_ms.php?page=".$page);
-    exit;
+    header("Location: list_ms.php");
+
 
 } catch(\Throwable $e) {
     echo $e->getMessage();

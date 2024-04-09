@@ -28,7 +28,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/detail.css">
+    <link rel="stylesheet" href="./css/update.css">
     <title>main</title>
 </head>
 <body>
@@ -45,14 +45,13 @@
             <div class="main_left">
                 <form action="" method="post">
                     <div class="main_left_button">
-                        <!-- <button type="submit">Update</button> -->
-                        <div class="main_left_button01"><a href="./update.php">Update</a></div>
-                        <div class="main_left_button02"><a href="./list.php">Cancel</a></div>
-                        <div class="main_left_button03"><a href="./delete.php">Delete</a></div>
+                        <button type="submit">Done</button>
+                        <div class="main_left_button01"><a href="./list.php">Cancel</a></div>
+                        <div class="main_left_button02"><a href="./delete.php">Delete</a></div>
                     </div>
                     <div class="main_left_item">
-                        <input type="text" name="title" id="title" spellcheck="false" readonly>
-                        <textarea name="content" id="content" cols="40" rows="13" spellcheck="false" readonly></textarea>
+                        <input type="text" name="title" id="title" spellcheck="false">
+                        <textarea name="content" id="content" cols="40" rows="13" spellcheck="false"></textarea>
                     </div>
                 </form>
             </div>
