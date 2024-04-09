@@ -1,6 +1,6 @@
 <?php
 
-require_once( $_SERVER["DOCUMENT_ROOT"]."/config.php");
+require_once( $_SERVER["DOCUMENT_ROOT"]."/config_nr.php");
 
 function generateCalendar() {
     $today = date("Y-m-d");
@@ -159,7 +159,7 @@ try {
                         <input type="range" name="" id="music">
                         <div class="drop_titles">Character</div>
                         <div class="character_main">
-                            <input type="radio" name="img" id="image1" value="/image/personal.png">
+                            <input type="radio" name="img" id="image1" value="/image/jing.png">
                             <label for="image1" class="radio_label">
                                 <!-- <img src="/image/personal.png"> -->
                             </label>
@@ -169,7 +169,7 @@ try {
                                 <!-- <img src="/image/personal.png"> -->
                             </label>
 
-                            <input type="radio" name="img" id="image3" value="/image/personal.png">
+                            <input type="radio" name="img" id="image3" value="/image/cat.png">
                             <label for="image3" class="radio_label">
                                 <!-- <img src="/image/personal.png"> -->
                             </label>
