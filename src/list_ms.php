@@ -29,11 +29,17 @@
 //  -->
 require_once( $_SERVER["DOCUMENT_ROOT"]."/config.php"); // 설정 파일 호출
 require_once(FILE_LIB_DB); // DB관련 라이브러리
+$list_cnt = 100; // 한 페이지 최대 표시 수
+$page_num = 1; // 페이지 번호 초기화
 
 try {
-    $conn = my_db_conn();
-    $content_no = isset($_POST["no"]) ? $_POST["no"] : "";
-    $page = isset($_POST["page"]) ? $_POST["page"] : "";
+    // DB Connect
+    $conn = my_db_conn(); // connection 함수
+
+    //파라미터에서 page 획득
+    $page_num = isset($_GET["page"]) ? $_GET["page"] : $page_num;
+    $no = isset($_POST["no"]) ? $_POST["no"] : "";
+
     $arr_param = [
         "no" => $no
     ];
@@ -41,24 +47,45 @@ try {
     $result = db_update_contents_checked_at($conn, $arr_param);
     $conn->commit();
     // 상세 페이지로 이동
-    header("Location: list.php?page=".$page);
+    // header("Location: detail.php?page=".$page);
+    
+    // 게시글 수 조회
+    $result_board_cnt = db_select_boards_cnt($conn);
+    
+    // 페이지 관련 설정 셋팅
+    $max_page_num = ceil($result_board_cnt / $list_cnt); // 최대 페이지 수
+    $offset = $list_cnt * ($page_num -1); // 오프셋
+
+
+    // 게시글 리스트 조회
+    $arr_param = [
+        "list_cnt" => $list_cnt
+        ,"offset" => $offset
+    ];
+    $result = db_select_boards_paging($conn, $arr_param);
+
+    // 아이템 셋팅
+    $item = $result[0];
+
 } catch(\Throwable $e) {
     echo $e->getMessage();
-    exit;
+    exit; //위에 코드가 오류 있을때 밑에 코드 안 보이고 종료 시키고 싶을때 사용
 } finally {
+    // PDO 파기
     if(!empty($conn)) {
         $conn = null;
     }
 }
 
- ?>
+
+?>
 
  <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/list.css">
+    <link rel="stylesheet" href="./css/list_ms.css">
     <title>TODO LIST</title>
 </head>
 <body>
@@ -78,15 +105,22 @@ try {
                     </div>
                 </div>
                 <div class="list_container" >
-                    <form action="./list.html" method="post">
+                    <form action="./chk_ms.php" method="post">
                         <div class="list_items" >
+                        <?php
+                            foreach($result as $item) {
+                        ?>
                             <div class="daily_list">
-                                <!-- <div class="list_chkbox"><input type="checkbox" name="" id="checkbox"></div> -->
-                                <label class="checkbox chk-label-checked <?php echo isset($item["checked_at"]) ? "chk-label-checked" : "" ?>" for="checkbox<?php echo $item["no"];?>"><?php echo isset($item["checked_at"]) ? "✔" : "" ?></label>
-                                <div class="list_title"><a href="./detail.php?no=<?php echo $item["no"] ?>&page=<?php echo $page_num ?>" class="<?php echo isset($item["checked_at"]) ? "color" : "" ?>"><?php echo $item["title"] ?></a></div>
-                                <!-- <div class="list_title"><a href="./detail.html"><?php echo $item["title"] ?></a></div> -->
+                                <label class="chk_label <?php echo isset($item["checked_at"]) ? "chk-label-checked" : "" ?>" for="chk_label<?php echo $item["no"];?>"><?php echo isset($item["checked_at"]) ? "✔" : "" ?></label>
+                                <button type="submit" id="chk_label<?php echo $item["no"];?>"></button>
+                                <div class="itme-button-a"><a href="./update.php?no=<?php echo $item["no"] ?>" class="<?php echo isset($item["checked_at"]) ? "color" : "" ?>"><?php echo $item["title"] ?></a></div>
                             </div>
+                        <?php
+                            }
+                        ?>
                         </div>
+                        <input type="hidden" name="no" value="<?php echo $item["no"]; ?>">
+                        <input type="hidden" name="page" value="<?php echo $page_num; ?>">
                     </form>
                 </div>
             </div>
