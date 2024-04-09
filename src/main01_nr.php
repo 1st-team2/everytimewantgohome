@@ -5,25 +5,7 @@ $username = "root";
 $password = "php505";
 $dbname = "tng_test";
 
-try {
-    // 데이터베이스 연결
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-
-    // 이미지 경로를 받아옴
-    if (isset($_POST['img']) && !empty($_POST['img'])) {
-        $imagePath = $_POST['img'];
-
-        // 이미지 경로를 DB에 저장하는 쿼리
-        $query = "INSERT INTO select_img (img) VALUES (:imagePath)";
-        $statement = $db->prepare($query);
-        $statement->bindParam(':imagePath', $imagePath, PDO::PARAM_STR);
-        $statement->execute();
-
-    }
-} catch (PDOException $e) {
-    echo "오류: " . $e->getMessage();
-}
-
+define("REQUEST_METHOD",strtoupper($_SERVER["REQUEST_METHOD"]));
 
 function generateCalendar() {
     $today = date("Y-m-d");
@@ -59,9 +41,71 @@ function generateCalendar() {
     
     for ($i = $endDayOfWeek; $i < 7; $i++) {
         echo "<th class='calendar-date'></th>";
+    }  
+}
+
+
+try {
+    // 데이터베이스 연결
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    function db_update_image(&$conn, &$arr_param){
+        //sql
+        $sql = " UPDATE FROM select_img SET img = :img WHERE id = '1' ";
+
+        //query start
+        $stmt = $conn->prepare($sql);
+        $stmt->execute($arr_param);
+
+        //return
+        return $stmt->rowCount();
     }
 
+    function db_select_img(&$conn) {
+        //sql
+        $sql = " SELECT id ,img FROM select_img WHERE id = '1' ";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+
+        return $result;
+    }
+
+        if(REQUEST_METHOD == "POST") {
+            $img = isset($_POST["img"]) ? trim($_POST["img"]) : "/image/ex.jpg";
+            
+            //Transaction 시작
+            $conn->beginTransaction();
+            
+            //이미지패스 수정
+            $arr_param = [
+                "img" => $img
+            ];
+
+            $result = db_update_image($conn, $arr_param);
+
+            
+            //예외처리
+            if($result !== 1){
+                throw new Exception("Update Boards no count");
+            }
+            //commit
+            $conn->commit();
+
+            $item = $result[0];
+    }
     
+
+} catch (PDOException $e) {
+    if(!empty($conn) && $conn->inTransaction()){
+        $conn->rollBack();
+    }
+    echo $e->getMessage();
+    exit;
+} finally {
+    if(!empty($conn)){
+        $conn = null;
+    }
 }
 
 // <!-- 
@@ -103,7 +147,7 @@ function generateCalendar() {
     <title>main</title>
 </head>
 <body>
-    <div class="header">TODO LIST</div>
+    <a href="./main01_nr.php"><div class="header">PIXEL FOREST</div></a>
     <div class="main">
         <div class="main_top">
             <div class="top_date"></div>
@@ -125,7 +169,7 @@ function generateCalendar() {
                                 <!-- <img src="/image/personal.png"> -->
                             </label>
 
-                            <input type="radio" name="image" id="image2" value="/image/personal.png">                            
+                            <input type="radio" name="image" id="image2" value="/image/ex.jpg">                            
                             <label for="image2" class="radio_label">
                                 <!-- <img src="/image/personal.png"> -->
                             </label>
@@ -139,7 +183,6 @@ function generateCalendar() {
                             <label for="image4" class="radio_label">
                                 <!-- <img src="/image/personal.png"> -->
                             </label>
-
                         </div>
                         <button type="submit" class="name_button">YES</button>
                     </form>
@@ -277,7 +320,7 @@ function generateCalendar() {
                     <button type="submit">OK</button>
                 </form> -->
                 <div class="img_p">
-                    <img src="<?php echo $imagePath; ?>" alt="Selected Image">
+                    <img src="<?php echo $item["img"] ?>">
                 </div>
             </div>
         </div>
