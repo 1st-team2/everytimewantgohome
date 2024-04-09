@@ -26,11 +26,12 @@ body {
     font-size: 100px;
     color: #fff;
     text-align: center;
+    margin-top: 100px;
 }
 /* 페이지 위치 */
 .login_grid {
     display: grid;
-    grid-template-rows: 13fr 1fr;
+    grid-template-rows: 12fr 1fr;
     align-items: center;
     
 }
@@ -47,6 +48,7 @@ body {
     width: 260px;
     margin: 0 auto;
     text-decoration: none;
+    margin-top: 110px;
 }
 .login:hover {
     color: #BDAA8A;

@@ -16,7 +16,7 @@ try {
     $conn->commit();
 
     // 상세 페이지로 이동
-    header("Location: list_ms.php");
+    header("Location: list.php");
 
 
 } catch(\Throwable $e) {

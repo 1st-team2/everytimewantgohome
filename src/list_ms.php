@@ -112,7 +112,7 @@ try {
                             <form action="./chk_ms.php" method="post">
                                 <div class="daily_list">
                                     <label class="chk_label <?php echo isset($item["checked_at"]) ? "chk-label-checked" : "" ?>" for="chk_label<?php echo $item["no"];?>"><?php echo isset($item["checked_at"]) ? "✔" : "" ?></label>
-                                    <button type="submit" id="chk_label<?php echo $item["no"];?>"></button>
+                                    <button type="submit" id="chk_label<?php echo $item["no"];?>">a</button>
                                     <div class="itme-button-a"><a href="./update.php?no=<?php echo $item["no"]?>" class="<?php echo isset($item["checked_at"]) ? "color" : "" ?>"><?php echo $item["title"] ?></a></div>
                                 </div>
                             <input type="hidden" name="no" value="<?php echo $item["no"]; ?>">

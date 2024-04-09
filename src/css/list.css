@@ -34,6 +34,9 @@
     font-family: 'GmarketSansMedium';
     text-decoration: none;
 }
+a {
+    color: #000;
+}
 body {
     background: url(../image/background04.jpg) no-repeat center fixed ;
     /* background-repeat: no-repeat; */
@@ -156,6 +159,8 @@ body {
     border-top-right-radius: 20px;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
+    margin-bottom: 10px;
+    padding-top: 20px;
 }
 .list_box {
     padding-top: 25px;
@@ -177,21 +182,14 @@ body {
     border: 2px solid transparent;
   }
 .daily_list {
-    /* border: 1px solid black; */
     border-radius: 10px;
     background-color: #F2EDE7;
     width: 630px;
-    /* height: 60px; */
     margin-left: 15px;
     margin-top: 1rem;
-    /* text-align: center;
-    line-height: 60px; */
-    /* display: grid;
-    grid-template-columns: 1fr 8fr; */
     display: flex;
     align-items: center;
-    /* gap: 15px;
-    padding: 20px; */
+    height: 50px;
 }
 .list_chkbox {
     /* grid-column: 1/2; */
@@ -206,22 +204,34 @@ body {
     height: 25px;
     line-height: 60px;
 } */
+
 .checkbox{
     width: 25px;
     height: 25px;
     background-color: #FDFDF5;
     border-radius: 50%;
 }
+.chk_label{
+    width: 25px;
+    height: 25px;
+    background-color: #FDFDF5;
+    border-radius: 50%;
+    margin-left: 12px;
+}
 .chk-label-checked {
     display: flex;
     color: black;
-    font-size: 20px;
-    width: 20px;
-    height: 20px;
+    font-size: 25px;
+    width: 25px;
     text-align: center;
     align-items: center;
     justify-content: center;
-    margin-left: 15px;
+    margin-left: 12px;
+}
+.item-button-a {
+    width: 580px;
+    display: flex;
+    justify-content: center;
 }
 .color {
     color: #949AB2;
@@ -234,7 +244,7 @@ body {
 
 .main_left :nth-child(n + 2):nth-child(-n + 3){
     /* margin-top: 0; */
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
 }
 
 .gauge_name {
@@ -320,6 +330,8 @@ td {
     font-size: 1.1rem;
     height: 60px;
     line-height: 60px;
+    display: flex;
+    justify-content: space-around;
 }
 
 .name {
@@ -368,7 +380,7 @@ td {
     height: 60px;
     line-height: 60px;
 }
-.list_title > a {
+/* .list_title > a {
     text-decoration: none;
     color: #000;
-}
+} */
