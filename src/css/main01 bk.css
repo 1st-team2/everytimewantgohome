@@ -359,6 +359,3 @@ a:hover {
 #char_img1:checked  {
     background-image: url('../image/background.png');
 }
-input:checked {
-    border: 1px solid black;
-}
