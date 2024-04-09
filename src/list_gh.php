@@ -58,7 +58,7 @@ $next_date = date('Y-m-d', strtotime($date . ' +1 day'));
     <a href="./main01.php"><div class="header">TODO LIST</div></a>
     <div class="main">
         <div class="main_top"> <!--이미지로 대체-->
-            <div class="top_date">NOW DATE : <?php echo $current_date ?></div>
+            <div class="top_date">NOW DATE :<?php echo $current_date ?></div>
             <div class="minus">-</div>
             <div class="square">ㅁ</div>
             <div class="back"><a href="./main01.php">x</a></div>

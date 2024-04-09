@@ -45,9 +45,10 @@
             <div class="main_left">
                 <form action="" method="post">
                     <div class="main_left_button">
-                        <button type="submit">Update</button>
-                        <div class="main_left_button01"><a href="./list.php">Cancel</a></div>
-                        <div class="main_left_button02"><a href="./delete.php">Delete</a></div>
+                        <!-- <button type="submit">Update</button> -->
+                        <div class="main_left_button01"><a href="./update.php">Update</a></div>
+                        <div class="main_left_button02"><a href="./list.php">Cancel</a></div>
+                        <div class="main_left_button03"><a href="./delete.php">Delete</a></div>
                     </div>
                     <div class="main_left_item">
                         <input type="text" name="title" id="title" spellcheck="false" readonly>

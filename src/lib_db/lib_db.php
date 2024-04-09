@@ -99,3 +99,85 @@ function db_update_contents_checked_at(&$conn, &$array_param) {
     // 리턴
     return $stmt->rowCount();
 }
+//update : 노경호 0409
+function db_select_boards_paging(&$conn, &$array_param) {
+    
+    $sql =     
+        "SELECT	"
+            ." no "
+            ." ,title "
+            ." ,created_at "
+            ." ,checked_at "
+            ." FROM "
+            ."  boards "
+            ." WHERE "
+            ."  deleted_at IS NULL "
+            ." AND DATE(target_date) = :target_date "
+            ." ORDER BY "
+            ." checked_at " 
+            ." ,created_at DESC "
+            ." LIMIT :list_cnt OFFSET :offset "
+        ;
+    
+    
+    $stmt = $conn->prepare($sql);
+    $stmt->execute($array_param);
+    $result = $stmt->fetchAll();
+   
+    return $result;
+    
+    // try {
+    //       $sql =     
+    //     "SELECT	"
+    //         ." no "
+    //         ." ,title "
+    //         ." ,created_at "
+    //         ." ,checked_at "
+    //         ." FROM "
+    //         ."  boards "
+    //         ." WHERE "
+    //         ."  deleted_at IS NULL "
+    //         ." AND DATE(target_date) = :target_date "
+    //         ." ORDER BY "
+    //         ." checked_at " 
+    //         ." ,created_at DESC "
+    //         ." LIMIT :list_cnt OFFSET :offset "
+    //     ;
+    //     $stmt = $conn->prepare($sql);
+    //     $stmt->execute($array_param);
+    //     $result = $stmt->fetchAll();
+
+    //     return $result;
+
+    //     if (count($result) == 0) {
+    //         echo "게시글이 없습니다.";
+    //     }
+    // } catch (\Throwable $e) {
+    //     throw new Exception('Failed to select boards: ' . $e->getMessage());
+    // }
+
+}
+
+// pk로 게시글 정보 조회
+function db_select_boards_no(&$conn, &$array_param) {
+    // sql작성
+    $sql = 
+    " SELECT "
+    ."  no "
+    ."  ,title "
+    ."  ,content "
+    ."  ,created_at "
+    ." FROM "
+    ."  boards "
+    ." WHERE "
+    ."  no = :no "
+;
+
+    // Query 실행
+    $stmt = $conn->prepare($sql);
+    $stmt->execute($array_param);
+    $result = $stmt->fetchAll();
+
+    // 리턴
+    return $result;
+}

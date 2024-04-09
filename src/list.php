@@ -1,32 +1,72 @@
-<!-- 
-    v. 1.0.1
-    작성일자 : 2024-04-04 오전 11시
-    작성(수정)자 : 이나라
-    작성(수정)내용 : div클래스명 규칙
-    v. 1.0.2
-    작성일자 : 2024-04-05 오후 2시
-    작성(수정)자 : 노경호
-    작성(수정)내용 : list페이지 명명규칙
+<?php 
+require_once( $_SERVER["DOCUMENT_ROOT"]."/config.php"); // 설정 파일 호출
+require_once(FILE_LIB_DB); // DB관련 라이브러리
+$list_cnt = 100; // 한 페이지 최대 표시 수
+$page_num = 1; // 페이지 번호 초기화
 
-    클래스명
-    1. 'TODO LIST' : header
-    2. 창 부분 : main
-    3. 창 상단 최소화,전체화면,뒤로가기(이미지수정)부분 : main_top
-    3-1. 날짜 들어갈곳 : top_date
-    3-2. 최소화(-) : minus
-    3-3. 네모(ㅁ) : square
-    3-4. 뒤로가기(x) : back 
-    4. 창 화면 부분 : main_mid
-    5. 게이지,달력 부분 : main_left
-    6. 이름,프사 부분 : main_right
-    7. 게이지 이름 : gauge_name
-    8. 게이지 부분 : gauge_bar
-    9. 달력 이름 : cal_name
-    10. 달력 : cal
-    11. 닉네임 부분 : nick_name
-    12. 프사부분 : personal_img
- -->
+//날짜 관련 - last update : 노경호 0409
 
+//리스트 날짜 url에서 가져오기
+// $date = $_GET['date'];
+$date = isset($_GET['date']) ? $_GET['date'] : date('Y-m-d');
+
+
+//현재날짜 가져오기
+$current_date = date('Y-m-d');
+
+// 이전 날짜 계산 (하루 전)
+$previous_date = date('Y-m-d', strtotime($date . ' -1 day'));
+
+// 다음 날짜 계산 (하루 후)
+$next_date = date('Y-m-d', strtotime($date . ' +1 day'));
+
+
+try {
+    // DB Connect
+    $conn = my_db_conn(); // connection 함수
+
+    //파라미터에서 page 획득
+    $page_num = isset($_GET["page"]) ? $_GET["page"] : $page_num;
+    $no = isset($_POST["no"]) ? $_POST["no"] : "";
+
+    $arr_param = [
+        "no" => $no
+    ];
+    $conn->beginTransaction();
+    $result = db_update_contents_checked_at($conn, $arr_param);
+    $conn->commit();
+    // 상세 페이지로 이동
+    // header("Location: detail.php?page=".$page);
+    
+    // 게시글 수 조회
+    $result_board_cnt = db_select_boards_cnt($conn);
+    
+    // 페이지 관련 설정 셋팅
+    $max_page_num = ceil($result_board_cnt / $list_cnt); // 최대 페이지 수
+    $offset = $list_cnt * ($page_num -1); // 오프셋
+
+    // 게시글 리스트 조회
+    $arr_param = [
+        "list_cnt" => $list_cnt
+        ,"offset" => $offset
+        ,"target_date" => $date
+    ];
+    $result = db_select_boards_paging($conn, $arr_param);
+
+    // 아이템 셋팅
+    $item = $result;
+
+} catch(\Throwable $e) {
+    echo $e->getMessage();
+    exit; //위에 코드가 오류 있을때 밑에 코드 안 보이고 종료 시키고 싶을때 사용
+} finally {
+    // PDO 파기
+    if(!empty($conn)) {
+        $conn = null;
+    }
+}
+
+?>
  <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -39,7 +79,7 @@
     <a href="./main01.php"><div class="header">TODO LIST</div></a>
     <div class="main">
         <div class="main_top"> <!--이미지로 대체-->
-            <div class="top_date">2024-04-04</div>
+            <div class="top_date">NOW DATE :<?php echo $current_date ?></div>
             <div class="minus">-</div>
             <div class="square">ㅁ</div>
             <div class="back"><a href="./main01.php">x</a></div>
@@ -52,65 +92,26 @@
                     </div>
                 </div>
                 <div class="list_container" >
-                    <div class="list_box">
-                        <div class="list_items" >
-                            <!-- 콘텐츠 아이템 리스트 -->
+                    <div class="list_items" >
+                    <?php
+                    if(!empty($result)) {
+                        foreach($result as $item) {
+                        
+                    ?>
+                        <form action="./chk_ms.php" method="post">
                             <div class="daily_list">
-                                <!-- <div class="list_chkbox"><input type="checkbox" name="" id="checkbox"></div> -->
-                                <label class="checkbox chk-label-checked">✔</label>
-                                <div class="list_title"><a href="./detail.php">i want go home</a></div>
+                                <label class="chk_label <?php echo isset($item["checked_at"]) ? "chk-label-checked" : "" ?>" for="chk_label<?php echo $item["no"];?>"><?php echo isset($item["checked_at"]) ? "✔" : "" ?></label>
+                                <button type="submit" id="chk_label<?php echo $item["no"];?>"></button>
+                                <div class="item-button-a"><a href="./detail.php?no=<?php echo $item["no"]?>" class="<?php echo isset($item["checked_at"]) ? "color" : "" ?>"><?php echo $item["title"] ?></a></div>
                             </div>
-                            <div class="daily_list">
-                                <!-- <div class="list_chkbox"><input type="checkbox" name="" id="checkbox"></div> -->
-                                <label class="checkbox chk-label-checked">✔</label>
-                                <div class="list_title"><a href="./detail.php">i want go home</a></div>
-                            </div>
-                            <div class="daily_list">
-                                <!-- <div class="list_chkbox"><input type="checkbox" name="" id="checkbox"></div> -->
-                                <label class="checkbox chk-label-checked">✔</label>
-                                <div class="list_title"><a href="./detail.php">i want go home</a></div>
-                            </div>
-                            <div class="daily_list">
-                                <!-- <div class="list_chkbox"><input type="checkbox" name="" id="checkbox"></div> -->
-                                <label class="checkbox chk-label-checked">✔</label>
-                                <div class="list_title"><a href="./detail.php">i want go home</a></div>
-                            </div>
-                            <div class="daily_list">
-                                <!-- <div class="list_chkbox"><input type="checkbox" name="" id="checkbox"></div> -->
-                                <label class="checkbox chk-label-checked">✔</label>
-                                <div class="list_title"><a href="./detail.php">i want go home</a></div>
-                            </div>
-                            <div class="daily_list">
-                                <!-- <div class="list_chkbox"><input type="checkbox" name="" id="checkbox"></div> -->
-                                <label class="checkbox chk-label-checked">✔</label>
-                                <div class="list_title"><a href="./detail.php">i want go home</a></div>
-                            </div>
-                            <div class="daily_list">
-                                <!-- <div class="list_chkbox"><input type="checkbox" name="" id="checkbox"></div> -->
-                                <label class="checkbox chk-label-checked">✔</label>
-                                <div class="list_title"><a href="./detail.php">i want go home</a></div>
-                            </div>
-                            <div class="daily_list">
-                                <!-- <div class="list_chkbox"><input type="checkbox" name="" id="checkbox"></div> -->
-                                <label class="checkbox chk-label-checked">✔</label>
-                                <div class="list_title"><a href="./detail.php">i want go home</a></div>
-                            </div>
-                            <div class="daily_list">
-                                <!-- <div class="list_chkbox"><input type="checkbox" name="" id="checkbox"></div> -->
-                                <label class="checkbox chk-label-checked">✔</label>
-                                <div class="list_title"><a href="./detail.php">i want go home</a></div>
-                            </div>
-                            <div class="daily_list">
-                                <!-- <div class="list_chkbox"><input type="checkbox" name="" id="checkbox"></div> -->
-                                <label class="checkbox chk-label-checked">✔</label>
-                                <div class="list_title"><a href="./detail.php">i want go home</a></div>
-                            </div>
-                            <div class="daily_list">
-                                <!-- <div class="list_chkbox"><input type="checkbox" name="" id="checkbox"></div> -->
-                                <label class="checkbox chk-label-checked">✔</label>
-                                <div class="list_title"><a href="./detail.php">i want go home</a></div>
-                            </div>
-                        </div>
+                        <input type="hidden" name="no" value="<?php echo $item["no"]; ?>">
+                    </form>
+                    <?php
+                        } 
+                        }else {
+                            echo "게시글이 없습니다.";
+                        }
+                    ?>
                     </div>
                 </div>
             </div>
@@ -124,7 +125,13 @@
                 <img src="../image/personal.png" alt="" class="img_p">
                 <form action="" method="post">
                     <div class="nick_name_item">
-                        <div class="nick_date_item">2024-03-26</div>
+                        <div class="date_controll">
+                            <a href="list.php?date=<?php echo $previous_date; ?>"><</a>
+                        </div>
+                        <div><?php echo $date ?></div>
+                        <div class="date_controll">
+                        <a href="list.php?date=<?php echo $next_date; ?>">></a>
+                        </div>
                     </div>
                 </form>
             </div>

@@ -105,23 +105,22 @@ try {
                     </div>
                 </div>
                 <div class="list_container" >
-                    <form action="./chk_ms.php" method="post">
-                        <div class="list_items" >
+                    <div class="list_items" >
                         <?php
                             foreach($result as $item) {
                         ?>
-                            <div class="daily_list">
-                                <label class="chk_label <?php echo isset($item["checked_at"]) ? "chk-label-checked" : "" ?>" for="chk_label<?php echo $item["no"];?>"><?php echo isset($item["checked_at"]) ? "✔" : "" ?></label>
-                                <button type="submit" id="chk_label<?php echo $item["no"];?>"></button>
-                                <div class="itme-button-a"><a href="./update.php?no=<?php echo $item["no"] ?>" class="<?php echo isset($item["checked_at"]) ? "color" : "" ?>"><?php echo $item["title"] ?></a></div>
-                            </div>
+                            <form action="./chk_ms.php" method="post">
+                                <div class="daily_list">
+                                    <label class="chk_label <?php echo isset($item["checked_at"]) ? "chk-label-checked" : "" ?>" for="chk_label<?php echo $item["no"];?>"><?php echo isset($item["checked_at"]) ? "✔" : "" ?></label>
+                                    <button type="submit" id="chk_label<?php echo $item["no"];?>">a</button>
+                                    <div class="itme-button-a"><a href="./update.php?no=<?php echo $item["no"]?>" class="<?php echo isset($item["checked_at"]) ? "color" : "" ?>"><?php echo $item["title"] ?></a></div>
+                                </div>
+                            <input type="hidden" name="no" value="<?php echo $item["no"]; ?>">
+                        </form>
                         <?php
                             }
                         ?>
-                        </div>
-                        <input type="hidden" name="no" value="<?php echo $item["no"]; ?>">
-                        <input type="hidden" name="page" value="<?php echo $page_num; ?>">
-                    </form>
+                    </div>
                 </div>
             </div>
             <div class="main_right">
@@ -132,7 +131,7 @@ try {
                     <button type="submit">OK</button>
                 </form>
                 <img src="../image/personal.png" alt="" class="img_p">
-                <form action="./list/php" method="post">
+                <form action="./lis_mst/php" method="post">
                     <div class="nick_name_item">
                         <div class="nick_date_item"></div>
                     </div>

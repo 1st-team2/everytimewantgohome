@@ -1,14 +1,3 @@
-<!-- 
-    v. 1.0.1
-    작성일자 : 2024-04-04 오전 1시
-    작성(수정)자 : 권민서
-    작성(수정)내용 : div클래스명 규칙
-    header : 메인 타이틀
-    login_grid : 화면 구상 그리드
-    login_title : 팀명 조원 작성
- -->
-
-
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -21,7 +10,7 @@
 <body>
     <div class="header">TODO LIST</div>
     <div class="login_grid">
-        <a href="./image/main01.php" class="login">로그인</a>
+        <a href="./main01.php" class="login">로그인</a>
         <div class="login_title">
             <p>
                 바라는게 너무많조
