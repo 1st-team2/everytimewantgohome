@@ -71,12 +71,12 @@ function db_select_user_name(&$conn){
     return $result;
 }
 
-function db_update_user_name(&$conn, &$arr_param){
+function db_update_user_name(&$conn, &$array_param){
     //sql
     $sql = " UPDATE select_img SET user_name = :user_name WHERE id = 1 ";
 
     $stmt = $conn->prepare($sql);
-    $stmt->execute($arr_param);
+    $stmt->execute($array_param);
 
     //return
     return $stmt->rowCount();
@@ -109,10 +109,10 @@ try {
     //     $item = $result;
     // }
 
-    if(REQUEST_METHOD === "POST"){
+    if(REQUEST_METHOD == "POST"){
 
         // 파라미터 가져오기
-        $user_name = isset($_POST["user_name"]) ? $_POST["user_name"] : "";
+        $user_name = isset($_POST["user_name"]) ? $_POST["user_name"] : "적용안됨";
 
         //Transaction 시작
         $conn->beginTransaction();
@@ -347,7 +347,7 @@ try {
                 <form action="main01_nr.php" method="post">
                     <div class="nick_name_item">
                         <label for="nick" class="name">NAME</label>
-                        <input type="text" name="nick" id="nick" value="<?php echo $user_name_get ?>">
+                        <input type="text" name="nick" id="nick" value="<?php echo $user_name ?>">
                         <button type="submit" class="name_button" >YES</button>
                     </div>
                 </form>
