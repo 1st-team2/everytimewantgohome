@@ -70,14 +70,6 @@ function generateCalendar() {
     $startDayOfWeek = date("N", strtotime($firstDayOfMonth));
     $endDayOfWeek = date("N", strtotime($lastDayOfMonth));
     $totalDays = date("t", strtotime($firstDayOfMonth));
-    
-    // echo " <div class='calendar-date'>Sun</div>";
-    // echo " <div class='calendar-date'>Mon</div>";
-    // echo " <div class='calendar-date'>Tue</div>";
-    // echo " <div class='calendar-date'>Wed</div>";
-    // echo " <div class='calendar-date'>Thu</div>";
-    // echo " <div class='calendar-date'>Fri</div>";
-    // echo " <div class='calendar-date'>Sat</div>";
 
     for ($i = 1; $i < $startDayOfWeek; $i++) {
         echo "<th class='calendar-date'></th>";
@@ -85,9 +77,9 @@ function generateCalendar() {
     
     for ($day = 1; $day <= $totalDays; $day++) {
         if ($day == date("j", strtotime($today))) {
-            echo "<th class='calendar-date today'><a href='list.php?date=" . date("Y-m-d", strtotime($firstDayOfMonth . "+" . ($day - 1) . " days")) . "'>$day</a></th>";
+            echo "<th class='calendar-date today'><a href='list_gh.php?date=" . date("Y-m-d", strtotime($firstDayOfMonth . "+" . ($day - 1) . " days")) . "'>$day</a></th>";
         } else {
-            echo "<th class='calendar-date'><a href='list.php?date=" . date("Y-m-d", strtotime($firstDayOfMonth . "+" . ($day - 1) . " days")) . "'>$day</a></th>";
+            echo "<th class='calendar-date'><a href='list_gh.php?date=" . date("Y-m-d", strtotime($firstDayOfMonth . "+" . ($day - 1) . " days")) . "'>$day</a></th>";
         }
         
         if($day == $endDayOfWeek){
@@ -105,7 +97,8 @@ $prevMonth = date('m', strtotime('-1 month', $time));
 $prevYear = date('Y', strtotime('-1 month', $time));
 $nextMonth = date('m', strtotime('+1 month', $time));
 $nextYear = date('Y', strtotime('+1 month', $time));
-
+//현재날짜 가져오기
+$current_date = date('Y-m-d');
 ?>
 <!DOCTYPE html>
 <html lang="ko">
@@ -134,7 +127,7 @@ $nextYear = date('Y', strtotime('+1 month', $time));
     <div class="header">TODO LIST</div>
     <div class="main">
         <div class="main_top"> <!--이미지로 대체-->
-            <div class="top_date"></div>
+            <div class="top_date">NOW DATE : <?php echo $current_date ?></div>
             <div class="minus">-</div>
             <div class="square">ㅁ</div>
             <div class="back">
@@ -226,7 +219,7 @@ $nextYear = date('Y', strtotime('+1 month', $time));
                                         echo '<td></td>';
                                     } else {
                                          // 유효한 날짜인 경우 해당 날짜로 링크된 셀 표시
-                                        echo '<td><a href="list.php?date=' . date("Y-m-d", strtotime($date . " + " . ($day - 1) . " days")) . '">' . $day . '</a></td>';
+                                        echo '<td><a href="list_gh.php?date=' . date("Y-m-d", strtotime($date . " + " . ($day - 1) . " days")) . '">' . $day . '</a></td>';
                                          $day++; // 다음 날짜로 이동
                                     }
                                 }

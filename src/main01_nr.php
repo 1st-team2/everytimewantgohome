@@ -1,11 +1,6 @@
 <?php
 
-$servername = "localhost";
-$username = "root";
-$password = "php505";
-$dbname = "tng_test";
-
-define("REQUEST_METHOD",strtoupper($_SERVER["REQUEST_METHOD"]));
+require_once( $_SERVER["DOCUMENT_ROOT"]."/config.php");
 
 function generateCalendar() {
     $today = date("Y-m-d");
@@ -47,10 +42,10 @@ function generateCalendar() {
 
 try {
     // 데이터베이스 연결
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conn = new PDO(MARIADB_DSN, MARIADB_USER, MARIADB_PASSWORD);
     function db_update_image(&$conn, &$arr_param){
         //sql
-        $sql = " UPDATE FROM select_img SET img = :img WHERE id = '1' ";
+        $sql = " UPDATE select_img SET img = :img WHERE id = '1' ";
 
         //query start
         $stmt = $conn->prepare($sql);
@@ -72,7 +67,8 @@ try {
     }
 
         if(REQUEST_METHOD == "POST") {
-            $img = isset($_POST["img"]) ? trim($_POST["img"]) : "/image/ex.jpg";
+            var_dump($_POST["img"]);
+            $img = isset($_POST["img"]) ? trim($_POST["img"]) : "/image/personal.png";
             
             //Transaction 시작
             $conn->beginTransaction();
@@ -92,7 +88,7 @@ try {
             //commit
             $conn->commit();
 
-            $item = $result[0];
+            $item = $result;
     }
     
 
@@ -164,22 +160,22 @@ try {
                         <input type="range" name="" id="music">
                         <div class="drop_titles">Character</div>
                         <div class="character_main">
-                            <input type="radio" name="image" id="image1" value="/image/personal.png">
+                            <input type="radio" name="img" id="image1" value="/image/personal.png">
                             <label for="image1" class="radio_label">
                                 <!-- <img src="/image/personal.png"> -->
                             </label>
 
-                            <input type="radio" name="image" id="image2" value="/image/ex.jpg">                            
+                            <input type="radio" name="img" id="image2" value="/image/ex.jpg">                            
                             <label for="image2" class="radio_label">
                                 <!-- <img src="/image/personal.png"> -->
                             </label>
 
-                            <input type="radio" name="image" id="image3" value="/image/personal.png">
+                            <input type="radio" name="img" id="image3" value="/image/personal.png">
                             <label for="image3" class="radio_label">
                                 <!-- <img src="/image/personal.png"> -->
                             </label>
 
-                            <input type="radio" name="image" id="image4" value="/image/personal.png">
+                            <input type="radio" name="img" id="image4" value="/image/personal.png">
                             <label for="image4" class="radio_label">
                                 <!-- <img src="/image/personal.png"> -->
                             </label>
@@ -320,7 +316,7 @@ try {
                     <button type="submit">OK</button>
                 </form> -->
                 <div class="img_p">
-                    <img src="<?php echo $item["img"] ?>">
+                    <img src="<?php echo $_POST["img"]; ?>">
                 </div>
             </div>
         </div>

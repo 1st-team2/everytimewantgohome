@@ -4,19 +4,27 @@
     font-weight: normal;
     font-style: normal;
 }
-
 @font-face{
     font-family:'DNFBitBitv2';
-    font-style:normal;
-    font-weight:400;
+    font-style:normal;font-weight:400;
     src:url('//cdn.df.nexon.com/img/common/font/DNFBitBitv2.otf')format('opentype');
 }
-
 @font-face {
     font-family: 'NotoSerifKR';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NotoSerifKR.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+}
+@font-face {
+    font-family: 'LABDigital';
+    font-weight: normal;
+    font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/fontlab/LABDigital.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/fontlab/LABDigital.eot?#iefix') format('embedded-opentype'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/fontlab/LABDigital.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/fontlab/LABDigital.woff') format('woff'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/fontlab/LABDigital.ttf') format("truetype");
+    font-display: swap;
 }
 
 * {
@@ -153,22 +161,18 @@ label > img {
     opacity: 1;
 }
 
-/* .back>a:hover{
-    border: none;
-
-}
-
-.back>a:hover>.dropdown {
-    display: inline-block;
-    opacity: 1;
-} */
 
 .dropdown>form>button[type="submit"]{
     padding: 9px 25px;
     margin: 3px 88px;
     cursor: pointer;
 }
-
+.top_date {
+    text-align: start;
+    margin-left: 30px;
+    font-size: 16px;
+    font-family: 'LABDigital';
+}
 .main_mid {
     display: grid;
     grid-template-columns: 4.5fr 2.5fr;
