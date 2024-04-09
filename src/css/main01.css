@@ -350,6 +350,12 @@ a:hover {
     box-shadow: 0 0 16px -7px #000;
 }
 
+.img_p>img {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+}
+
 #char_img1:checked  {
     background-image: url('../image/background.png');
 }
