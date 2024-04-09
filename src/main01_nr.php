@@ -61,41 +61,85 @@ function db_update_image(&$conn, &$arr_param){
     return $stmt->rowCount();
 }
 
+function db_select_user_name(&$conn){
+    //sql
+    $sql = " SELECT user_name FROM select_img WHERE id = 1 ";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->fetchAll();
+    return $result;
+}
+
+function db_update_user_name(&$conn, &$arr_param){
+    //sql
+    $sql = " UPDATE select_img SET user_name = :user_name WHERE id = 1 ";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->execute($arr_param);
+
+    //return
+    return $stmt->rowCount();
+}
+
 try {
     // 데이터베이스 연결
     $conn = new PDO(MARIADB_DSN, MARIADB_USER, MARIADB_PASSWORD);
 
-    if(REQUEST_METHOD == "POST") {
-        var_dump($_POST["img"]);
-        $img = isset($_POST["img"]) ? trim($_POST["img"]) : "/image/personal.png";          
+    // if(REQUEST_METHOD == "POST") {
+    //     // var_dump($_POST["img"]);
+    //     $img = isset($_POST["img"]) ? trim($_POST["img"]) : "/image/personal.png";          
+    //     //Transaction 시작
+    //     $conn->beginTransaction();
+
+    //     //이미지패스 수정
+    //     $arr_param = [
+    //         "img" => $img
+    //     ];
+
+    //     $result = db_update_image($conn, $arr_param);
+
+    //     //예외처리
+    //     // if($result !== 1){
+    //     //     throw new Exception("Update Boards no count");
+    //     // }
+    //     //commit
+    //     $conn->commit();
+
+    //     $item = $result;
+    // }
+
+    if(REQUEST_METHOD === "POST"){
+
+        // 파라미터 가져오기
+        $user_name = isset($_POST["user_name"]) ? $_POST["user_name"] : "";
+
         //Transaction 시작
         $conn->beginTransaction();
 
-        //이미지패스 수정
+        //이름 수정
         $arr_param = [
-            "img" => $img
+            "user_name" => $user_name
         ];
+        
+        $result = db_update_user_name($conn, $arr_param);
 
-        $result = db_update_image($conn, $arr_param);
-
-        //예외처리
-        if($result !== 1){
-            throw new Exception("Update Boards no count");
-        }
-        //commit
         $conn->commit();
 
-        $item = $result[0]["img"];
     }
 
     $arr_param = [];
     $result = db_select_img($conn, $arr_param);
     $img = $result[0]["img"];
 
+    $array_param = [];
+    $result_name = db_select_user_name($conn);
+    $user_name_get = $result_name[0]["user_name"];
+
 } catch (PDOException $e) {
-    if(!empty($conn) && $conn->inTransaction()){
-        $conn->rollBack();
-    }
+    // if(!empty($conn) && $conn->inTransaction()){
+    //     $conn->rollBack();
+    // }
     echo $e->getMessage();
     exit;
 } finally {
@@ -151,8 +195,7 @@ try {
                 <label for="toggle"><img src="./image/Gear.png" alt="" class="Gear"></label>
                 <input type="checkbox" id="toggle"></input>
                 <div class="dropdown">
-                    <form action="main01_nr.php" method="post">
-                        <input type="hidden" name="id" value="<?php $item ?>"> <!-- TODO -->
+                    <form action="select_img.php" method="post">
                         <div>
                             <label for="music" class="drop_titles">MUSIC</label>
                         </div>
@@ -301,13 +344,13 @@ try {
                 </div>
             </div>
             <div class="main_right">
-                <!-- <form action="main01_nr.php" method="post">  파일 분리 하기전에 잠깐 주석-->
+                <form action="main01_nr.php" method="post">
                     <div class="nick_name_item">
                         <label for="nick" class="name">NAME</label>
-                        <input type="text" name="nick" id="nick">
-                        <button type="submit" class="name_button">YES</button>
+                        <input type="text" name="nick" id="nick" value="<?php echo $user_name_get ?>">
+                        <button type="submit" class="name_button" >YES</button>
                     </div>
-                <!-- </form> -->
+                </form>
                 <div class="img_p">
                     <img src="<?php echo $img ?>" alt="">
                 </div>
