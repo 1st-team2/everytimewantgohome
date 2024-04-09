@@ -68,7 +68,7 @@ try {
 
         if(REQUEST_METHOD == "POST") {
             var_dump($_POST["img"]);
-            $img = isset($_POST["img"]) ? trim($_POST["img"]) : "/image/ex.jpg";
+            $img = isset($_POST["img"]) ? trim($_POST["img"]) : "/image/personal.png";
             
             //Transaction 시작
             $conn->beginTransaction();
