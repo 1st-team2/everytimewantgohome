@@ -131,7 +131,7 @@ try {
                     <button type="submit">OK</button>
                 </form>
                 <img src="../image/personal.png" alt="" class="img_p">
-                <form action="./list/php" method="post">
+                <form action="./lis_mst/php" method="post">
                     <div class="nick_name_item">
                         <div class="nick_date_item"></div>
                     </div>
