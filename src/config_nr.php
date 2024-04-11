@@ -15,7 +15,7 @@ define("MARIADB_HOST", "localhost");      //DB HOST
 define("MARIADB_PORT", "3306");                 //DB PORT
 define("MARIADB_USER", "root");                //DB 유저
 define("MARIADB_PASSWORD", "php505");            //DB 비밀번호
-define("MARIADB_NAME", "tng_test");             //DB 명
+define("MARIADB_NAME", "todolist");             //DB 명
 
 define("MARIADB_CHARSET", "utf8mb4");           //DB 유니코드
 define("MARIADB_DSN", "mysql:host=".MARIADB_HOST.";port=".MARIADB_PORT.";dbname=".MARIADB_NAME.";charset=".MARIADB_CHARSET);

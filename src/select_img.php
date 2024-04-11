@@ -49,7 +49,7 @@ try {
 
         $item = $result;
 
-        header("Location:main01_nr.php");
+        header("Location:main01.php");
     }
 } catch (\Throwable $e) {
     if(!empty($conn) && $conn->inTransaction()){
