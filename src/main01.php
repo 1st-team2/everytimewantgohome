@@ -301,7 +301,7 @@ $current_date = date('Y-m-d');
                                 for ($i = 0; $i < $total_week; $i++) { // 주(행) 반복
                                     echo '<tr>'; // 새로운 행 시작
                                     for ($j = 0; $j < 7; $j++) { // 요일(열) 반복
-                                        $cell_date = date("Y-m-d", strtotime($date . " + " . ($day - 1) . " days"));
+                                        $cell_date = date("Y-m-d", strtotime($date." + ".($day - 1)." days"));
                                         if (($i == 0 && $j < $start_week) || ($day > $total_day)) {
                                             // 첫 주에서 시작 요일 이전의 빈 칸이거나 현재 달의 날짜를 넘어갔을 때 빈 칸 표시
                                             echo '<td></td>';
@@ -309,10 +309,10 @@ $current_date = date('Y-m-d');
                                             // 유효한 날짜인 경우 해당 날짜로 링크된 셀 표시
                                             if ($cell_date == $current_date) {
                                                 // 현재 날짜와 일치하는 경우 배경색 변경
-                                                echo '<td><a href="list_gh.php?date=' . $cell_date . '" class="today_a">' . $day . '</a></td>';
+                                                echo '<td><a href="list_gh.php?date='.$cell_date.'" class="today_a">'.$day.'</a></td>';
                                             } else {
                                                 // 일치하지 않는 경우 일반적으로 표시
-                                                echo '<td><a href="list_gh.php?date=' . $cell_date . '">' . $day . '</a></td>';
+                                                echo '<td><a href="list_gh.php?date='.$cell_date.'">'.$day.'</a></td>';
                                             }
                                             $day++; // 다음 날짜로 이동
                                         }
