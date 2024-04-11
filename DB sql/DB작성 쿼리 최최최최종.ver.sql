@@ -15,7 +15,7 @@ CREATE TABLE boards(
 		,target_at		DATE				NOT NULL 				
 		,updated_at		DATETIME			NOT NULL					DEFAULT CURRENT_TIMESTAMP()
 		,deleted_at		DATETIME	
-		,cheched_at		DATETIME	
+		,checked_at		DATETIME	
 );
 
 ALTER TABLE boards
