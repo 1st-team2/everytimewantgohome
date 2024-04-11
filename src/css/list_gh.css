@@ -369,6 +369,7 @@ td {
     font-size: 1.3rem;
     height: 60px;
     line-height: 60px;
+    display: inline-block;
 }
 .list_title > a {
     text-decoration: none;

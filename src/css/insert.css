@@ -184,16 +184,25 @@ textarea, #title:focus {
     height: 555px;
     box-shadow: 0 0 16px -7px #000;
 }
-
-.nick_date_item {
+/* 선택 페이지 날짜 css */
+.nick_name_item-font {
+    font-family: 'LABDigital';
+}
+.nick_name_item {
     margin-top: 25px;
     text-align: center;
     background-color: #f2ede7;
     border-radius: 10px;
     font-family: 'LABDigital';
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     height: 60px;
     line-height: 60px;
+    display: inline-flex;
+    gap: 56px;
+    justify-content: center;
 }
-
-
+.date_controll > a{
+    color: #000;
+    padding: 35px;
+    font-family: 'LABDigital';
+}
