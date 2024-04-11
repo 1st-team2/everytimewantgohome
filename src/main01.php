@@ -238,16 +238,16 @@ $current_date = date('Y-m-d');
                         <input type="range" name="" id="music">
                         <div class="drop_titles">Character</div>
                         <div class="character_main">
-                            <input type="radio" name="img" id="image1" value="/image/jing.png">
+                            <input type="radio" name="img" id="image1" value="/image/avatar01.png">
                             <label for="image1" class="radio_label"></label>
 
-                            <input type="radio" name="img" id="image2" value="/image/ex.jpg">                            
+                            <input type="radio" name="img" id="image2" value="/image/avatar02.png">                            
                             <label for="image2" class="radio_label"></label>
 
-                            <input type="radio" name="img" id="image3" value="/image/cat.png">
+                            <input type="radio" name="img" id="image3" value="/image/avatar03.png">
                             <label for="image3" class="radio_label"></label>
 
-                            <input type="radio" name="img" id="image4" value="/image/personal.png">
+                            <input type="radio" name="img" id="image4" value="/image/avatar04.png">
                             <label for="image4" class="radio_label"></label>
                         </div>
                         <button type="submit" class="name_button">YES</button>
