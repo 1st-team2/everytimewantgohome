@@ -309,10 +309,10 @@ $current_date = date('Y-m-d');
                                             // 유효한 날짜인 경우 해당 날짜로 링크된 셀 표시
                                             if ($cell_date == $current_date) {
                                                 // 현재 날짜와 일치하는 경우 배경색 변경
-                                                echo '<td><a href="list_gh.php?date='.$cell_date.'" class="today_a">'.$day.'</a></td>';
+                                                echo '<td><a href="list.php?date='.$cell_date.'" class="today_a">'.$day.'</a></td>';
                                             } else {
                                                 // 일치하지 않는 경우 일반적으로 표시
-                                                echo '<td><a href="list_gh.php?date='.$cell_date.'">'.$day.'</a></td>';
+                                                echo '<td><a href="list.php?date='.$cell_date.'">'.$day.'</a></td>';
                                             }
                                             $day++; // 다음 날짜로 이동
                                         }
