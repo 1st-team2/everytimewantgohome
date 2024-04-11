@@ -316,11 +316,17 @@ a {
     /* background-color: #435792; */
 }
 
-/* a:hover {
+.today_a {
+    padding: 5px 15px; 
+    border-radius: 10px; 
+    background-color: #BDAA8A;
+}
+
+td > a:hover {
     padding: 5px 15px;
     border: 2px solid #000;
     border-radius: 10px;
-} */
+}
 
 .main_right {
     width: 350px;
