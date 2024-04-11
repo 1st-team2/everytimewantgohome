@@ -7,6 +7,7 @@ try {
 
     $no = isset($_POST["no"]) ? $_POST["no"] : "";
     $page = isset($_POST["page"]) ? $_POST["page"] : "";
+    $date = isset($_POST["date"]) ? $_POST["date"] : "";
 
     $arr_param = [
         "no" => $no
@@ -16,7 +17,7 @@ try {
     $conn->commit();
 
     // 상세 페이지로 이동
-    header("Location: list.php");
+    header("Location: list.php?date={$date}");
 
 
 } catch(\Throwable $e) {

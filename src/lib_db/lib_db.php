@@ -35,10 +35,12 @@ function db_insert_boards(&$conn, &$array_param) {
         " INSERT INTO boards( "
         ." title "
         ." ,content "
+        ." ,target_date"
         ." ) "
         ." VALUES( "
         ."  :title "
         ." ,:content "
+        ." ,:target_date "
         ." ) "
         ;
 

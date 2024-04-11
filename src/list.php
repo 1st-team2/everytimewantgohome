@@ -86,10 +86,17 @@ try {
         </div>
         <div class="main_mid">
             <div class="main_left">
+                <form action="./insert.php" method="get">
+                <input type="hidden" name="date" value="<?php echo htmlspecialchars($date); ?>">
                 <div class="main_list_button">
                     <div class="add_button_box">
-                        <a class="add_button" href="./insert.php">Add</a>
+                        <!-- <a class="add_button" href="./insert.php?date="> -->
+                            <button type="submit">
+                                Add
+                            </button>
+                    <!-- </a> -->
                     </div>
+                </form>
                 </div>
                 <div class="list_container" >
                     <div class="list_items" >
@@ -99,6 +106,7 @@ try {
                         
                     ?>
                         <form action="./chk_ms.php" method="post">
+                        <input type="hidden" name="date" value="<?php echo htmlspecialchars($date); ?>">
                             <div class="daily_list">
                                 <label class="chk_label <?php echo isset($item["checked_at"]) ? "chk-label-checked" : "" ?>" for="chk_label<?php echo $item["no"];?>"><?php echo isset($item["checked_at"]) ? "✔" : "" ?></label>
                                 <button type="submit" id="chk_label<?php echo $item["no"];?>"></button>
@@ -116,12 +124,6 @@ try {
                 </div>
             </div>
             <div class="main_right">
-                <form action="" method="post" enctype="multipart/form-data" class="img_add" >
-                    <div class="personal_img">
-                        <input type="file" name="personal_img" id="personal_img">
-                    </div>
-                    <button type="submit">OK</button>
-                </form>
                 <img src="../image/personal.png" alt="" class="img_p">
                 <form action="" method="post">
                     <div class="nick_name_item">
