@@ -6,8 +6,7 @@ $page_num = 1; // 페이지 번호 초기화
 
 //리스트 날짜 url에서 가져오기
 // $date = $_GET['date'];
-$date = isset($_GET['date']) ? $_GET['date'] : date('Y-m-d');
-
+$date = isset($_GET['date']) ? $_GET['date'] : '2024-04-09';
 
 //현재날짜 가져오기
 $current_date = date('Y-m-d');
@@ -19,47 +18,67 @@ $previous_date = date('Y-m-d', strtotime($date . ' -1 day'));
 $next_date = date('Y-m-d', strtotime($date . ' +1 day'));
 
 try {
-    $conn = my_db_conn();
+    $conn = my_db_conn();                            
 
-    $no = isset($_GET["no"]) ? ($_GET["no"]) : "";
+    if(REQUEST_METHOD === "GET"){
+        $no = isset($_GET["no"]) ? ($_GET["no"]) : "";           
 
-
-    $arr_err_param = [];
-    if($no === "") {
-        $arr_err_param[] = "no";
+        $arr_err_param = [];
+        if($no === "") {
+            $arr_err_param[] = "no";
+        }
+        if(count($arr_err_param) > 0 ) {
+            throw new Exception("Parameter Error : ".implode(", ", $arr_err_param));
+        }
+        
+        $arr_param = [
+            "no" => $no
+        ];
+        $result = db_select_boards_no($conn, $arr_param);
+        if(count($result) !== 1) {
+            throw new Exception("Select no count");
+        }
+        $item = $result[0];
     }
-    if(count($arr_err_param) > 0 ) {
-        throw new Exception("Parameter Error : ".implode(", ", $arr_err_param));
+    else if (REQUEST_METHOD === "POST") {
+        $no = isset($_POST["no"]) ? $_POST["no"] : "";
+
+        $arr_err_param = [];
+        if($no === "") {
+            $arr_err_param[] = "no";
+        }
+        if(count($arr_err_param) > 0 ) {
+            throw new Exception("Parameter Error : ".implode(", ", $arr_err_param));
+        }
+        
+        $conn->beginTransaction();
+
+        $arr_param = [
+            "no" => $no
+        ];
+        $result = db_delete_boards_no($conn, $arr_param);
+
+        if($result !== 1) {
+            throw new Exception("Delete no count");
+        }
+
+        $conn->commit();
+
+        header("Location: list.php?date={$date}");
+        exit;
     }
-    $arr_param = [
-        "no" => $no
-    ];
-    $result = db_select_boards_no($conn, $arr_param);
-    if(count($result) !== 1) {
-        throw new Exception("Select Boards no count");
-    }
-
-    $item = $result[0];
-
-
 } catch (\Throwable $e) {
+    if(!empty($conn) && $conn->inTransaction()) {
+        $conn->rollBack();
+    }
     echo $e->getMessage();
     exit;
 }finally {
-    //PDO파기
+    //PDO 파기
     if(!empty($conn)) {
         $conn = null;
     }
 }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -70,11 +89,11 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/detail.css">
+    <link rel="stylesheet" href="./css/delete.css">
     <title>main</title>
 </head>
 <body>
-    <a href="./main01.php"><div class="header">TODO LIST</div></a>
+    <a href="./main01.php"><div class="header">PIXEL FOREST</div></a>
     <div class="main">
         <div class="main_top">
             <!-- 오늘 날짜 -->
@@ -85,7 +104,7 @@ try {
         </div>
         <div class="main_mid">
             <div class="main_left">
-                <form action="" method="post">
+                <form action="./delete_ms.php" method="post">
                     <div class="main_left_button">
                         <!-- <button type="submit">Update</button> -->
                         <div class="main_left_button01"><a href="./update.php?date=<?php echo $date?>&no=<?php echo $item["no"]?>">Update</a></div>
@@ -111,10 +130,10 @@ try {
         <div class="pop_up_main">
             <div class="pop_up_top">
                 <!-- 오늘 날짜 -->
-                <div class="pop_top_date">2024-03-26</div>
+                <div class="pop_top_date"><?php echo $date ?></div>
                 <div class="pop_minus">-</div>
                 <div class="pop_square">ㅁ</div>
-                <div class="pop_back"><a href="./delete.php">x</a></div>
+                <div class="pop_back"><a href="./detail.php?date=<?php echo $date;?>&no=<?php echo $no; ?>">x</a></div>
             </div>
             <div class="pop_up_mid">
                 <p>
@@ -127,8 +146,10 @@ try {
                 <form action="./delete_ms.php" method="post">
                     <input type="hidden" name="no" value="<?php echo $no; ?>">
                     <div class="pop_up_button">
-                        <button type="submit">YES</button>
-                        <a href="./delete_ms.php">NO</a>
+                        <button type="submit">
+                            YES
+                        </button>
+                        <a href="./detail.php?date=<?php echo $date;?>&no=<?php echo $no; ?>">NO</a>
                     </div>
                 </form>
             </div>
