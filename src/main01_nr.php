@@ -137,9 +137,9 @@ try {
     $user_name_get = $result_name[0]["user_name"];
 
 } catch (PDOException $e) {
-    // if(!empty($conn) && $conn->inTransaction()){
-    //     $conn->rollBack();
-    // }
+    if(!empty($conn) && $conn->inTransaction()){
+        $conn->rollBack();
+    }
     echo $e->getMessage();
     exit;
 } finally {
@@ -347,7 +347,7 @@ try {
                 <form action="main01_nr.php" method="post">
                     <div class="nick_name_item">
                         <label for="nick" class="name">NAME</label>
-                        <input type="text" name="nick" id="nick" value="<?php echo $user_name ?>">
+                        <input type="text" name="user_name" id="nick" value="<?php echo $user_name_get ?>">
                         <button type="submit" class="name_button" >YES</button>
                     </div>
                 </form>
