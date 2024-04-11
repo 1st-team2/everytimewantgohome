@@ -6,7 +6,7 @@ $page_num = 1; // 페이지 번호 초기화
 
 //리스트 날짜 url에서 가져오기
 // $date = $_GET['date'];
-$date = isset($_GET['date']) ? $_GET['date'] : '2024-04-09';
+$date = isset($_GET['date']) ? $_GET['date'] : date('Y-m-d');
 
 //현재날짜 가져오기
 $current_date = date('Y-m-d');

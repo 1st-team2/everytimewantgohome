@@ -221,7 +221,7 @@ $current_date = date('Y-m-d');
     </style>
 </head>
 <body>
-    <div class="header">PIXEL FOREST</div>
+    <a href="./main01.php"><div class="header">PIXEL FOREST</div></a>
     <div class="main">
         <div class="main_top"> 
             <div class="top_date">NOW DATE :<?php echo $current_date ?></div>
