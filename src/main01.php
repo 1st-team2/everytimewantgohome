@@ -6,27 +6,108 @@ require_once( $_SERVER["DOCUMENT_ROOT"]."/config_nr.php");
 
     // gh - 목표 달성 처리 함수
     function achieve_goal($goal_id, $conn) {
-        $sql = "UPDATE goals SET achieved = 1 WHERE id = :id ";
+        $sql = "UPDATE boards SET checked_at = curdate() WHERE no = :no ";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param(':id', $goal_id, PDO::PARAM_INT);
         $stmt->execute();
         return true;
     }
 
-    // gh - 사용자가 달성한 목표의 수를 가져오는 함수
-    function get_achieved_goals_count($conn) {
-        $sql = "SELECT COUNT(*) AS count FROM goals WHERE achieved = 1";
+    // gh - 사용자가 달성한  오늘 목표의 수를 가져오는 함수
+    function get_today_achieved_count($conn) {
+        $sql = "SELECT COUNT(*) AS count FROM boards WHERE checked_at is not null and DATE(target_date) = CURDATE() ";
         $stmt = $conn->query($sql);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         return $row["count"];
     }
 
-    // gh - 전체 목표 수를 가져오는 함수
-    function get_total_goals_count($conn) {
-        $sql = "SELECT COUNT(*) AS count FROM goals";
+    // gh - 오늘 목표 수를 가져오는 함수
+    function get_today_goals_count($conn) {
+        $sql = "SELECT COUNT(*) AS count FROM boards where date(target_date) = CURDATE() ";
         $stmt = $conn->query($sql);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         return $row["count"];
+    }
+    //이번 주 달성한 목표를 가져오는 함수
+    function get_week_achieved_count($conn) {
+        try {
+            // 현재 주간의 시작 (일요일)
+            $startOfWeek = date('Y-m-d', strtotime('last sunday'));
+            // 현재 주간의 끝 (토요일)
+            $endOfWeek = date('Y-m-d', strtotime('next saturday'));
+    
+            $sql = "SELECT COUNT(*) AS count FROM boards WHERE checked_at IS NOT NULL AND target_date BETWEEN :startOfWeek AND :endOfWeek";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindValue(':startOfWeek', $startOfWeek);
+            $stmt->bindValue(':endOfWeek', $endOfWeek);
+            $stmt->execute();
+    
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $row["count"];
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return 0; // 에러 발생 시 0을 반환하거나 적절한 처리를 수행
+        }
+    }
+
+    // 주간 전체 목표 수를 가져오는 함수
+    function get_week_goals_count($conn) {
+    try {
+        // 현재 주간의 시작 (일요일)
+        $startOfWeek = date('Y-m-d', strtotime('last sunday'));
+        // 현재 주간의 끝 (토요일)
+        $endOfWeek = date('Y-m-d', strtotime('next saturday'));
+
+        $sql = "SELECT COUNT(*) AS count FROM boards WHERE target_date BETWEEN :startOfWeek AND :endOfWeek";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindValue(':startOfWeek', $startOfWeek);
+        $stmt->bindValue(':endOfWeek', $endOfWeek);
+        $stmt->execute();
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $row["count"];
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+        return 0; // 에러 발생 시 0을 반환하거나 적절한 처리를 수행
+    }
+    }
+
+    //서버date에서 month값을 가져오는 변수
+    $currentMonth = date('m');
+    //이번달 달성한 목표 수를 가져오는 함수
+    function get_month_achieved_count($conn) {
+        try {
+            $currentMonth = date('m'); // 현재 월 가져오기
+    
+            $sql = "SELECT COUNT(*) AS count FROM boards WHERE checked_at IS NOT NULL AND MONTH(target_date) = :currentMonth";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindValue(':currentMonth', $currentMonth, PDO::PARAM_INT);
+            $stmt->execute();
+    
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $row["count"];
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return 0; // 에러 발생 시 0을 반환하거나 적절한 처리를 수행
+        }
+    }
+    
+    // 이번 달 전체 목표 수를 가져오는 함수
+    function get_month_goals_count($conn) {
+        try {
+            $currentMonth = date('m'); // 현재 월 가져오기
+    
+            $sql = "SELECT COUNT(*) AS count FROM boards WHERE MONTH(target_date) = :currentMonth";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindValue(':currentMonth', $currentMonth, PDO::PARAM_INT);
+            $stmt->execute();
+    
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $row["count"];
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return 0; // 에러 발생 시 0을 반환하거나 적절한 처리를 수행
+        }
     }
 
     //gh - 달력 만드는 함수
@@ -119,15 +200,47 @@ try {
 // ------- gh - GET 변수 모음 --------
 
  // 사용자가 달성한 목표 수와 전체 목표 수를 가져옴
-$achieved_count = get_achieved_goals_count($conn);
-$total_count = get_total_goals_count($conn);
 
-// 전체 목표 달성률 계산
-if ($total_count > 0) {
-    $progress_percentage = ($achieved_count / $total_count) * 100;
+// 오늘 목표 수 가져오기
+$today_goals_count = get_today_goals_count($conn);
+// 달성한 오늘 목표수 가져오기
+$achieved_today_count = get_today_achieved_count($conn);
+
+// 달성한 이번주 목표 수 가져오기 
+$achieved_week_count = get_week_achieved_count($conn);
+// 주간 전체 목표 수 가져오기
+$week_goals_count = get_week_goals_count($conn);
+// 이번달 목표 수 가져오기
+$month_goals_count = get_month_goals_count($conn);
+// 달성한 이번달 목표 수 가져오기
+$achieved_month_count = get_month_achieved_count($conn);
+
+
+// 오늘의 목표 달성률 계산
+if ($today_goals_count > 0) {
+    $achievement_rate = ($achieved_today_count / $today_goals_count) * 100;
 } else {
-    $progress_percentage = 0;
+    $achievement_rate = 0;
 }
+$achievement_rate = intval($achievement_rate);
+
+// 이번 주 목표 달성률 계산
+if ($week_goals_count > 0) {
+    $week_achievement_rate = ($achieved_week_count / $week_goals_count) * 100;
+} else {
+    $week_achievement_rate = 0;
+}
+$week_achievement_rate = intval($week_achievement_rate);
+
+// 이번달 목표 달성률 계산
+if ($month_goals_count > 0) {
+    $month_achievement_rate = ($achieved_month_count / $month_goals_count) * 100;
+} else {
+    $month_achievement_rate = 0;
+}
+$month_achievement_rate = intval($month_achievement_rate);
+
+
 
 
 // GET으로 넘겨 받은 year값이 있다면 넘겨 받은걸 year변수에 적용하고 없다면 현재 년도
@@ -211,12 +324,22 @@ $current_date = date('Y-m-d');
         margin-top: 5px;
         margin-right: 10px;
         height: 30px;
-        overflow: hidden;
+        /* overflow: hidden; */
         }
-        .gauge_bar_ing {
-            width: <?php echo $progressPercentage; ?>%;
+        .today_gauge_bar_ing {
+            width: <?php echo $achievement_rate; ?>%;
             height: 100%;
-            color : #BDAA8A;
+            background-color : #BDAA8A;
+        }
+        .week_gauge_bar_ing {
+            width: <?php echo $week_achievement_rate; ?>%;
+            height: 100%;
+            background-color : #BDAA8A;
+        }
+        .month_gauge_bar_ing{
+            width: <?php echo $month_achievement_rate; ?>%;
+            height: 100%;
+            background-color : #BDAA8A;
         }
     </style>
 </head>
@@ -260,19 +383,19 @@ $current_date = date('Y-m-d');
                 <div class="gauge_item">
                     <div class="gauge_name">Day</div>
                     <div class="gauge_bar">
-                        <div class="gauge_bar_ing"></div>
+                        <div class="today_gauge_bar_ing"></div>
                     </div>
                 </div>
                 <div class="gauge_item">
                     <div class="gauge_name">Week</div>
                     <div class="gauge_bar">
-                        <div class="gauge_bar_ing"></div>
+                        <div class="week_gauge_bar_ing"></div>
                     </div>
                 </div>
                 <div class="gauge_item">
                     <div class="gauge_name">Month</div>
                     <div class="gauge_bar">
-                        <div class="gauge_bar_ing"></div>
+                        <div class="month_gauge_bar_ing"></div>
                     </div>
                 </div>
                 <div class="cal_item">
