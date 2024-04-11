@@ -18,6 +18,17 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'LABDigital';
+    font-weight: normal;
+    font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/fontlab/LABDigital.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/fontlab/LABDigital.eot?#iefix') format('embedded-opentype'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/fontlab/LABDigital.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/fontlab/LABDigital.woff') format('woff'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/fontlab/LABDigital.ttf') format("truetype");
+    font-display: swap;
+}
 
 * {
     margin: 0;
@@ -60,6 +71,13 @@ body {
     align-items: center;
     text-align: center;
     /* padding-top: 1.2rem; */ 
+}
+
+.top_date {
+    text-align: start;
+    margin-left: 30px;
+    font-size: 16px;
+    font-family: 'LABDigital';
 }
 
 .main_top>:nth-child(n + 2) {
@@ -206,8 +224,15 @@ label > img {
     justify-content: center;
     align-items: center;
 }
-.gauge_item {
+
+/* .gauge_item {
     width: 750px;
+} */
+
+.month_block {
+    width: 300px;
+    display: inline-block;
+    text-align: center;
 }
 
 .main_left :nth-child(n + 2):nth-child(-n + 3){
@@ -222,7 +247,7 @@ label > img {
 }
 
 .gauge_bar {
-    background-color: #D3D3D3;
+    background-color: #f2ede7;
     display: flex;
     margin-top: 5px;
     margin-right: 10px;
@@ -250,8 +275,8 @@ table {
 }
 caption {
     font-family: 'GmarketSansMedium';
-    font-weight: 900;
-    font-size: 25px;
+    font-weight: 500;
+    font-size: 20px;
     padding: 10px;
     text-align: left;
 }
@@ -275,7 +300,6 @@ th p {
     line-height: 33px;
     background-color: #393e51;
     font-family: 'NotoSerifKR';
-    /* font-family: 'GmarketSansMedium'; */
     font-size: 1.6rem;
     font-weight: 300;
     /* padding: 0.3rem 1.4rem; */
@@ -292,11 +316,11 @@ a {
     /* background-color: #435792; */
 }
 
-a:hover {
+/* a:hover {
     padding: 5px 15px;
     border: 2px solid #000;
     border-radius: 10px;
-}
+} */
 
 .main_right {
     width: 350px;
