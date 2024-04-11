@@ -326,8 +326,13 @@ $current_date = date('Y-m-d');
         height: 30px;
         /* overflow: hidden; */
         }
+<<<<<<< HEAD
         .today_gauge_bar_ing {
             width: <?php echo $achievement_rate; ?>%;
+=======
+        .gauge_bar_ing {
+            width: <?php echo $progress_percentage; ?>%;
+>>>>>>> a04ab795a3eb440704a6d9a80ec2e4c9dff16956
             height: 100%;
             background-color : #BDAA8A;
         }
