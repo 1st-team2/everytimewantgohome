@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="./css/login.css">
 </head>
 <body>
-    <div class="header">TODO LIST</div>
+    <div class="header">PIXEL FOREST</div>
     <div class="login_grid">
         <a href="./main01.php" class="login">로그인</a>
         <div class="login_title">

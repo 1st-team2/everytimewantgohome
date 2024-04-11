@@ -100,14 +100,14 @@ try {
     <title>main</title>
 </head>
 <body>
-    <a href="./main01.php"><div class="header">TODO LIST</div></a>
+    <a href="./main01.php"><div class="header">PIXEL FOREST</div></a>
     <div class="main">
         <div class="main_top">
             <!-- 오늘 날짜 -->
             <div class="top_date">NOW DATE :<?php echo $current_date ?></div>
             <div class="minus">-</div>
             <div class="square">ㅁ</div>
-            <div class="back"><a href="./list.php?date=<?php echo $date?>">x</a></div>
+            <div class="back"><a href="./detail.php?date=<?php echo $date?>">x</a></div>
         </div>
         <div class="main_mid">
             <div class="main_left">

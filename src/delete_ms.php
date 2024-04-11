@@ -74,7 +74,7 @@ try {
     <title>main</title>
 </head>
 <body>
-    <a href="./main01.php"><div class="header">PIXEL FOREST</div></a>
+    <a href="./main01.php"><div class="header">TODO LIST</div></a>
     <div class="main">
         <div class="main_top">
             <!-- 오늘 날짜 -->
@@ -85,7 +85,7 @@ try {
         </div>
         <div class="main_mid">
             <div class="main_left">
-                <form action="./detail.php" method="post">
+                <form action="" method="post">
                     <div class="main_left_button">
                         <!-- <button type="submit">Update</button> -->
                         <div class="main_left_button01"><a href="./update.php?date=<?php echo $date?>&no=<?php echo $item["no"]?>">Update</a></div>
@@ -104,6 +104,33 @@ try {
                 <div class="nick_date_item">
                     <?php echo $date ?>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="pop_up">
+        <div class="pop_up_main">
+            <div class="pop_up_top">
+                <!-- 오늘 날짜 -->
+                <div class="pop_top_date">2024-03-26</div>
+                <div class="pop_minus">-</div>
+                <div class="pop_square">ㅁ</div>
+                <div class="pop_back"><a href="./delete.php">x</a></div>
+            </div>
+            <div class="pop_up_mid">
+                <p>
+                    삭제 도와드리겠습니다 
+                    <br>
+                    아니면 
+                    <br>
+                    다시 생각해 보시겠습니까?
+                </p>
+                <form action="./delete_ms.php" method="post">
+                    <input type="hidden" name="no" value="<?php echo $no; ?>">
+                    <div class="pop_up_button">
+                        <button type="submit">YES</button>
+                        <a href="./delete_ms.php">NO</a>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

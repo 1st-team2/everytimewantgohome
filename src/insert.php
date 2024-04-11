@@ -32,7 +32,7 @@
     <title>main</title>
 </head>
 <body>
-    <a href="./main01.php"><div class="header">TODO LIST</div></a>
+    <a href="./main01.php"><div class="header">PIXEL FOREST</div></a>
     <div class="main">
         <div class="main_top">
             <!-- 오늘 날짜 -->
@@ -43,7 +43,7 @@
         </div>
         <div class="main_mid">
             <div class="main_left">
-                <form action="" method="post">
+                <form action="./insert.php" method="post">
                 <div class="main_left_button">
                     <button type="submit">Done</button>
                     <div class="main_left_button01"><a href="./list.php">Cancel</a></div>
