@@ -2,22 +2,38 @@
 require_once( $_SERVER["DOCUMENT_ROOT"]."/config.php"); // 설정 파일 호출
 require_once(FILE_LIB_DB); // DB관련 라이브러리.
 
-if(REQUEST_METHOD === "GET") {
-    //리스트 날짜 url에서 가져오기
-    $date = isset($_GET['date']) ? $_GET['date'] : date('Y-m-d');
-    
-    //현재날짜 가져오기
-    $current_date = date('Y-m-d');
-    
-    // 이전 날짜 계산 (하루 전)
-    $previous_date = date('Y-m-d', strtotime($date . ' -1 day'));
-    
-    // 다음 날짜 계산 (하루 후)
-    $next_date = date('Y-m-d', strtotime($date . ' +1 day'));
-}
+// nr - 이미지 가져오는 함수
+function db_select_img(&$conn) {
+    //sql
+    $sql = " SELECT img FROM select_img WHERE id = 1 ";
 
-else if(REQUEST_METHOD === "POST") {
-    try {
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->fetchAll();
+    return $result;
+}
+try {
+    //DB connect
+    $conn = my_db_conn();  //PDO 인스턴스
+    
+    if(REQUEST_METHOD === "GET") {
+        //리스트 날짜 url에서 가져오기
+        $date = isset($_GET['date']) ? $_GET['date'] : date('Y-m-d');
+        
+        //현재날짜 가져오기
+        $current_date = date('Y-m-d');
+        
+        // 이전 날짜 계산 (하루 전)
+        $previous_date = date('Y-m-d', strtotime($date . ' -1 day'));
+        
+        // 다음 날짜 계산 (하루 후)
+        $next_date = date('Y-m-d', strtotime($date . ' +1 day'));
+
+        $img_result = db_select_img($conn);
+        $img = $img_result[0]["img"];
+
+    } else if(REQUEST_METHOD === "POST") {
+
         //파라미터 획득
         $title = isset($_POST["title"]) ? trim($_POST["title"]) : "";       // title 획득
         $content = isset($_POST["content"]) ? trim($_POST["content"]) : ""; // contetn 획득
@@ -38,9 +54,8 @@ else if(REQUEST_METHOD === "POST") {
             throw new Exception("parameter Error : ".implode(", ",$arr_err_param));
         }
 
-        //DB connect
-        $conn = my_db_conn();  //PDO 인스턴스
-        //Transaction
+
+        //Transaction  
         $conn->beginTransaction();
         //게시글 작성 처리
         $arr_param = [
@@ -59,6 +74,7 @@ else if(REQUEST_METHOD === "POST") {
         //리스트 페이지로 이동
         header("Location: list.php?date={$date}");
         exit;
+        }
     } catch (\Throwable $e) {
         if(!empty($conn) && $conn->inTransaction()) {
             $conn->rollBack();
@@ -70,7 +86,7 @@ else if(REQUEST_METHOD === "POST") {
             $conn = null;
         }
     }
-}
+
 ?>
 
 
@@ -108,9 +124,11 @@ else if(REQUEST_METHOD === "POST") {
                 </form>
             </div>
             <div class="main_right">
-                <img src="../image/personal.png" alt="" class="img_p">
+                <img src="<?php echo $img ?>" alt=""class="img_p">
                 <!-- 리스트 날짜 -->
-                <div class="nick_date_item">2024-03-26</div>
+                <div class="nick_date_item">
+                    <div class="nick_name_item-font"><?php echo $date ?></div>
+                </div>
             </div>
         </div>
     </div>

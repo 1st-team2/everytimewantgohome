@@ -206,3 +206,14 @@ textarea, #title:focus {
     padding: 35px;
     font-family: 'LABDigital';
 }
+
+.nick_date_item {
+    margin-top: 25px;
+    text-align: center;
+    background-color: #f2ede7;
+    border-radius: 10px;
+    font-family: 'LABDigital';
+    font-size: 1.3rem;
+    height: 60px;
+    line-height: 60px;
+}

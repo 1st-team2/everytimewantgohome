@@ -5,6 +5,7 @@ $list_cnt = 100; // 한 페이지 최대 표시 수
 $page_num = 1; // 페이지 번호 초기화
 
 //날짜 관련 - last update : 노경호 0409
+//0411 오후2시 55분 함수 추가, 이미지변경시작 : 이나라 / 오후 3시40분 완료
 
 //리스트 날짜 url에서 가져오기
 // $date = $_GET['date'];
@@ -20,6 +21,16 @@ $previous_date = date('Y-m-d', strtotime($date . ' -1 day'));
 // 다음 날짜 계산 (하루 후)
 $next_date = date('Y-m-d', strtotime($date . ' +1 day'));
 
+// nr - 이미지 가져오는 함수
+function db_select_img(&$conn) {
+    //sql
+    $sql = " SELECT img FROM select_img WHERE id = 1 ";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->fetchAll();
+    return $result;
+}
 
 try {
     // DB Connect
@@ -55,6 +66,9 @@ try {
 
     // 아이템 셋팅
     $item = $result;
+
+    $img_result = db_select_img($conn);
+    $img = $img_result[0]["img"];
 
 } catch(\Throwable $e) {
     echo $e->getMessage();
@@ -124,7 +138,7 @@ try {
                 </div>
             </div>
             <div class="main_right">
-                <img src="../image/personal.png" alt="" class="img_p">
+                <img src="<?php echo $img ?>" alt=""class="img_p">
                 <form action="" method="post">
                     <div class="nick_name_item">
                         <div class="date_controll">
