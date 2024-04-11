@@ -32,21 +32,21 @@
     <title>main</title>
 </head>
 <body>
-    <a href="./main01.php"><div class="header">TODO LIST</div></a>
+    <a href="./main01.php"><div class="header">PIXEL FOREST</div></a>
     <div class="main">
         <div class="main_top">
             <!-- 오늘 날짜 -->
             <div class="top_date">2024-03-26</div>
             <div class="minus">-</div>
             <div class="square">ㅁ</div>
-            <div class="back"><a href="./list.php">x</a></div>
+            <div class="back"><a href="">x</a></div>
         </div>
         <div class="main_mid">
             <div class="main_left">
                 <div class="main_left_button">
-                    <div class="main_left_button01"><a href="./list.php">Done</a></div>
-                    <div class="main_left_button02"><a href="./list.php">Cancel</a></div>
-                    <div class="main_left_button03"><a href="./delete.php">Delete</a></div>
+                    <div class="main_left_button01"><a href="">Done</a></div>
+                    <div class="main_left_button02"><a href="">Cancel</a></div>
+                    <div class="main_left_button03"><a href="">Delete</a></div>
                 </div>
                 <form action="" method="post" class="main_left_item">
                     <input type="text" name="title" id="title" spellcheck="false">
@@ -67,7 +67,7 @@
                 <div class="pop_top_date">2024-03-26</div>
                 <div class="pop_minus">-</div>
                 <div class="pop_square">ㅁ</div>
-                <div class="pop_back"><a href="./list.php">x</a></div>
+                <div class="pop_back"><a href="./detail.php">x</a></div>
             </div>
             <div class="pop_up_mid">
                 <p>
