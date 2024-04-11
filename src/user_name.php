@@ -44,10 +44,10 @@ try {
 
         $conn->commit();
 
-        header("Location:main01_nr.php");
+        header("Location:main01.php");
 
     }
-} catch (\Throwable $e) {
+} catch (PDOException $e) {
     if(!empty($conn) && $conn->inTransaction()){
         $conn->rollBack();
     }
