@@ -4,6 +4,17 @@ require_once(FILE_LIB_DB); // DB관련 라이브러리
 $list_cnt = 100; // 한 페이지 최대 표시 수
 $page_num = 1; // 페이지 번호 초기화
 
+// nr - 이미지 가져오는 함수
+function db_select_img(&$conn) {
+    //sql
+    $sql = " SELECT img FROM select_img WHERE id = 1 ";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->fetchAll();
+    return $result;
+}
+
 //리스트 날짜 url에서 가져오기
 // $date = $_GET['date'];
 $date = isset($_GET['date']) ? $_GET['date'] : date('Y-m-d');
@@ -17,16 +28,7 @@ $previous_date = date('Y-m-d', strtotime($date . ' -1 day'));
 // 다음 날짜 계산 (하루 후)
 $next_date = date('Y-m-d', strtotime($date . ' +1 day'));
 
-// nr - 이미지 가져오는 함수
-function db_select_img(&$conn) {
-    //sql
-    $sql = " SELECT img FROM select_img WHERE id = 1 ";
 
-    $stmt = $conn->prepare($sql);
-    $stmt->execute();
-    $result = $stmt->fetchAll();
-    return $result;
-}
 
 try {
     $conn = my_db_conn();                            

@@ -214,7 +214,7 @@ $current_date = date('Y-m-d');
         overflow: hidden;
         }
         .gauge_bar_ing {
-            width: <?php echo $progressPercentage; ?>%;
+            width: <?php echo $progress_percentage; ?>%;
             height: 100%;
             color : #BDAA8A;
         }
