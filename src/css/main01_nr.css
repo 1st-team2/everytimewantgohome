@@ -163,30 +163,39 @@ input[type="range"]::-webkit-slider-thumb {
     display: inline-block;
     width: 127px;
     height: 127px;
+
 }
 
 .sum01 {
     background-image: url(../image/sum01.png);
     background-repeat: no-repeat;
     background-size: 8rem;
+    /* background-position-x: 45%;
+    background-position-y: 10%; */
 }
 
 .sum02 {
     background-image: url(../image/sum02.png);
     background-repeat: no-repeat;
     background-size: 8rem;
+    /* background-position-x: 48%;
+    background-position-y: 40%; */
 }
 
 .sum03 {
     background-image: url(../image/sum03.png);
     background-repeat: no-repeat;
     background-size: 8rem;
+    /* background-position-x: 48%;
+    background-position-y: 40%; */
 }
 
 .sum04 {
     background-image: url(../image/sum04.png);
     background-repeat: no-repeat;
     background-size: 8rem;
+    /* background-position-x: 48%;
+    background-position-y: 40%; */
 }
 
 label > img {

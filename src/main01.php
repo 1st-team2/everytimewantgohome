@@ -326,13 +326,8 @@ $current_date = date('Y-m-d');
         height: 30px;
         /* overflow: hidden; */
         }
-<<<<<<< HEAD
         .today_gauge_bar_ing {
             width: <?php echo $achievement_rate; ?>%;
-=======
-        .gauge_bar_ing {
-            width: <?php echo $progress_percentage; ?>%;
->>>>>>> a04ab795a3eb440704a6d9a80ec2e4c9dff16956
             height: 100%;
             background-color : #BDAA8A;
         }
@@ -367,16 +362,16 @@ $current_date = date('Y-m-d');
                         <div class="drop_titles">Character</div>
                         <div class="character_main">
                             <input type="radio" name="img" id="image1" value="/image/avatar01.png">
-                            <label for="image1" class="radio_label"></label>
+                            <label for="image1" class="radio_label sum01"></label>
 
                             <input type="radio" name="img" id="image2" value="/image/avatar02.png">                            
-                            <label for="image2" class="radio_label"></label>
+                            <label for="image2" class="radio_label sum02"></label>
 
                             <input type="radio" name="img" id="image3" value="/image/avatar03.png">
-                            <label for="image3" class="radio_label"></label>
+                            <label for="image3" class="radio_label sum03"></label>
 
                             <input type="radio" name="img" id="image4" value="/image/avatar04.png">
-                            <label for="image4" class="radio_label"></label>
+                            <label for="image4" class="radio_label sum04"></label>
                         </div>
                         <button type="submit" class="name_button">YES</button>
                     </form>

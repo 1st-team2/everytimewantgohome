@@ -181,7 +181,7 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/main01.css">
+    <link rel="stylesheet" href="./css/main01_nr.css">
     <title>main</title>
 </head>
 <body>
@@ -202,24 +202,24 @@ try {
                         <input type="range" name="" id="music">
                         <div class="drop_titles">Character</div>
                         <div class="character_main">
-                            <input type="radio" name="img" id="image1" value="/image/jing.png">
-                            <label for="image1" class="radio_label">
-                                <!-- <img src="/image/personal.png"> -->
+                            <input type="radio" name="img" id="image1" value="/image/sum01.png">
+                            <label for="image1" class="radio_label sum01">
+                                <!-- <img src="/image/sum01.png" class="sum01"> -->
                             </label>
 
                             <input type="radio" name="img" id="image2" value="/image/ex.jpg">                            
-                            <label for="image2" class="radio_label">
-                                <!-- <img src="/image/personal.png"> -->
+                            <label for="image2" class="radio_label sum02">
+                                <!-- <img src="/image/sum02.png" class="sum02"> -->
                             </label>
 
                             <input type="radio" name="img" id="image3" value="/image/cat.png">
-                            <label for="image3" class="radio_label">
-                                <!-- <img src="/image/personal.png"> -->
+                            <label for="image3" class="radio_label sum03">
+                                <!-- <img src="/image/sum03.png" class="sum03"> -->
                             </label>
 
                             <input type="radio" name="img" id="image4" value="/image/personal.png">
-                            <label for="image4" class="radio_label">
-                                <!-- <img src="/image/personal.png"> -->
+                            <label for="image4" class="radio_label sum04">
+                                <!-- <img src="/image/sum04.png" class="sum04"> -->
                             </label>
                         </div>
                         <button type="submit" class="name_button">YES</button>
