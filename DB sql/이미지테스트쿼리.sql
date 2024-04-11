@@ -11,4 +11,4 @@ INSERT INTO select_img (
 )
 VALUE('/image/ex.jpg');
 
-ALTER TABLE select_img ADD COLUMN user_name VARCHAR(10) NOT NULL DEFAULT '노겅듀';
+ALTER TABLE select_img ADD COLUMN user_name VARCHAR(10) NOT NULL DEFAULT '듀';
