@@ -111,7 +111,7 @@ try {
         </div>
         <div class="main_mid">
             <div class="main_left">
-                <form action="./update.php" method="post">
+                <form action="./update.php?date=<?php echo $date; ?>" method="post">
                     <input type="hidden" name="no" value="<?php echo $item["no"]; ?>">
                     <div class="main_left_button">
                         <button type="submit">Done</button>

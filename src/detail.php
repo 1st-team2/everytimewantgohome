@@ -90,7 +90,7 @@ try {
                         <!-- <button type="submit">Update</button> -->
                         <div class="main_left_button01"><a href="./update.php?date=<?php echo $date?>&no=<?php echo $item["no"]?>">Update</a></div>
                         <div class="main_left_button02"><a href="./list.php?date=<?php echo $date?>">Cancel</a></div>
-                        <div class="main_left_button03"><a href="./delete_ms.php?date=<?php echo $date?>&no=<?php echo $item["no"]?>">Delete</a></div>
+                        <div class="main_left_button03"><a href="./delete.php?date=<?php echo $date?>&no=<?php echo $item["no"]?>">Delete</a></div>
                     </div>
                     <div class="main_left_item">
                         <input type="text" name="title" id="title" spellcheck="false" readonly value="<?php echo $item["title"] ?>">
