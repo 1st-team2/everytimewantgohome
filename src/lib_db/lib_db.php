@@ -195,7 +195,7 @@ function achieve_goal($goal_id, $conn) {
 
 // gh - 사용자가 달성한  오늘 목표의 수를 가져오는 함수
 function get_today_achieved_count($conn) {
-    $sql = "SELECT COUNT(*) AS count FROM boards WHERE checked_at is not null and DATE(target_date) = CURDATE() ";
+    $sql = "SELECT COUNT(*) AS count FROM boards WHERE checked_at is not null and deleted_at IS NULL and DATE(target_date) = CURDATE() ";
     $stmt = $conn->query($sql);
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     return $row["count"];
@@ -203,7 +203,7 @@ function get_today_achieved_count($conn) {
 
 // gh - 오늘 목표 수를 가져오는 함수
 function get_today_goals_count($conn) {
-    $sql = "SELECT COUNT(*) AS count FROM boards where date(target_date) = CURDATE() ";
+    $sql = "SELECT COUNT(*) AS count FROM boards where deleted_at IS NULL and date(target_date) = CURDATE() ";
     $stmt = $conn->query($sql);
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     return $row["count"];
@@ -215,9 +215,9 @@ function get_week_achieved_count($conn) {
         // 현재 주간의 시작 (일요일)
         $start_of_week = date('Y-m-d', strtotime('last sunday'));
         // 현재 주간의 끝 (토요일)
-        $end_of_week = date('Y-m-d', strtotime('next saturday'));
+        $end_of_week = date('Y-m-d', strtotime('next saturday')); 
 
-        $sql = "SELECT COUNT(*) AS count FROM boards WHERE checked_at IS NOT NULL AND target_date BETWEEN :start_of_week AND :end_of_week";
+        $sql = "SELECT COUNT(*) AS count FROM boards WHERE checked_at IS NOT NULL and deleted_at IS NULL AND target_date BETWEEN :start_of_week AND :end_of_week";
         $stmt = $conn->prepare($sql);
         $stmt->bindValue(':start_of_week', $start_of_week);
         $stmt->bindValue(':end_of_week', $end_of_week);
@@ -239,7 +239,7 @@ function get_week_goals_count($conn) {
         // 현재 주간의 끝 (토요일)
         $end_of_week = date('Y-m-d', strtotime('next saturday'));
 
-        $sql = "SELECT COUNT(*) AS count FROM boards WHERE target_date BETWEEN :start_of_week AND :end_of_week";
+        $sql = "SELECT COUNT(*) AS count FROM boards WHERE deleted_at IS NULL and target_date BETWEEN :start_of_week AND :end_of_week";
         $stmt = $conn->prepare($sql);
         $stmt->bindValue(':start_of_week', $start_of_week);
         $stmt->bindValue(':end_of_week', $end_of_week);
@@ -258,7 +258,7 @@ function get_month_achieved_count($conn) {
     try {
         $current_month = date('m'); // 현재 월 가져오기
 
-        $sql = "SELECT COUNT(*) AS count FROM boards WHERE checked_at IS NOT NULL AND MONTH(target_date) = :current_month";
+        $sql = "SELECT COUNT(*) AS count FROM boards WHERE deleted_at IS NULL and checked_at IS NOT NULL AND MONTH(target_date) = :current_month";
         $stmt = $conn->prepare($sql);
         $stmt->bindValue(':current_month', $current_month, PDO::PARAM_INT);
         $stmt->execute();
@@ -276,7 +276,7 @@ function get_month_goals_count($conn) {
     try {
         $current_month = date('m'); // 현재 월 가져오기
 
-        $sql = "SELECT COUNT(*) AS count FROM boards WHERE MONTH(target_date) = :current_month";
+        $sql = "SELECT COUNT(*) AS count FROM boards WHERE deleted_at IS NULL and MONTH(target_date) = :current_month";
         $stmt = $conn->prepare($sql);
         $stmt->bindValue(':current_month', $current_month, PDO::PARAM_INT);
         $stmt->execute();
