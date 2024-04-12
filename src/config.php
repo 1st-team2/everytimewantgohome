@@ -9,7 +9,7 @@ define("MARIADB_HOST", "112.222.157.156");      //DB HOST
 define("MARIADB_PORT", "6422");                 //DB PORT
 define("MARIADB_USER", "team2");                //DB 유저
 define("MARIADB_PASSWORD", "team2");            //DB 비밀번호
-define("MARIADB_NAME", "pixel_forest");             //DB 명
+define("MARIADB_NAME", "team2");             //DB 명
 
 // define("MARIADB_HOST", "localhost");      //DB HOST
 // define("MARIADB_PORT", "3306");                 //DB PORT

@@ -397,3 +397,11 @@ td {
     text-decoration: none;
     color: #000;
 } */
+
+.itme_list {
+    text-align: center;
+    margin: 20px 20px 20px 0;
+    background-color: #F2EDE7;
+    padding: 20px;
+    border-radius: 10px;
+}

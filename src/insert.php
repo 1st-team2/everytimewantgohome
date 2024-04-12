@@ -2,16 +2,6 @@
 require_once( $_SERVER["DOCUMENT_ROOT"]."/config.php"); // 설정 파일 호출
 require_once(FILE_LIB_DB); // DB관련 라이브러리.
 
-// nr - 이미지 가져오는 함수
-function db_select_img(&$conn) {
-    //sql
-    $sql = " SELECT img FROM select_img WHERE id = 1 ";
-
-    $stmt = $conn->prepare($sql);
-    $stmt->execute();
-    $result = $stmt->fetchAll();
-    return $result;
-}
 try {
     //DB connect
     $conn = my_db_conn();  //PDO 인스턴스
@@ -30,7 +20,7 @@ try {
         $next_date = date('Y-m-d', strtotime($date . ' +1 day'));
 
         $img_result = db_select_img($conn);
-        $img = $img_result[0]["img"];
+        $img = $img_result[0]["avatar"];
 
     } else if(REQUEST_METHOD === "POST") {
 
@@ -90,13 +80,14 @@ try {
 ?>
 
 
-?>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/insert.css">
+    <link rel="shortcut icon" href="./image/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./image/favicon.ico" type="image/x-icon">
     <title>Insert</title>
 </head>
 <body>

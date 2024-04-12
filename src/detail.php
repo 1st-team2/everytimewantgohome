@@ -1,19 +1,9 @@
 <?php
 require_once( $_SERVER["DOCUMENT_ROOT"]."/config.php"); // 설정 파일 호출
 require_once(FILE_LIB_DB); // DB관련 라이브러리
+
 $list_cnt = 100; // 한 페이지 최대 표시 수
 $page_num = 1; // 페이지 번호 초기화
-
-// nr - 이미지 가져오는 함수
-function db_select_img(&$conn) {
-    //sql
-    $sql = " SELECT img FROM select_img WHERE id = 1 ";
-
-    $stmt = $conn->prepare($sql);
-    $stmt->execute();
-    $result = $stmt->fetchAll();
-    return $result;
-}
 
 //리스트 날짜 url에서 가져오기
 // $date = $_GET['date'];
@@ -55,7 +45,7 @@ try {
     $item = $result[0];
 
     $img_result = db_select_img($conn);
-    $img = $img_result[0]["img"];
+    $img = $img_result[0]["avatar"];
 
 
 } catch (\Throwable $e) {
@@ -76,6 +66,8 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/detail.css">
+    <link rel="shortcut icon" href="./image/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./image/favicon.ico" type="image/x-icon">
     <title>Detail</title>
 </head>
 <body>

@@ -1,27 +1,29 @@
 <?php
 
-require_once( $_SERVER["DOCUMENT_ROOT"]."/config_nr.php");
+require_once( $_SERVER["DOCUMENT_ROOT"]."/config.php");
+require_once(FILE_LIB_DB); // DB관련 라이브러리
 
-function db_select_user_name(&$conn){
-    //sql
-    $sql = " SELECT user_name FROM select_img WHERE id = 1 ";
 
-    $stmt = $conn->prepare($sql);
-    $stmt->execute();
-    $result = $stmt->fetchAll();
-    return $result;
-}
+// function db_select_user_name(&$conn){
+//     //sql
+//     $sql = " SELECT user_name FROM users WHERE id = 1 ";
 
-function db_update_user_name(&$conn, &$array_param){
-    //sql
-    $sql = " UPDATE select_img SET user_name = :user_name WHERE id = 1 ";
+//     $stmt = $conn->prepare($sql);
+//     $stmt->execute();
+//     $result = $stmt->fetchAll();
+//     return $result;
+// }
 
-    $stmt = $conn->prepare($sql);
-    $stmt->execute($array_param);
+// function db_update_user_name(&$conn, &$array_param){
+//     //sql
+//     $sql = " UPDATE users SET user_name = :user_name WHERE id = 1 ";
 
-    //return
-    return $stmt->rowCount();
-}
+//     $stmt = $conn->prepare($sql);
+//     $stmt->execute($array_param);
+
+//     //return
+//     return $stmt->rowCount();
+// }
 
 try {
     

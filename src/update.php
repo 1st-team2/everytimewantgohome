@@ -2,17 +2,6 @@
 require_once($_SERVER["DOCUMENT_ROOT"]."/config.php");
 require_once(FILE_LIB_DB);
 
-// nr - 이미지 가져오는 함수
-function db_select_img(&$conn) {
-    //sql
-    $sql = " SELECT img FROM select_img WHERE id = 1 ";
-
-    $stmt = $conn->prepare($sql);
-    $stmt->execute();
-    $result = $stmt->fetchAll();
-    return $result;
-}
-
 //리스트 날짜 url에서 가져오기
 $date = isset($_GET['date']) ? $_GET['date'] : date('Y-m-d');
 
@@ -48,7 +37,7 @@ try {
         $item = $result[0];
 
         $img_result = db_select_img($conn);
-        $img = $img_result[0]["img"];
+        $img = $img_result[0]["avatar"];
 
     }else if(REQUEST_METHOD === "POST") {
         $no = isset($_POST["no"]) ? ($_POST["no"]) : "";
@@ -110,6 +99,8 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/update.css">
+    <link rel="shortcut icon" href="./image/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./image/favicon.ico" type="image/x-icon">
     <title>main</title>
 </head>
 <body>

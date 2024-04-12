@@ -21,17 +21,6 @@ $previous_date = date('Y-m-d', strtotime($date . ' -1 day'));
 // 다음 날짜 계산 (하루 후)
 $next_date = date('Y-m-d', strtotime($date . ' +1 day'));
 
-// nr - 이미지 가져오는 함수
-function db_select_img(&$conn) {
-    //sql
-    $sql = " SELECT img FROM select_img WHERE id = 1 ";
-
-    $stmt = $conn->prepare($sql);
-    $stmt->execute();
-    $result = $stmt->fetchAll();
-    return $result;
-}
-
 try {
     // DB Connect
     $conn = my_db_conn(); // connection 함수
@@ -68,7 +57,7 @@ try {
     $item = $result;
 
     $img_result = db_select_img($conn);
-    $img = $img_result[0]["img"];
+    $img = $img_result[0]["avatar"];
 
 } catch(\Throwable $e) {
     echo $e->getMessage();
@@ -81,12 +70,15 @@ try {
 }
 
 ?>
- <!DOCTYPE html>
+
+<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/list.css">
+    <link rel="shortcut icon" href="./image/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./image/favicon.ico" type="image/x-icon">
     <title>Daily List</title>
 </head>
 <body>
@@ -129,9 +121,11 @@ try {
                         <input type="hidden" name="no" value="<?php echo $item["no"]; ?>">
                     </form>
                     <?php
-                        } 
+                        }
                         }else {
-                            echo "게시글이 없습니다.";
+                    ?>
+                        <div class="itme_list"><?php echo "게시글이 없습니다."; ?></div>
+                    <?php
                         }
                     ?>
                     </div>
