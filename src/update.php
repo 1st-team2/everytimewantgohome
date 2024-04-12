@@ -122,7 +122,7 @@ try {
                         <div class="main_left_button01"><a href="./list.php?date=<?php echo $date?>">Cancel</a></div>
                     </div>
                     <div class="main_left_item">
-                        <input type="text" name="title" id="title" spellcheck="false" value="<?php echo $item["title"]; ?>">
+                        <input type="text" name="title" id="title" spellcheck="false" value="<?php echo $item["title"]; ?>" minlength="1" maxlength="30">
                         <textarea name="content" id="content" cols="40" rows="13" spellcheck="false"><?php echo $item["content"] ?></textarea>
                     </div>
                 </form>
