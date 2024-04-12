@@ -32,14 +32,14 @@ require_once( $_SERVER["DOCUMENT_ROOT"]."/config.php");
     function get_week_achieved_count($conn) {
         try {
             // 현재 주간의 시작 (일요일)
-            $startOfWeek = date('Y-m-d', strtotime('last sunday'));
+            $start_of_week = date('Y-m-d', strtotime('last sunday'));
             // 현재 주간의 끝 (토요일)
-            $endOfWeek = date('Y-m-d', strtotime('next saturday'));
+            $end_of_week = date('Y-m-d', strtotime('next saturday'));
     
-            $sql = "SELECT COUNT(*) AS count FROM boards WHERE checked_at IS NOT NULL AND target_date BETWEEN :startOfWeek AND :endOfWeek";
+            $sql = "SELECT COUNT(*) AS count FROM boards WHERE checked_at IS NOT NULL AND target_date BETWEEN :start_of_week AND :end_of_week";
             $stmt = $conn->prepare($sql);
-            $stmt->bindValue(':startOfWeek', $startOfWeek);
-            $stmt->bindValue(':endOfWeek', $endOfWeek);
+            $stmt->bindValue(':start_of_week', $start_of_week);
+            $stmt->bindValue(':end_of_week', $end_of_week);
             $stmt->execute();
     
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -54,14 +54,14 @@ require_once( $_SERVER["DOCUMENT_ROOT"]."/config.php");
     function get_week_goals_count($conn) {
     try {
         // 현재 주간의 시작 (일요일)
-        $startOfWeek = date('Y-m-d', strtotime('last sunday'));
+        $start_of_week = date('Y-m-d', strtotime('last sunday'));
         // 현재 주간의 끝 (토요일)
-        $endOfWeek = date('Y-m-d', strtotime('next saturday'));
+        $end_of_week = date('Y-m-d', strtotime('next saturday'));
 
-        $sql = "SELECT COUNT(*) AS count FROM boards WHERE target_date BETWEEN :startOfWeek AND :endOfWeek";
+        $sql = "SELECT COUNT(*) AS count FROM boards WHERE target_date BETWEEN :start_of_week AND :end_of_week";
         $stmt = $conn->prepare($sql);
-        $stmt->bindValue(':startOfWeek', $startOfWeek);
-        $stmt->bindValue(':endOfWeek', $endOfWeek);
+        $stmt->bindValue(':start_of_week', $start_of_week);
+        $stmt->bindValue(':end_of_week', $end_of_week);
         $stmt->execute();
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -73,15 +73,15 @@ require_once( $_SERVER["DOCUMENT_ROOT"]."/config.php");
     }
 
     //서버date에서 month값을 가져오는 변수
-    $currentMonth = date('m');
+    $current_month = date('m');
     //이번달 달성한 목표 수를 가져오는 함수
     function get_month_achieved_count($conn) {
         try {
-            $currentMonth = date('m'); // 현재 월 가져오기
+            $current_month = date('m'); // 현재 월 가져오기
     
-            $sql = "SELECT COUNT(*) AS count FROM boards WHERE checked_at IS NOT NULL AND MONTH(target_date) = :currentMonth";
+            $sql = "SELECT COUNT(*) AS count FROM boards WHERE checked_at IS NOT NULL AND MONTH(target_date) = :current_month";
             $stmt = $conn->prepare($sql);
-            $stmt->bindValue(':currentMonth', $currentMonth, PDO::PARAM_INT);
+            $stmt->bindValue(':current_month', $current_month, PDO::PARAM_INT);
             $stmt->execute();
     
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -95,11 +95,11 @@ require_once( $_SERVER["DOCUMENT_ROOT"]."/config.php");
     // 이번 달 전체 목표 수를 가져오는 함수
     function get_month_goals_count($conn) {
         try {
-            $currentMonth = date('m'); // 현재 월 가져오기
+            $current_month = date('m'); // 현재 월 가져오기
     
-            $sql = "SELECT COUNT(*) AS count FROM boards WHERE MONTH(target_date) = :currentMonth";
+            $sql = "SELECT COUNT(*) AS count FROM boards WHERE MONTH(target_date) = :current_month";
             $stmt = $conn->prepare($sql);
-            $stmt->bindValue(':currentMonth', $currentMonth, PDO::PARAM_INT);
+            $stmt->bindValue(':current_month', $current_month, PDO::PARAM_INT);
             $stmt->execute();
     
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -113,41 +113,41 @@ require_once( $_SERVER["DOCUMENT_ROOT"]."/config.php");
     //gh - 달력 만드는 함수
     function generateCalendar() {
         $today = date("Y-m-d");
-        $firstDayOfMonth = date("Y-m-01");
-        $lastDayOfMonth = date("Y-m-t");
-        $startDayOfWeek = date("N", strtotime($firstDayOfMonth));
-        $endDayOfWeek = date("N", strtotime($lastDayOfMonth));
-        $totalDays = date("t", strtotime($firstDayOfMonth));
+        $first_day_of_month = date("Y-m-01");
+        $last_day_of_month = date("Y-m-t");
+        $start_day_of_week = date("N", strtotime($first_day_of_month));
+        $end_day_of_week = date("N", strtotime($last_day_of_month));
+        $total_days = date("t", strtotime($first_day_of_month));
     
-        for ($i = 1; $i < $startDayOfWeek; $i++) {
+        for ($i = 1; $i < $start_day_of_week; $i++) {
             echo "<th class='calendar-date'></th>";
         }
         
-        for ($day = 1; $day <= $totalDays; $day++) {
+        for ($day = 1; $day <= $total_days; $day++) {
             if ($day == date("j", strtotime($today))) {
-                echo "<th class='calendar-date today'><a href='list_gh.php?date=" . date("Y-m-d", strtotime($firstDayOfMonth . "+" . ($day - 1) . " days")) . "'>$day</a></th>";
+                echo "<th class='calendar-date today'><a href='list.php?date=".date("Y-m-d", strtotime($first_day_of_month."+".($day - 1)." days"))."'>$day</a></th>";
             } else {
-                echo "<th class='calendar-date'><a href='list_gh.php?date=" . date("Y-m-d", strtotime($firstDayOfMonth . "+" . ($day - 1) . " days")) . "'>$day</a></th>";
+                echo "<th class='calendar-date'><a href='list.php?date=".date("Y-m-d", strtotime($first_day_of_month."+".($day - 1)." days"))."'>$day</a></th>";
             }
             
-            if($day == $endDayOfWeek){
+            if($day == $end_day_of_week){
                 echo "\n";
             }
         }
         
-        for ($i = $endDayOfWeek; $i < 7; $i++) {
+        for ($i = $end_day_of_week; $i < 7; $i++) {
             echo "<th class='calendar-date'></th>";
         }
     
     }
 
     // nr - 이미지 가져오는 함수
-    function db_select_img(&$conn, $arr_param) {
+    function db_select_img(&$conn) {
         //sql
-        $sql = " SELECT img FROM select_img WHERE id = 1 ";
+        $sql = " SELECT avatar FROM users WHERE id = 1 ";
     
         $stmt = $conn->prepare($sql);
-        $stmt->execute($arr_param);
+        $stmt->execute();
         $result = $stmt->fetchAll();
         return $result;
     }
@@ -155,7 +155,7 @@ require_once( $_SERVER["DOCUMENT_ROOT"]."/config.php");
     // nr - 이미지 업데이트 함수
     function db_update_image(&$conn, &$arr_param){
         //sql
-        $sql = " UPDATE select_img SET img = :img WHERE id = 1 ";
+        $sql = " UPDATE users SET avatar = :avatar WHERE id = 1 ";
     
         //query start
         $stmt = $conn->prepare($sql);
@@ -168,7 +168,7 @@ require_once( $_SERVER["DOCUMENT_ROOT"]."/config.php");
     // nr - 닉네임 가져오는 함수
     function db_select_user_name(&$conn){
         //sql
-        $sql = " SELECT user_name FROM select_img WHERE id = 1 ";
+        $sql = " SELECT user_name FROM users WHERE id = 1 ";
     
         $stmt = $conn->prepare($sql);
         $stmt->execute();
@@ -179,7 +179,7 @@ require_once( $_SERVER["DOCUMENT_ROOT"]."/config.php");
     // nr - 닉네임 업데이트 함수
     function db_update_user_name(&$conn, &$array_param){
         //sql
-        $sql = " UPDATE select_img SET user_name = :user_name WHERE id = 1 ";
+        $sql = " UPDATE users SET user_name = :user_name WHERE id = 1 ";
     
         $stmt = $conn->prepare($sql);
         $stmt->execute($array_param);
@@ -255,18 +255,18 @@ $total_day = date('t', $time); // 2. 현재 달의 총 날짜
 $total_week = ceil(($total_day + $start_week) / 7);  // 3. 현재 달의 총 주차
 
 // 이전 월과 다음 월 계산
-$prevMonth = date('m', strtotime('-1 month', $time));
-$prevYear = date('Y', strtotime('-1 month', $time));
-$nextMonth = date('m', strtotime('+1 month', $time));
-$nextYear = date('Y', strtotime('+1 month', $time));
+$prev_month = date('m', strtotime('-1 month', $time));
+$prev_year = date('Y', strtotime('-1 month', $time));
+$next_month = date('m', strtotime('+1 month', $time));
+$next_year = date('Y', strtotime('+1 month', $time));
 //현재날짜 가져오기
 $current_date = date('Y-m-d');
 
 // ---------------------------------------------------------------
 // nr - get변수 모음 ---------------------------------------------
     $arr_param = [];
-    $result = db_select_img($conn, $arr_param);
-    $img = $result[0]["img"];
+    $result = db_select_img($conn);
+    $img = $result[0]["avatar"];
 
     $array_param = [];
     $result_name = db_select_user_name($conn);
@@ -316,7 +316,7 @@ $current_date = date('Y-m-d');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/main01.css">
-    <title>main</title>
+    <title>Main</title>
     <style>
         .gauge_bar {
         background-color: #f2ede7;
@@ -401,11 +401,11 @@ $current_date = date('Y-m-d');
                 <div class="cal_item">
                 <table>
                     <caption>
-                    <?php echo '<a class="month" href="?year=' . $prevYear . '&month=' . $prevMonth . '">&lt; </a>'; ?>
+                    <?php echo '<a class="month" href="?year=' . $prev_year . '&month=' . $prev_month . '">&lt; </a>'; ?>
                         <div class="month_block">
                             <?php echo date('Y F', strtotime($date)); ?>
                         </div>
-                    <?php echo '<a class="month" href="?year=' . $nextYear . '&month=' . $nextMonth . '"> &gt;</a>'; ?>
+                    <?php echo '<a class="month" href="?year=' . $next_year . '&month=' . $next_month . '"> &gt;</a>'; ?>
                     </caption>
                         <thead>
                             <tr>
