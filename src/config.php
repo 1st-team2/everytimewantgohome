@@ -1,8 +1,6 @@
 <?php
 //path 관련해서 미완성입니다. 240408기준 0.2ver
-
-
-
+//path 관련해서 완성입니다. 240412기준 1.0ver
 
 //■ MariaDB 관련
 define("MARIADB_HOST", "112.222.157.156");      //DB HOST

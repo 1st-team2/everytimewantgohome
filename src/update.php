@@ -39,11 +39,12 @@ try {
         $img_result = db_select_img($conn);
         $img = $img_result[0]["avatar"];
 
+     // POST로 전달된 데이터를 변수에 할당, 없을 경우 빈 문자열로 초기화
     }else if(REQUEST_METHOD === "POST") {
         $no = isset($_POST["no"]) ? ($_POST["no"]) : "";
         $title = isset($_POST["title"]) ? ($_POST["title"]) : "";
         $content = isset($_POST["content"]) ? ($_POST["content"]) : "";
-
+        
         $arr_err_param = [];
         if($no === "") {
             $arr_err_param[] = "no";
@@ -122,7 +123,7 @@ try {
                         <div class="main_left_button01"><a href="./list.php?date=<?php echo $date?>">Cancel</a></div>
                     </div>
                     <div class="main_left_item">
-                        <input type="text" name="title" id="title" spellcheck="false" value="<?php echo $item["title"]; ?>">
+                        <input type="text" name="title" id="title" spellcheck="false" value="<?php echo $item["title"]; ?>" minlength="1" maxlength="30">
                         <textarea name="content" id="content" cols="40" rows="13" spellcheck="false"><?php echo $item["content"] ?></textarea>
                     </div>
                 </form>

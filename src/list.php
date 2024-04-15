@@ -41,14 +41,14 @@ try {
     // 게시글 수 조회
     $result_board_cnt = db_select_boards_cnt($conn);
     
-    // 페이지 관련 설정 셋팅
-    $max_page_num = ceil($result_board_cnt / $list_cnt); // 최대 페이지 수
-    $offset = $list_cnt * ($page_num -1); // 오프셋
+    // 페이지 관련 설정 셋팅 : todo
+    // $max_page_num = ceil($result_board_cnt / $list_cnt); // 최대 페이지 수
+    // $offset = $list_cnt * ($page_num -1); // 오프셋
 
     // 게시글 리스트 조회
     $arr_param = [
         "list_cnt" => $list_cnt
-        ,"offset" => $offset
+        // ,"offset" => $offset
         ,"target_date" => $date
     ];
     $result = db_select_boards_paging($conn, $arr_param);
