@@ -8,94 +8,105 @@ try {
     $conn = my_db_conn();
 
     //에러 설정
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-// ------- gh - GET 변수 모음 --------
-
-//서버date에서 month값을 가져오는 변수
-$current_month = date('m');
-
- // 사용자가 달성한 목표 수와 전체 목표 수를 가져옴
-
-// 오늘 목표 수 가져오기
-$today_goals_count = get_today_goals_count($conn);
-// 달성한 오늘 목표수 가져오기
-$achieved_today_count = get_today_achieved_count($conn);
-
-// 달성한 이번주 목표 수 가져오기 
-$achieved_week_count = get_week_achieved_count($conn);
-// 주간 전체 목표 수 가져오기
-$week_goals_count = get_week_goals_count($conn);
-// 이번달 목표 수 가져오기
-$month_goals_count = get_month_goals_count($conn);
-// 달성한 이번달 목표 수 가져오기
-$achieved_month_count = get_month_achieved_count($conn);
+    // $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); TODO : 삭제여부 가리기
 
 
-// 오늘의 목표 달성률 계산
-if ($today_goals_count > 0) {
-    $achievement_rate = ($achieved_today_count / $today_goals_count) * 100;
-} else {
-    $achievement_rate = 0;
-}
-$achievement_rate = intval($achievement_rate);
+    //서버date에서 month값을 가져오는 변수
+    // $current_month = date('m'); // TODO : 삭제여부 가리기
 
-// 이번 주 목표 달성률 계산
-if ($week_goals_count > 0) {
-    $week_achievement_rate = ($achieved_week_count / $week_goals_count) * 100;
-} else {
-    $week_achievement_rate = 0;
-}
-$week_achievement_rate = intval($week_achievement_rate);
+    // ~~~~~~~~~~~~~~~~~~~ 게이지 변수 모음 ~~~~~~~~~~~~~~~~~~~~~~~
 
-// 이번달 목표 달성률 계산
-if ($month_goals_count > 0) {
-    $month_achievement_rate = ($achieved_month_count / $month_goals_count) * 100;
-} else {
-    $month_achievement_rate = 0;
-}
-$month_achievement_rate = intval($month_achievement_rate);
+    // 사용자가 달성한 목표 수와 전체 목표 수를 가져옴
+
+    // 오늘 목표 수 가져오기
+    $today_goals_count = get_today_goals_count($conn);
+    // 달성한 오늘 목표수 가져오기
+    $achieved_today_count = get_today_achieved_count($conn);
+
+    // 달성한 이번주 목표 수 가져오기 
+    $achieved_week_count = get_week_achieved_count($conn);
+    // 주간 전체 목표 수 가져오기
+    $week_goals_count = get_week_goals_count($conn);
+
+    // 이번달 목표 수 가져오기
+    $month_goals_count = get_month_goals_count($conn);
+    // 달성한 이번달 목표 수 가져오기
+    $achieved_month_count = get_month_achieved_count($conn);
 
 
+    // 오늘의 목표 달성률 계산
+    if ($today_goals_count > 0) {
+        $achievement_rate = ($achieved_today_count / $today_goals_count) * 100; // 오늘 목표 달성률 = (달성한 오늘목표 / 오늘 할 목표 ) * 100
+    } else {
+        $achievement_rate = 0;
+    }
+    $achievement_rate = intval($achievement_rate); // 주어진 값을 정수로 바꿔주는 함수 intval() // 백분율로 계산한 값을 정수로 변환
+
+    // 이번 주 목표 달성률 계산
+    if ($week_goals_count > 0) {
+        $week_achievement_rate = ($achieved_week_count / $week_goals_count) * 100; // 이번주 목표 달성률 = (달성한 이번주 목표 / 이번주 전체 목표수 ) * 100
+    } else {
+        $week_achievement_rate = 0;
+    }
+    $week_achievement_rate = intval($week_achievement_rate); // 백분율로 계산한 값을 정수로 변환
+
+    // 이번달 목표 달성률 계산
+    if ($month_goals_count > 0) {
+        $month_achievement_rate = ($achieved_month_count / $month_goals_count) * 100; // 이번달 목표 달성률 = (달성한 이번달 목표 / 이번달 전체 목표수) * 100
+    } else {
+        $month_achievement_rate = 0;
+    }
+    $month_achievement_rate = intval($month_achievement_rate); // 백분율로 계산한 값을 정술 변환
+
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-// GET으로 넘겨 받은 year값이 있다면 넘겨 받은걸 year변수에 적용하고 없다면 현재 년도
-$year = isset($_GET['year']) ? $_GET['year'] : date('Y');
-// GET으로 넘겨 받은 month값이 있다면 넘겨 받은걸 month변수에 적용하고 없다면 현재 월
-$month = isset($_GET['month']) ? $_GET['month'] : date('m');
 
-$date = "$year-$month-01"; // 해당 달의 1일
-$time = strtotime($date); // 현재 날짜의 타임스탬프
-$start_week = date('w', $time); // 1. 시작 요일
-$total_day = date('t', $time); // 2. 현재 달의 총 날짜
-$total_week = ceil(($total_day + $start_week) / 7);  // 3. 현재 달의 총 주차
+    // ************* 달력 만들기 위한 변수 ****************
 
-// 이전 월과 다음 월 계산
-$prev_month = date('m', strtotime('-1 month', $time));
-$prev_year = date('Y', strtotime('-1 month', $time));
-$next_month = date('m', strtotime('+1 month', $time));
-$next_year = date('Y', strtotime('+1 month', $time));
-//현재날짜 가져오기
-$current_date = date('Y-m-d');
+    // GET으로 넘겨 받은 year값이 있다면 넘겨 받은걸 year변수에 적용하고 없다면 현재 년도
+    $year = isset($_GET['year']) ? $_GET['year'] : date('Y');
 
-// ---------------------------------------------------------------
-// nr - get변수 모음 ---------------------------------------------
+    // GET으로 넘겨 받은 month값이 있다면 넘겨 받은걸 month변수에 적용하고 없다면 현재 월
+    $month = isset($_GET['month']) ? $_GET['month'] : date('m');
+
+    $date = "$year-$month-01"; // 해당 달의 1일
+    $time = strtotime($date); // 현재 날짜의 타임스탬프
+    $start_week = date('w', $time); // 1. 시작 요일
+    $total_day = date('t', $time); // 2. 현재 달의 총 날짜
+    $total_week = ceil(($total_day + $start_week) / 7);  // 3. 현재 달의 총 주차
+
+    // 이전 월 계산
+    $prev_month = date('m', strtotime('-1 month', $time));
+    $prev_year = date('Y', strtotime('-1 month', $time));
+
+    // 다음 월 계산 
+    $next_month = date('m', strtotime('+1 month', $time));
+    $next_year = date('Y', strtotime('+1 month', $time));
+
+    //현재날짜 가져오기
+    $current_date = date('Y-m-d');
+
+    // ****************************************************
+
+
+    // DB 내 아바타이미지 패스 변수에 담기
     $arr_param = [];
     $result = db_select_img($conn);
     $img = $result[0]["avatar"];
 
+    // DB 내 닉네임 변수에 담기
     $array_param = [];
     $result_name = db_select_user_name($conn);
     $user_name_get = $result_name[0]["user_name"];
-// ---------------------------------------------------------------
 
-    } catch (PDOException $e) {
-        echo "Connection failed: " . $e->getMessage();
-        exit;
-    } finally {
-        //PDO 파기
-        $conn = null;
-    }
+} catch (\Throwable $e) {
+    echo "Connection failed: " . $e->getMessage(); // DB커넥트 에러
+    exit;
+} finally {
+    //PDO 파기
+    $conn = null;
+}
 
 // <!-- 
 //     v. 1.0.1
@@ -119,7 +130,7 @@ $current_date = date('Y-m-d');
 //     9. 달력 이름 : cal_name
 //     10. 달력 : cal
 //     11. 닉네임 부분 : nick_name
-//     12. 아바타부분 : personal_img
+//     12. 아바타부분 : avater
 // -->
 ?>
 
@@ -138,11 +149,9 @@ $current_date = date('Y-m-d');
     <style>
         .gauge_bar {
         background-color: #f2ede7;
-        /* display: flex; */
         margin-top: 5px;
         margin-right: 10px;
         height: 30px;
-        /* overflow: hidden; */
         }
         .today_gauge_bar_ing {
             width: <?php echo $achievement_rate; ?>%;
@@ -221,7 +230,7 @@ $current_date = date('Y-m-d');
                     <caption>
                     <?php echo '<a class="month" href="?year=' . $prev_year . '&month=' . $prev_month . '">&lt; </a>'; ?>
                         <div class="month_block">
-                            <?php echo date('Y F', strtotime($date)); ?>
+                            <?php echo date('Y F', strtotime($date)); ?> 
                         </div>
                     <?php echo '<a class="month" href="?year=' . $next_year . '&month=' . $next_month . '"> &gt;</a>'; ?>
                     </caption>
