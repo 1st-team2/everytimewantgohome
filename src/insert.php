@@ -19,6 +19,7 @@ try {
         // 다음 날짜 계산 (하루 후)
         $next_date = date('Y-m-d', strtotime($date . ' +1 day'));
 
+        // 아바타 이미지 가져오기
         $img_result = db_select_name_img($conn);
         $img = $img_result[0]["avatar"];
 
@@ -26,7 +27,7 @@ try {
 
         //파라미터 획득
         $title = isset($_POST["title"]) ? trim($_POST["title"]) : "";       // title 획득
-        $content = isset($_POST["content"]) ? trim($_POST["content"]) : ""; // contetn 획득
+        $content = isset($_POST["content"]) ? trim($_POST["content"]) : ""; // content 획득
         $date = isset($_POST["date"]) ? $_POST["date"] : "";
 
         //파라미터 에러 체크
@@ -104,14 +105,16 @@ try {
             <div class="main_left">
                 <form action="./insert.php" method="post">
                     <input type="hidden" name="date" value="<?php echo $date; ?>">
-                <div class="main_left_button">
-                    <button type="submit">Done</button>
-                    <div class="main_left_button01"><a href="./list.php?date=<?php echo $date; ?>">Cancel</a></div>
-                </div>
-                <div class="main_left_item">
-                    <input type="text" name="title" id="title" spellcheck="false" minlength="1" maxlength="30">
-                    <textarea name="content" id="content" cols="40" rows="13" spellcheck="false"></textarea>
-                </div>
+                    <div class="main_left_button">
+                        <button type="submit">Done</button>
+                        <div class="main_left_button01">
+                            <a href="./list.php?date=<?php echo $date; ?>">Cancel</a>
+                        </div>
+                    </div>
+                    <div class="main_left_item">
+                        <input type="text" name="title" id="title" spellcheck="false" minlength="1" maxlength="30">
+                        <textarea name="content" id="content" cols="40" rows="13" spellcheck="false"></textarea>
+                    </div>
                 </form>
             </div>
             <div class="main_right">

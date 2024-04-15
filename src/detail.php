@@ -3,10 +3,8 @@ require_once( $_SERVER["DOCUMENT_ROOT"]."/config.php"); // 설정 파일 호출
 require_once(FILE_LIB_DB); // DB관련 라이브러리
 
 $list_cnt = 100; // 한 페이지 최대 표시 수
-$page_num = 1; // 페이지 번호 초기화
 
 //리스트 날짜 url에서 가져오기
-// $date = $_GET['date'];
 $date = isset($_GET['date']) ? $_GET['date'] : date('Y-m-d');
 
 
@@ -22,28 +20,33 @@ $next_date = date('Y-m-d', strtotime($date . ' +1 day'));
 
 
 try {
+    // DB 커넥트
     $conn = my_db_conn();
 
+    // 게시글의 번호를 가져온다
     $no = isset($_GET["no"]) ? ($_GET["no"]) : "";
-
 
     $arr_err_param = [];
     if($no === "") {
         $arr_err_param[] = "no";
     }
+
     if(count($arr_err_param) > 0 ) {
         throw new Exception("Parameter Error : ".implode(", ", $arr_err_param));
     }
+
     $arr_param = [
         "no" => $no
     ];
     $result = db_select_boards_no($conn, $arr_param);
+
     if(count($result) !== 1) {
         throw new Exception("Select Boards no count");
     }
 
     $item = $result[0];
 
+    // 이미지 불러오는 함수
     $img_result = db_select_name_img($conn);
     $img = $img_result[0]["avatar"];
 
@@ -98,9 +101,7 @@ try {
             <div class="main_right">
                 <img src="<?php echo $img ?>" alt=""class="img_p">
                 <!-- 리스트 날짜 -->
-                <div class="nick_date_item">
-                    <?php echo $date ?>
-                </div>
+                <div class="nick_date_item"><?php echo $date ?></div>
             </div>
         </div>
     </div>
