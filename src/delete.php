@@ -18,12 +18,13 @@ $next_date = date('Y-m-d', strtotime($date . ' +1 day'));
 
 
 try {
+    //DB connect
     $conn = my_db_conn();                            
 
     if(REQUEST_METHOD === "GET"){
+        $no = isset($_GET["no"]) ? ($_GET["no"]) : "";   
 
-        $no = isset($_GET["no"]) ? ($_GET["no"]) : "";
-
+        //파라미터 에러 체크        
         $arr_err_param = [];
         if($no === "") {
             $arr_err_param[] = "no";

@@ -20,12 +20,13 @@ $next_date = date('Y-m-d', strtotime($date . ' +1 day'));
 
 
 try {
-    // DB 커넥트
+    //DB connect
     $conn = my_db_conn();
 
     // 게시글의 번호를 가져온다
     $no = isset($_GET["no"]) ? ($_GET["no"]) : "";
 
+    //파라미터 에러 체크
     $arr_err_param = [];
     if($no === "") {
         $arr_err_param[] = "no";
