@@ -12,7 +12,7 @@ CREATE TABLE boards(
 		,title			VARCHAR(200)	NOT NULL	
 		,content			VARCHAR(1000)	NOT NULL	
 		,created_at		DATETIME			NOT NULL 				DEFAULT CURRENT_TIMESTAMP()
-		,target_at		DATE				NOT NULL 				
+		,target_date	DATE				NOT NULL 				
 		,updated_at		DATETIME			NOT NULL					DEFAULT CURRENT_TIMESTAMP()
 		,deleted_at		DATETIME	
 		,checked_at		DATETIME	
