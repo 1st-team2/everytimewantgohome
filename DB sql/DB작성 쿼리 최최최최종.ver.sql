@@ -29,3 +29,9 @@ FOREIGN KEY (user_id) REFERENCES users(id);
 
 
 
+INSERT INTO users(user_name)
+VALUES ('이름');
+
+
+INSERT INTO boards (user_id, title, content, target_date)
+VALUES (1, 'Title', 'Content', 19700101);
