@@ -27,7 +27,7 @@ require_once(FILE_LIB_DB); // DB관련 라이브러리
 
 try {
 
-    $conn = new PDO(MARIADB_DSN, MARIADB_USER, MARIADB_PASSWORD);
+    $conn = my_db_conn();
 
     if(REQUEST_METHOD == "POST") {
         // var_dump($_POST["img"]);

@@ -24,7 +24,6 @@ try {
 
     if(REQUEST_METHOD === "GET"){
         $no = isset($_GET["no"]) ? ($_GET["no"]) : "";           
-
         $arr_err_param = [];
         if($no === "") {
             $arr_err_param[] = "no";

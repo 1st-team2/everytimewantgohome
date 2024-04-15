@@ -5,7 +5,7 @@ require_once(FILE_LIB_DB); // DB관련 라이브러리
 
 try {
     //PDO 객체 생성
-    $conn = new PDO(MARIADB_DSN, MARIADB_USER, MARIADB_PASSWORD);
+    $conn = my_db_conn();
 
     //에러 설정
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
