@@ -9,7 +9,6 @@ function my_db_conn() {
     ];																		
     
     return new PDO(MARIADB_DSN, MARIADB_USER, MARIADB_PASSWORD, $option);
-
 }
 
 //deleted_at가 null인 게시글을 불러오는 함수
@@ -20,8 +19,8 @@ function db_select_boards_cnt(&$conn) {
     ." FROM	"
     ." 	boards "
     ." WHERE "
-    ." 	deleted_at IS NULL "  
-;
+    ." 	deleted_at IS NULL "
+    ;
     $stmt = $conn->query($sql);
     $result = $stmt->fetchAll();
 
@@ -252,7 +251,7 @@ function get_month_goals_count($conn) {
         $stmt->bindValue(':current_month', $current_month, PDO::PARAM_INT);
         $stmt->execute();
 
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $row = $stmt->fetch();
         return $row["count"];
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
@@ -260,45 +259,15 @@ function get_month_goals_count($conn) {
     }
 }
 
-//gh - 달력 만드는 함수
-function generateCalendar() {
-    $today = date("Y-m-d");
-    $first_day_of_month = date("Y-m-01");
-    $last_day_of_month = date("Y-m-t");
-    $start_day_of_week = date("N", strtotime($first_day_of_month));
-    $end_day_of_week = date("N", strtotime($last_day_of_month));
-    $total_days = date("t", strtotime($first_day_of_month));
+// nr - 닉네임 , 아바타이미지 가져오는 함수
+function db_select_name_img(&$conn){
+    // sql
+    $sql = " SELECT user_name, avatar FROM users WHERE id = 1 ";
 
-    for ($i = 1; $i < $start_day_of_week; $i++) {
-        echo "<th class='calendar-date'></th>";
-    }
-    
-    for ($day = 1; $day <= $total_days; $day++) {
-        if ($day == date("j", strtotime($today))) {
-            echo "<th class='calendar-date today'><a href='list.php?date=".date("Y-m-d", strtotime($first_day_of_month."+".($day - 1)." days"))."'>$day</a></th>";
-        } else {
-            echo "<th class='calendar-date'><a href='list.php?date=".date("Y-m-d", strtotime($first_day_of_month."+".($day - 1)." days"))."'>$day</a></th>";
-        }
-        
-        if($day == $end_day_of_week){
-            echo "\n";
-        }
-    }
-    
-    for ($i = $end_day_of_week; $i < 7; $i++) {
-        echo "<th class='calendar-date'></th>";
-    }
-}
-
-// nr - 이미지 가져오는 함수
-function db_select_img(&$conn) {
-    //sql
-    $sql = " SELECT avatar FROM users WHERE id = 1 ";
-
-    $stmt = $conn->prepare($sql);
+    $stmt= $conn->prepare($sql);
     $stmt->execute();
-    $result = $stmt->fetchAll();
-    return $result;
+    $result= $stmt->fetchAll();
+    return $result ;
 }
 
 // nr - 이미지 업데이트 함수
@@ -314,17 +283,6 @@ function db_update_image(&$conn, &$arr_param){
     return $stmt->rowCount();
 }
 
-// nr - 닉네임 가져오는 함수
-function db_select_user_name(&$conn){
-    //sql
-    $sql = " SELECT user_name FROM users WHERE id = 1 ";
-
-    $stmt = $conn->prepare($sql);
-    $stmt->execute();
-    $result = $stmt->fetchAll();
-    return $result;
-}
-
 // nr - 닉네임 업데이트 함수
 function db_update_user_name(&$conn, &$array_param){
     //sql
@@ -336,3 +294,4 @@ function db_update_user_name(&$conn, &$array_param){
     //return
     return $stmt->rowCount();
 }
+

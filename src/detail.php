@@ -44,7 +44,7 @@ try {
 
     $item = $result[0];
 
-    $img_result = db_select_img($conn);
+    $img_result = db_select_name_img($conn);
     $img = $img_result[0]["avatar"];
 
 

@@ -92,12 +92,12 @@ try {
 
     // DB 내 아바타이미지 패스 변수에 담기
     $arr_param = [];
-    $result = db_select_img($conn);
+    $result = db_select_name_img($conn);
     $img = $result[0]["avatar"];
 
     // DB 내 닉네임 변수에 담기
     $array_param = [];
-    $result_name = db_select_user_name($conn);
+    $result_name = db_select_name_img($conn);
     $user_name_get = $result_name[0]["user_name"];
 
 } catch (\Throwable $e) {

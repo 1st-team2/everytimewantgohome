@@ -36,7 +36,7 @@ try {
         }
         $item = $result[0];
 
-        $img_result = db_select_img($conn);
+        $img_result = db_select_name_img($conn);
         $img = $img_result[0]["avatar"];
 
      // POST로 전달된 데이터를 변수에 할당, 없을 경우 빈 문자열로 초기화

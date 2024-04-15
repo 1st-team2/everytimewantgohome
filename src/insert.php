@@ -19,7 +19,7 @@ try {
         // 다음 날짜 계산 (하루 후)
         $next_date = date('Y-m-d', strtotime($date . ' +1 day'));
 
-        $img_result = db_select_img($conn);
+        $img_result = db_select_name_img($conn);
         $img = $img_result[0]["avatar"];
 
     } else if(REQUEST_METHOD === "POST") {

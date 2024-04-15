@@ -1,14 +1,14 @@
 <?php 
+//날짜 관련 - last update : 노경호 0409
+//0411 오후2시 55분 함수 추가, 이미지변경시작 : 이나라 / 오후 3시40분 완료
+
 require_once( $_SERVER["DOCUMENT_ROOT"]."/config.php"); // 설정 파일 호출
 require_once(FILE_LIB_DB); // DB관련 라이브러리
 $list_cnt = 100; // 한 페이지 최대 표시 수
 // $page_num = 1; // 페이지 번호 초기화
 
-//날짜 관련 - last update : 노경호 0409
-//0411 오후2시 55분 함수 추가, 이미지변경시작 : 이나라 / 오후 3시40분 완료
 
 //리스트 날짜 url에서 가져오기
-// $date = $_GET['date'];
 $date = isset($_GET['date']) ? $_GET['date'] : date('Y-m-d');
 
 
@@ -35,20 +35,13 @@ try {
     $conn->beginTransaction();
     $result = db_update_contents_checked_at($conn, $arr_param);
     $conn->commit();
-    // 상세 페이지로 이동
-    // header("Location: detail.php?page=".$page);
-    
+
     // 게시글 수 조회
     $result_board_cnt = db_select_boards_cnt($conn);
-    
-    // 페이지 관련 설정 셋팅 : todo
-    // $max_page_num = ceil($result_board_cnt / $list_cnt); // 최대 페이지 수
-    // $offset = $list_cnt * ($page_num -1); // 오프셋
 
     // 게시글 리스트 조회
     $arr_param = [
         "list_cnt" => $list_cnt
-        // ,"offset" => $offset
         ,"target_date" => $date
     ];
     $result = db_select_boards_paging($conn, $arr_param);
@@ -56,7 +49,7 @@ try {
     // 아이템 셋팅
     $item = $result;
 
-    $img_result = db_select_img($conn);
+    $img_result = db_select_name_img($conn);
     $img = $img_result[0]["avatar"];
 
 } catch(\Throwable $e) {
