@@ -118,7 +118,8 @@ function db_select_boards_paging(&$conn, &$array_param) {
             ." ORDER BY "
             ." checked_at " 
             ." ,created_at DESC "
-            ." LIMIT :list_cnt OFFSET :offset "
+            ." LIMIT :list_cnt "
+            // ." LIMIT :list_cnt OFFSET :offset "
         ;
     
     
@@ -127,36 +128,6 @@ function db_select_boards_paging(&$conn, &$array_param) {
     $result = $stmt->fetchAll();
    
     return $result;
-    
-    // try {
-    //       $sql =     
-    //     "SELECT	"
-    //         ." no "
-    //         ." ,title "
-    //         ." ,created_at "
-    //         ." ,checked_at "
-    //         ." FROM "
-    //         ."  boards "
-    //         ." WHERE "
-    //         ."  deleted_at IS NULL "
-    //         ." AND DATE(target_date) = :target_date "
-    //         ." ORDER BY "
-    //         ." checked_at " 
-    //         ." ,created_at DESC "
-    //         ." LIMIT :list_cnt OFFSET :offset "
-    //     ;
-    //     $stmt = $conn->prepare($sql);
-    //     $stmt->execute($array_param);
-    //     $result = $stmt->fetchAll();
-
-    //     return $result;
-
-    //     if (count($result) == 0) {
-    //         echo "게시글이 없습니다.";
-    //     }
-    // } catch (\Throwable $e) {
-    //     throw new Exception('Failed to select boards: ' . $e->getMessage());
-    // }
 
 }
 
