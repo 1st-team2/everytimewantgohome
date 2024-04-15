@@ -12,7 +12,7 @@ CREATE TABLE boards(
 		,title			VARCHAR(200)	NOT NULL	
 		,content			VARCHAR(1000)	NOT NULL	
 		,created_at		DATETIME			NOT NULL 				DEFAULT CURRENT_TIMESTAMP()
-		,target_at		DATE				NOT NULL 				
+		,target_date		DATE				NOT NULL 				
 		,updated_at		DATETIME			NOT NULL					DEFAULT CURRENT_TIMESTAMP()
 		,deleted_at		DATETIME	
 		,checked_at		DATETIME	
@@ -29,3 +29,9 @@ FOREIGN KEY (user_id) REFERENCES users(id);
 
 
 
+INSERT INTO users(user_name)
+VALUES ('이름');
+
+
+INSERT INTO boards (user_id, title, content, target_date)
+VALUES (1, 'Title', 'Content', 19700101);
