@@ -112,7 +112,7 @@ try {
                                 <div class="item-button-a"><a href="./detail.php?date=<?php echo $date ?>&no=<?php echo $item["no"]?>" class="<?php echo isset($item["checked_at"]) ? "color" : "" ?>"><?php echo $item["title"] ?></a></div>
                             </div>
                         <input type="hidden" name="no" value="<?php echo $item["no"]; ?>">
-                    </form>
+                        </form>
                     <?php
                         }
                         }else {

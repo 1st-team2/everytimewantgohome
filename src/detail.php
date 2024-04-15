@@ -22,11 +22,12 @@ $next_date = date('Y-m-d', strtotime($date . ' +1 day'));
 
 
 try {
+    //DB connect
     $conn = my_db_conn();
 
     $no = isset($_GET["no"]) ? ($_GET["no"]) : "";
 
-
+    //파라미터 에러 체크
     $arr_err_param = [];
     if($no === "") {
         $arr_err_param[] = "no";
@@ -43,7 +44,7 @@ try {
     }
 
     $item = $result[0];
-
+    // 이미지
     $img_result = db_select_name_img($conn);
     $img = $img_result[0]["avatar"];
 
