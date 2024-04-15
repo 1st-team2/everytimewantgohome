@@ -2,7 +2,7 @@
 require_once( $_SERVER["DOCUMENT_ROOT"]."/config.php"); // 설정 파일 호출
 require_once(FILE_LIB_DB); // DB관련 라이브러리
 $list_cnt = 100; // 한 페이지 최대 표시 수
-$page_num = 1; // 페이지 번호 초기화
+// $page_num = 1; // 페이지 번호 초기화
 
 //날짜 관련 - last update : 노경호 0409
 //0411 오후2시 55분 함수 추가, 이미지변경시작 : 이나라 / 오후 3시40분 완료
@@ -26,7 +26,7 @@ try {
     $conn = my_db_conn(); // connection 함수
 
     //파라미터에서 page 획득
-    $page_num = isset($_GET["page"]) ? $_GET["page"] : $page_num;
+    // $page_num = isset($_GET["page"]) ? $_GET["page"] : $page_num;
     $no = isset($_POST["no"]) ? $_POST["no"] : "";
 
     $arr_param = [
