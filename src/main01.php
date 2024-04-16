@@ -8,11 +8,11 @@ try {
     $conn = my_db_conn();
 
     //에러 설정
-    // $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); TODO : 삭제여부 가리기
+    // $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 
     //서버date에서 month값을 가져오는 변수
-    // $current_month = date('m'); // TODO : 삭제여부 가리기
+    // $current_month = date('m');
 
     // ~~~~~~~~~~~~~~~~~~~ 게이지 변수 모음 ~~~~~~~~~~~~~~~~~~~~~~~
 
