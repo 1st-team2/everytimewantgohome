@@ -124,8 +124,6 @@ body {
     font-size: 12PX;
 }
 
-/* todo:메인아이템이 고정 버튼부분이 위로 이동 */
-
 .main_left_button01 > a:hover {
     background-color: #CDBFA7;
     padding: 30px 30px 20px 30px;
@@ -270,6 +268,7 @@ textarea, #title:focus {
     background-color: #D9D9D9;
     border: none;
     border-radius: 15px;
+    cursor: pointer; 
 }
 .pop_up_button > a {
     text-decoration: none;
@@ -285,6 +284,7 @@ textarea, #title:focus {
 .pop_up_button > button:hover{
     background-color: #435792;
     color: #F2EDE7;
+    cursor: pointer; 
 }
 .pop_up_button > a:hover {
     background-color: #435792;

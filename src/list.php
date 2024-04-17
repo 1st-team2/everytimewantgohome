@@ -22,18 +22,6 @@ try {
     // DB Connect
     $conn = my_db_conn(); // connection 함수
 
-    //파라미터에서 no 획득
-    $no = isset($_POST["no"]) ? $_POST["no"] : "";
-
-    
-    $arr_param = [
-        "no" => $no
-    ];
-    $conn->beginTransaction();
-    $result = db_update_contents_checked_at($conn, $arr_param);
-
-    $conn->commit();
-
     // 게시글 수 조회
     $result_board_cnt = db_select_boards_cnt($conn);
 
@@ -52,11 +40,9 @@ try {
     $img = $img_result[0]["avatar"];
 
 } catch(\Throwable $e) {
-    if(!empty($conn) && $conn->inTransaction()){
-        $conn->rollBack();
-    }
     echo $e->getMessage();
-    exit; //위에 코드가 오류 있을때 밑에 코드 안 보이고 종료 시키고 싶을때 사용
+    exit; 
+    //위에 코드가 오류 있을때 밑에 코드 안 보이고 종료 시키고 싶을때 사용
 } finally {
     // PDO 파기
     if(!empty($conn)) {

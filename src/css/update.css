@@ -138,6 +138,7 @@ a {
 .main_left_button > button:hover {
     background-color: #CDBFA7;
     padding: 29px 35px 19px 35px;
+    cursor: pointer; 
 }
 .main_left_button01 > a:hover {
     background-color: #CDBFA7;
