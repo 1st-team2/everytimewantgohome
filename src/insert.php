@@ -35,9 +35,6 @@ try {
         if($title === "") {
             $arr_err_param[] = "title";
         }
-        // if($content === "") {
-        //     $arr_err_param[] = "content";
-        // }
         if($date === ""){
             $arr_err_param[] = "date";
         }
