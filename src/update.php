@@ -52,9 +52,9 @@ try {
         if($title === "") {
             $arr_err_param[] = "title";
         }
-        if($content === "") {
-            $arr_err_param[] = "content";
-        }
+        // if($content === "") {
+        //     $arr_err_param[] = "content";
+        // }
         if(count($arr_err_param) > 0 ) {
             throw new Exception("Parameter Error : ".implode(", ", $arr_err_param));
         }
