@@ -124,7 +124,7 @@ body {
     font-size: 12PX;
 }
 
-.main_left_button01 > a:hover {
+/* .main_left_button01 > a:hover {
     background-color: #CDBFA7;
     padding: 30px 30px 20px 30px;
 }
@@ -135,7 +135,7 @@ body {
 .main_left_button03 > a:hover {
     background-color: #CDBFA7;
     padding: 30px 30px 20px 30px;
-}
+} */
 .main_left_item {
     display: flex;
     width: 740px;

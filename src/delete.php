@@ -107,7 +107,7 @@ try {
             <div class="top_date">NOW DATE :<?php echo $current_date ?></div>
             <div class="minus">-</div>
             <div class="square">ㅁ</div>
-            <div class="back"><a href="./list.php?date=<?php echo $date?>">x</a></div>
+            <div class="back"><a href="">x</a></div>
         </div>
         <div class="main_mid">
             <div class="main_left">
