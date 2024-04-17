@@ -35,9 +35,9 @@ try {
         if($title === "") {
             $arr_err_param[] = "title";
         }
-        if($content === "") {
-            $arr_err_param[] = "content";
-        }
+        // if($content === "") {
+        //     $arr_err_param[] = "content";
+        // }
         if($date === ""){
             $arr_err_param[] = "date";
         }
@@ -113,7 +113,7 @@ try {
                     </div>
                     <div class="main_left_item">
                         <input type="text" name="title" id="title" spellcheck="false" minlength="1" maxlength="30" placeholder="제목을 입력 해 주세요" required>
-                        <textarea name="content" id="content" cols="40" rows="13" spellcheck="false" placeholder="내용을 입력 해 주세요" required></textarea>
+                        <textarea name="content" id="content" cols="40" rows="13" spellcheck="false" placeholder="내용을 입력 해 주세요" ></textarea>
                     </div>
                 </form>
             </div>
