@@ -167,7 +167,7 @@ function achieve_goal($goal_id, $conn) {
 function get_today_achieved_count($conn) {
     $sql = "SELECT COUNT(*) AS count FROM boards WHERE checked_at is not null and deleted_at IS NULL and DATE(target_date) = CURDATE() ";
     $stmt = $conn->query($sql);
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    $row = $stmt->fetch();
     return $row["count"];
 }
 
@@ -175,7 +175,7 @@ function get_today_achieved_count($conn) {
 function get_today_goals_count($conn) {
     $sql = "SELECT COUNT(*) AS count FROM boards where deleted_at IS NULL and date(target_date) = CURDATE() ";
     $stmt = $conn->query($sql);
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    $row = $stmt->fetch();
     return $row["count"];
 }
 
@@ -193,7 +193,7 @@ function get_week_achieved_count($conn) {
         $stmt->bindValue(':end_of_week', $end_of_week);
         $stmt->execute();
 
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $row = $stmt->fetch();
         return $row["count"];
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
@@ -215,7 +215,7 @@ function get_week_goals_count($conn) {
         $stmt->bindValue(':end_of_week', $end_of_week);
         $stmt->execute();
 
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $row = $stmt->fetch();
         return $row["count"];
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
@@ -233,7 +233,7 @@ function get_month_achieved_count($conn) {
         $stmt->bindValue(':current_month', $current_month, PDO::PARAM_INT);
         $stmt->execute();
 
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $row = $stmt->fetch();
         return $row["count"];
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();

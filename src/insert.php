@@ -112,8 +112,8 @@ try {
                         </div>
                     </div>
                     <div class="main_left_item">
-                        <input type="text" name="title" id="title" spellcheck="false" minlength="1" maxlength="30" placeholder="제목을 입력 해 주세요">
-                        <textarea name="content" id="content" cols="40" rows="13" spellcheck="false" placeholder="내용을 입력 해 주세요"></textarea>
+                        <input type="text" name="title" id="title" spellcheck="false" minlength="1" maxlength="30" placeholder="제목을 입력 해 주세요" required>
+                        <textarea name="content" id="content" cols="40" rows="13" spellcheck="false" placeholder="내용을 입력 해 주세요" required></textarea>
                     </div>
                 </form>
             </div>
